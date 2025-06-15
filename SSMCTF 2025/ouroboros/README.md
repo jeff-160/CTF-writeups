@@ -39,7 +39,7 @@ The script also invokes a method from `os`, and by coincidence, the `remove` and
 
 <img src="images/os.png" height=150/>
 
-Intuitively, our next step would be to either get the script to directly `cat flag` or `sh`, however, since we aren't allowed to remove characters, `sh` seems to be the most viable option.
+Intuitively, our next step would be to either get the script to directly `cat flag` or `sh`, however, since characters in `flag` are blacklisted, `sh` seems to be the most viable option.
 
 First, we modify the `remove` call slowly, making sure to change the last character to a comment so that we can add the string later on (the script would crash from an unterminated string literal otherwise)
 
