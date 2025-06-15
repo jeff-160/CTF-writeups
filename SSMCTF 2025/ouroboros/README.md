@@ -73,7 +73,7 @@ At this stage, we might notice that since our `os.system` call is in the `except
 b 213
 ```
 
-Immediately after entering the following input, we get a shell. Running `ls` reveals the `flag` file in the directory, as expected.
+Immediately after entering the above input, we get a shell. Running `ls` reveals the `flag` file in the directory, as expected.
 
 <img src="images/shell.png" height=100>
 
