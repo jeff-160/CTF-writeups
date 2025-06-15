@@ -1,6 +1,6 @@
 ## Ouroboros
 
-Category: Misc
+Category: Misc  
 Difficulty: Medium
 
 <img src="images/challenge.png" width=400/>
