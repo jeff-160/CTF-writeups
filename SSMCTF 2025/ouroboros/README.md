@@ -19,10 +19,10 @@ Looking at the script, we can conclude that it does the following:
 - creates a copy of its source code in a temporary file, but without the `while` loop and the `exec` calls
 - replaces the character at the specified index, and executes the modified script
 
-<img src="images/source.png" height=200>
+<img src="images/source.png" width=600/>
 
 Some key contraints we should note are:
-- `nono=r'!@$flag%^&*()+\~`,_./[]{}<>/?|='`: only alphanumerics and a few symbols are allowed
+- ``nono=r'!@$flag%^&*()+\~`,_./[]{}<>/?|='``: only alphanumerics and a few symbols are allowed
 - `rnd = rnd+1`: we are limited to only one modification
 
 One thing you might notice immediately would be that all arithmetic operations except the minus sign are blacklisted. If we were to modify the `rnd` increment to `rnd=rnd-1`, we would be able to bypass the modification count constraint, and this seems to be an intended vulnerability left by the author.
@@ -35,7 +35,7 @@ After entering the below, we should be able to make unlimited modifications to t
 ```
 
 
-The script also invokes a method from `os`, and by coincidence (though not intentionally), the `remove` and `system` methods happen to share the same length. 
+The script also invokes a method from `os`, and by coincidence, the `remove` and `system` methods happen to share the same length. 
 
 <img src="images/os.png" height=150/>
 
@@ -53,7 +53,7 @@ e 334
 # 335
 ```
 
-Next, we add our `sh` command, and complete the `system` call, giving us the modified code as shown below.
+Next, we add our `sh` command, and complete the `system` call.
 
 ```
 ' 337
@@ -79,6 +79,6 @@ Immediately after entering the following input, we get a shell. Running `ls` rev
 
 We can finally read the `flag` file, giving us some pretty cool ASCII art, as well as our flag.
 
-<img src="images/flag.png" height=300>
+<img src="images/flag.png" width=600>
 
 Overall, I'd rank this as one of the top pyjails I've done, second after the polyglot pyjail in CDDC 2025 finals.
