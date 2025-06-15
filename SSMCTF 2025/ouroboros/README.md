@@ -67,7 +67,7 @@ m 335
 
 <img src="images/modified.png" height=200>
 
-At this stage, we might notice that since our `os.system` call is in the `except` block, it doesn't have a way of being invoked. This can be fixed by simply inserting a random character in the `try` block and triggering an error.
+At this stage, we might notice that since our `os.system` call is in the `except` block, it doesn't have a way of being invoked. This can be fixed by simply changing our minus sign back in the first step to a random character and triggering a `NameError`.
 
 ```
 b 213
