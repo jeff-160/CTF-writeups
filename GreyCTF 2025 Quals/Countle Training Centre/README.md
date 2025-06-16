@@ -2,6 +2,8 @@
 
 Category: Misc
 
+<img src="images/challenge.png" width=400>
+
 In the challenge, we must connect to a server and play the countle game.  
 
 In the source file, it appears that after winning 999999 consecutive rounds, the flag would be printed. However, due to the rate limit enforced, this would take roughly 27 hours, and automation is hence not a viable option. 
