@@ -1,13 +1,13 @@
 ## Gamer's Quest 1
 
-Category: Osint  
+Category: Osint
 Difficulty: Medium
 
 <img src="images/challenge.png" width=400>
 
 Using Sherlock, my teammate was able to find a [github account](https://github.com/shadowbyte7077) under the username provided.  
 
-In his Github profile there is a singular repository (for the 2nd part of the challenge which none of the teams solved unfortunately).
+In his Github profile there is a singular repository for the 2nd part of the challenge (which none of the teams solved unfortunately).
 
 <img src="images/repo.png" width=600>
 
