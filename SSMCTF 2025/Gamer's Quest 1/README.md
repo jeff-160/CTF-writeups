@@ -1,6 +1,6 @@
 ## Gamer's Quest 1
 
-Category: Osint
+Category: Osint  
 Difficulty: Medium
 
 <img src="images/challenge.png" width=400>
