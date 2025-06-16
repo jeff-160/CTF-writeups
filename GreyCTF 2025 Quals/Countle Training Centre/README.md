@@ -18,7 +18,7 @@ From the above, we can see that `eval` is being run in a sandboxed environment, 
 Another important detail worth noting is that `builtins` and `cat` are not actually blacklisted, as the list is missing a comma to separate them, so Python's implicit string concatentation causes both keywords to be excluded from the blacklist.
 
 
-Naturally, the first step would be to escape our sandboxed environment to access normally accessible functions. The code snippet above returns all subclasses inheriting from the `object` class, opening up a wide array of functionalities.  
+Naturally, the first step would be to escape our sandboxed environment to access normally accessible functions. The code snippet below exploits the `tuple` class to access all subclasses inheriting from the `object` class.  
 
 ```python
 ().__class__.__base__.__subclasses__()
