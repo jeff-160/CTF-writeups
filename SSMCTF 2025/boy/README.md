@@ -24,7 +24,7 @@ There are also several filters implemented to circumvent SQLi:
 
 <img src="images/filters.png" width=600>
 
-The most problamatic filter would be the alphabet whitelist, since it removes almost all SQLi functionality. However, upon closer inspection, we notice that a generator has been used to define the blacklist.  
+The most problematic filter would be the alphabet whitelist, since it removes almost all SQLi functionality. However, upon closer inspection, we notice that a generator has been used to define the blacklist.  
 
 A unique property of Python generators is that they can only be iterated through once. Leveraging this, we can first get the code to iterate through the generator once using a valid character, allowing us to use any symbols subsequently.  
 
