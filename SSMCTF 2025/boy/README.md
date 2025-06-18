@@ -22,7 +22,7 @@ There are also several filters implemented to circumvent SQLi:
 - `flag` string is blacklisted
 - if `SSMCTF` is detected in our query result, it will be rejected
 
-<img src="images/filters.png" width=400>
+<img src="images/filters.png" width=600>
 
 The most problamatic filter would be the alphabet whitelist, since it removes almost all SQLi functionality. However, upon closer inspection, we notice that a generator has been used to define the blacklist.  
 
