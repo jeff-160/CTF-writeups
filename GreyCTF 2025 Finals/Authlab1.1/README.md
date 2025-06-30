@@ -12,6 +12,8 @@ We have the exact same setup as the previous challenge, however, the server uses
 
 In `SecurePickle`, we can see that only module imports from `builtins` are allowed, and that it also checks our payload against a blacklist.  
 
+<img src="images/securepickle.png" width=600>
+
 The standard Pickle `__reduce__` RCE exploit wouldn't suffice in this case, as it relies on direct class resolution, which would trigger the `builtins` filter.  
 
 Here, we can see that the bytecode generated directly imports the `posix` module to resolve the `os.system` call.  
@@ -19,8 +21,6 @@ Here, we can see that the bytecode generated directly imports the `posix` module
 ```python
 b'\x80\x04\x95\x1d\x00\x00\x00\x00\x00\x00\x00\x8c\x05posix\x94\x8c\x06system\x94\x93\x94\x8c\x02sh\x94\x85\x94R\x94.'
 ```
-
-<img src="images/securepickle.png" width=600>
 
 After some digging, I found a [github article](https://github.com/maurosoria/dirsearch/issues/1073) that detailed how to bypass a similar setup.  
 
