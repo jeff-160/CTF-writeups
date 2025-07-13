@@ -1,7 +1,7 @@
 ## ChooseOrDie
 
 Category: Rev  
-Difficulty: Medium
+Difficulty: Hard
 
 <img src="images/challenge.jpeg" width=400>
 
