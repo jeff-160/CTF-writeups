@@ -7,7 +7,7 @@ Difficulty: Medium
 
 We are given a website where we can purchase kids.  
 
-To login to the admin endpoint, we have to pass `check_jwt` check function.  
+To login to the admin endpoint, we have to pass the `check_jwt` check function.  
 
 <img src="images/admin.png" width=600>
 
