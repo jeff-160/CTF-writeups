@@ -13,5 +13,5 @@ for codepoint in range(sys.maxunicode + 1):
     if normalised.isascii() and len(normalised) > 1:
         results.append(char + " " + normalised)
 
-with open("ligatures.txt", "w") as f:
+with open("ligatures.txt", "w", encoding="utf-8") as f:
     f.write("\n".join(results))
