@@ -2,4 +2,5 @@
 
 We can use `nslookup` to get the mail server.  
 
-<img src="images/flag.png" width=600>
+
+<img src="images/flag.png" width=800>
