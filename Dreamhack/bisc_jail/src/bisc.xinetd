@@ -1,0 +1,11 @@
+service bisc_jail
+{
+	disable = no
+	socket_type = stream
+	protocol = tcp
+	wait = no
+	user = bisc
+	server = /home/bisc/bisc_jail.py
+	type = UNLISTED
+	port = 3001
+}

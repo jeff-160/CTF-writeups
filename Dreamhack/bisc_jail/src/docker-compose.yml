@@ -1,0 +1,8 @@
+version: '3'
+services:
+   bisc_jail:
+      build: .
+      ports:
+         - "3001:3001"
+      command:
+         - /start.sh
