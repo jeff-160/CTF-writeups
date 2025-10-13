@@ -1,8 +1,5 @@
 ## Python Secure
 
-Category: Pwnable, Misc    
-Level: 4
-
 <img src="images/chall.png" width=400>
 
 We are given a restricted Python shell. The blacklist includes all digits and a lot of essential symbols. We are also restricted to 60 characters and under for each command.  

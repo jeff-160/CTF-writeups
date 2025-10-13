@@ -1,8 +1,5 @@
 ## Python Wizard
 
-Category: Misc    
-Level: 3
-
 <img src="images/chall.png" width=400>
 
 In this Pyjail, we are faced with a pretty restrictive blacklist, where almost all essential symbols are blocked, except for `.` and `()`. Luckily, these should suffice for us to be able to invoke methods and access attributes.  
