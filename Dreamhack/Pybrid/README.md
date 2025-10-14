@@ -6,7 +6,7 @@ We are given a website where we can manage and add new school members to a serve
 
 The `Principal` class conveniently provides us with an RCE vector.  
 
-<img src="images/vuln.png" width=600>
+<img src="images/rce.png" width=600>
 
 The main vulnerability lies in the `/add_member` endpoint, where the POST data is merged with the new `Principal` object created. 
 
@@ -33,5 +33,6 @@ With this knowledge, we can craft a simple payload that will cause the server to
 ```
 
 Visiting the `/execute` endpoint after submitting our payload will then give us the flag.  
+
 
 Flag: `DH{a8b5ad7d6e255825:UGzbTtI4PrSSGh/xrKyzoQ==}`
