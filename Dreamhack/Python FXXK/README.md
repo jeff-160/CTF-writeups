@@ -79,4 +79,5 @@ payload = f'eval({payload})'
 
 Submitting the payload then gives us a shell where we can retrieve the flag.  
 
-<img src="images/flag.png" width=600>
+
+<img src="images/flag.png" width=800>
