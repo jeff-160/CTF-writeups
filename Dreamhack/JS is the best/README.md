@@ -82,4 +82,5 @@ v+=b;1
 
 After submitting the series of payloads, we are finally able to view the flag.  
 
+
 <img src="images/flag.png" width=600>
