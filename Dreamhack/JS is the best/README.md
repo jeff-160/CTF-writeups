@@ -54,7 +54,7 @@ e(v)
 
 However, this is not sufficient, as we might notice that stage 3 actually makes 3 eval calls, and this may affect the way our payload is built. Ideally, we want only the first eval to be triggered, so we have to fail the first validation in the `if` statement.  
 
-<img src="images/first_eval.png" width=400>
+<img src="images/condition.png" width=400>
 
 `eval()` will always return the string we assigned to the value, and the comparison will always evaluate to `false`, which will trigger the subsequent `eval()` calls.  
 
@@ -84,3 +84,4 @@ After submitting the series of payloads, we are finally able to view the flag.
 
 
 <img src="images/flag.png" width=600>
+
