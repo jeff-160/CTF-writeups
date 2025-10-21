@@ -29,7 +29,8 @@ Since we are interacting with the binary through the web interface, we have no w
 
 However, since the flag is stored as a constant in the binary, can simply output the strings in the binary using `strings /f\l\a\g` and the flag will be inside.  
 
-<img src="images/flag.png" width=600>
+<img src="images/flag.png" width=800>
   
 
 Flag: `DH{you_are_python_gosu}`
+
