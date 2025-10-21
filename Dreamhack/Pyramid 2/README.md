@@ -21,7 +21,7 @@ However, this doesn't output the flag.
 
 <img src="images/binary.png" width=600>
 
-Going back to the source code for the `flag` binary, we can see that the program actually prompts us to guess correctly the sum of 3 random integers for the flag to be outputted.  
+Going back to the source code for the `flag` binary, we can see that the program actually prompts us to guess correctly the computation of 3 random integers for the flag to be outputted.  
 
 <img src="images/source.png" width=400>
 
@@ -31,4 +31,5 @@ However, since the flag is stored as a constant in the binary, can simply output
 
 <img src="images/flag.png" width=600>
   
+
 Flag: `DH{you_are_python_gosu}`
