@@ -27,10 +27,11 @@ Going back to the source code for the `flag` binary, we can see that the program
 
 Since we are interacting with the binary through the web interface, we have no way of directly submitting inputs to the binary.  
 
-However, since the flag is stored as a constant in the binary, can simply output the strings in the binary using `strings /f\l\a\g` and the flag will be inside.  
+However, since the flag is stored as a constant in the binary, we can simply output the strings in the binary using `strings /f\l\a\g` and the flag will be inside.  
 
 <img src="images/flag.png" width=800>
   
 
 Flag: `DH{you_are_python_gosu}`
+
 
