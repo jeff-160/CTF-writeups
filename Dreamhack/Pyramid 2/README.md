@@ -1,3 +1,5 @@
+## Pyramid 2
+
 <img src="images/chall.png" width=400>
 
 The chall has a similar setup to [Pyramid](../Pyramid), except that the filter has been expanded, meaning we can't pip install with `git`.  
@@ -33,5 +35,6 @@ However, since the flag is stored as a constant in the binary, we can simply out
   
 
 Flag: `DH{you_are_python_gosu}`
+
 
 
