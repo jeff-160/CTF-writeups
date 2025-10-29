@@ -1,3 +1,5 @@
+## Pyramid
+
 <img src="images/chall.png" width=400>
 
 We are given a webpage where we can pass in a filename which will get executed by the server.  
@@ -29,5 +31,6 @@ After passing in the `pip` script located, we can then build a command that will
 <img src="images/install.png" width=600>
 
 We can then access our exploit script in `/bin/exploit.py` and use it to read `flag`.
+
 
 <img src="images/flag.png" width=600>
