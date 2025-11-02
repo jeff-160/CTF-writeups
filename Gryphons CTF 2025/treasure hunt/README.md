@@ -19,7 +19,7 @@ Running a simple Python SSTI payload shown below gave an error, which revealed t
 {{ self.__init__.__globals__.__builtins__['__import__']('os') }}
 ```
 
-<img src="images/error.png" width=600>
+<img src="images/error.png" width=800>
 
 With this knowledge, we can craft a simple payload that gives us RCE on the webpage.  
 
