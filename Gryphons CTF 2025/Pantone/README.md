@@ -1,6 +1,6 @@
 ## Pantone
 
-Category: Web
+Category: Web  
 Difficulty: Hard
 
 <img src="images/chall.png" width=400>
