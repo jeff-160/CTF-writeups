@@ -1,3 +1,5 @@
+# extract password from hint.txt
+
 with open("hint.txt", "r") as f:
     content = [i for i in f.read().split("\n") if "Hint" in i]
 
