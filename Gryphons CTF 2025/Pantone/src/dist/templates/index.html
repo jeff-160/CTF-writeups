@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Mixer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .color-select {
+            margin: 10px;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+        .color-box {
+            width: 100px;
+            height: 100px;
+            margin: 10px auto;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mix Your Colors</h1>
+        <form id="colorForm">
+            <div class="color-select">
+                <label for="color1">Color 1:</label>
+                <select id="color1" name="color1">
+                    <option value="red">Red</option>
+                    <option value="orange">Orange</option>
+                    <option value="yellow">Yellow</option>
+                    <option value="green">Green</option>
+                    <option value="blue">Blue</option>
+                    <option value="indigo">Indigo</option>
+                    <option value="violet">Violet</option>
+                </select>
+            </div>
+            <div class="color-select">
+                <label for="color2">Color 2:</label>
+                <select id="color2" name="color2">
+                    <option value="red">Red</option>
+                    <option value="orange">Orange</option>
+                    <option value="yellow">Yellow</option>
+                    <option value="green">Green</option>
+                    <option value="blue">Blue</option>
+                    <option value="indigo">Indigo</option>
+                    <option value="violet">Violet</option>
+                </select>
+            </div>
+            <div class="color-select">
+                <label for="color3">Color 3:</label>
+                <select id="color3" name="color3">
+                    <option value="red">Red</option>
+                    <option value="orange">Orange</option>
+                    <option value="yellow">Yellow</option>
+                    <option value="green">Green</option>
+                    <option value="blue">Blue</option>
+                    <option value="indigo">Indigo</option>
+                    <option value="violet">Violet</option>
+                </select>
+            </div>
+            <button type="button" onclick="submitColors()">Mix Colors</button>
+        </form>
+        <div class="result">
+            <p id="result">Result will appear here.</p>
+            <div class="color-box" id="colorBox"></div>
+        </div>
+    </div>
+
+    <script>
+        async function submitColors() {
+            const color1 = document.getElementById('color1').value;
+            const color2 = document.getElementById('color2').value;
+            const color3 = document.getElementById('color3').value;
+
+            const response = await fetch('/colors', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ color1, color2, color3 }),
+            });
+
+            const resultDiv = document.getElementById('result');
+            const colorBox = document.getElementById('colorBox');
+
+            if (response.ok) {
+                const data = await response.json();
+                resultDiv.innerHTML = `${data.message}`;
+                colorBox.style.backgroundColor = `rgb(${data.rgb[0]}, ${data.rgb[1]}, ${data.rgb[2]})`;
+            } else {
+                const error = await response.json();
+                resultDiv.innerHTML = `<p style="color: red;">Error: ${error.error}</p>`;
+                colorBox.style.backgroundColor = '#f4f4f4';
+            }
+        }
+    </script>
+</body>
+</html>
