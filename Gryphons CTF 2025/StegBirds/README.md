@@ -1,6 +1,6 @@
 ## Pantone
 
-Category: Forens
+Category: Forens  
 Difficulty: Easy
 
 <img src="images/chall.png" width=400>

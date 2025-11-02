@@ -1,6 +1,6 @@
 ## Gryphons Site
 
-Category: Web
+Category: Web  
 Difficulty: Medium
 
 <img src="images/chall.png" width=400>
