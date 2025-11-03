@@ -21,7 +21,7 @@ Looking at the HTML source of one of the member pages, I found a suspiciously em
 
 <img src="images/div.png" width=400>
 
-I also found out that it is possible to leak errors when tampering with the `id` paramter in `/members`. Below was the message I got when I set it to `0`.  
+I also found out that it is possible to leak errors when tampering with the `id` parameter in `/members`. Below was the message I got when I set it to `0`.  
 
 <img src="images/leak.png" width=600>
 
