@@ -6,7 +6,7 @@ We are provided with a Pyjail that uses a custom AST for filtering, preventing a
 
 <img src="images/ast.png" width=500>
 
-The jail also implements a pretty simple blacklist, limiting our payload to a restricted character set.  
+The jail also implements a pretty simple whitelist, limiting our payload to a restricted character set.  
 
 <img src="images/filter.png" width=600> 
 
@@ -39,5 +39,6 @@ def os():0
 ```
 
 Putting it all together, we can finally get a shell where we are able to retrieve the flag.  
+
 
 <img src="images/flag.png" width=600>
