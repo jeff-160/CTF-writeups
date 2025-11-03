@@ -13,7 +13,7 @@ Visiting the `/token` endpoint does indeed give us a sample token.
 
 <img src="images/token.png" width=600>
 
-When we try visiting the `/verify` endpoint with our token is that we get this error.  
+When we try visiting the `/verify` endpoint with our token we get this error.  
 
 ```
 {"error":"The specified key is an asymmetric key or x509 certificate and should not be used as an HMAC secret.","file_leak":"-----BEGIN PUBLIC KEY-----\nFAKEPUBLICKEY\n-----END PUBLIC KEY-----\n","ok":false}
