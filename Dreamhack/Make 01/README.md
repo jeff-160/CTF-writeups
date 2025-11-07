@@ -8,7 +8,7 @@ We are given a webpage where we can enter any values we want as long as their su
 
 The Dockerfile reveals that the flag file is stored in root.  
 
-<img src="images/Dockerfile.png" width=400>
+<img src="images/dockerfile.png" width=400>
 
 Looking at the source code, we immediately notice an SSTI vulnerability in the backend. 
 
