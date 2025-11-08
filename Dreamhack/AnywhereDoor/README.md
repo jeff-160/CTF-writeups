@@ -47,7 +47,7 @@ I wrote a small script to obfuscate the string as such. However, the next thing 
 For `?`, we can leverage JavaScript's syntax rules by declaring a function with a nullish coalescing operator, then casting it to a string and grabbing the `?` character.  
 
 ```javascript
-String(function(){1??1})
+String(function(){1??1})[13]    // "?"
 ```
 
 Building `/` and `=` are slightly trickier, since they are directly included in the blacklist. However, recalling that the `/gate` endpoint URL always starts with `http://` and has a `param=` argument, we can leverage the URL itself to get the characters.  
