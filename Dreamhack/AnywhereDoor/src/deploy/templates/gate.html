@@ -1,0 +1,13 @@
+{% extends "base.html" %} {% block title %}Index{% endblock %} {% block head %}
+{{ super() }}
+<style type="text/css">
+  .important {
+    color: #336699;
+  }
+</style>
+{% endblock %} {% block content %}
+<p id="error">Warp failed??? Try again.</p>
+<script>
+  location.href={{param}} ; // Doraemon's magic gate
+</script>
+{% endblock %}
