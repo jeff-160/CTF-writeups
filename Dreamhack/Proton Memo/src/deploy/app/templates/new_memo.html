@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Proton Memo</title>
+</head>
+<body>
+    <h1>New Memo</h1>
+    <form method="post" action="{{ url_for('new_memo') }}">
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title"><br><br>
+        <label for="content">Content:</label><br>
+        <textarea id="content" name="content"></textarea><br><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br><br>
+        <input type="submit" value="Save">
+    </form>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Proton Memo</title>
+</head>
+<body>
+    <h1>Edit Memo</h1>
+    <form method="post" action="{{ url_for('edit_memo', memo_id=memo_id) }}">
+        <label for="selected_option">Select Option:</label><br>
+        <select id="selected_option" name="selected_option">
+            <option value="title">Title</option>
+            <option value="content">Content</option>
+        </select><br><br>
+        <label for="edit_data">Edit Data:</label><br>
+        <input type="text" id="edit_data" name="edit_data"><br><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br><br>
+        <input type="submit" value="Save">
+        <a href="{{url_for('index') }}"><button id="cancel" type="submit" form="cancel_button">Cancel</button></a>
+    </form>
+</body>
+</html>

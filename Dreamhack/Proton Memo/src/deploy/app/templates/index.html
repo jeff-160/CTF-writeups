@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Proton Memo</title>
+</head>
+<body>
+    <h1>Memo List</h1>
+    <ul>
+        {% for memo_id, memo in memos %}
+        <li><a href="{{ url_for('view_memo', memo_id=memo_id) }}">{{ memo }}</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('new_memo') }}">New Memo</a>
+</body>
+</html>

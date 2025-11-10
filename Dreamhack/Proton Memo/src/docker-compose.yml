@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: ./deploy
+    networks:
+      - internal
+    ports:
+      - "1116:1116"
+
+networks:
+  internal:
