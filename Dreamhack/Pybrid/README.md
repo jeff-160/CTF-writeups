@@ -1,4 +1,4 @@
-## Python FXXK
+## Pybrid
 
 <img src="images/chall.png" width=400>
 
@@ -36,3 +36,4 @@ Visiting the `/execute` endpoint after submitting our payload will then give us 
 
 
 Flag: `DH{a8b5ad7d6e255825:UGzbTtI4PrSSGh/xrKyzoQ==}`
+
