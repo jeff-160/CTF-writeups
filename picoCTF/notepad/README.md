@@ -14,7 +14,7 @@ There is also a path traversal vulnerability in the file writing process. If we 
 
 <img src="images/write.png" width=600>
 
-Since only the first 128 characters of the filename will be sanitised by `url_fix()`, we just have to pad our payload with filler characters like `./` and the SSTI part of our payload won't be sanitised. Through trial and error, I found out we need to pad it exactly `54` times.  
+Since only the first 128 characters of the filename will be sanitised by `url_fix()`, we just have to pad our payload with filler characters like `./` and the SSTI part of our payload won't be sanitised. Since we have to include the directory `../templates/error` in the filename, we just have to pad up till 108 characters.
 
 To bypass the `/` filter, we can simply replace them with backslashes, which will be converted to forward slashes by `url_fix()`.  
 

