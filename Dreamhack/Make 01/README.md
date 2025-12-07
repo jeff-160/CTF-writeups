@@ -22,7 +22,7 @@ self.__init__.__globals__.__builtins__['__import__']('os').popen('cat /flag').re
 
 However, recalling that the result of the expression must be either `0` or `1`, we cannot simply get the webpage to display the full flag.  
 
-Hence, we have to result to blind SSTI and leak the flag one character at a time. We can do this by simply getting every successive index and comparing it against a charset. To cast the boolean result to an integer, we just need to add `0` to the result.  
+Hence, we have to resort to blind SSTI and leak the flag one character at a time. We can do this by simply getting every successive index and comparing it against a charset. To cast the boolean result to an integer, we just need to add `0` to the result.  
 
 Note that `b` is set to `0` so that it doesn't affect our payload result.  
 
