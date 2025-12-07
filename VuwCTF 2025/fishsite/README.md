@@ -43,14 +43,10 @@ SELECT content from flag
 
 Our payload will attempt to match the `content` column character by character. If the match fails, the payload will throw an error, allowing us to determine if our character guess was correct.  
 
-```sql
-select 1 union select <error> where (select count(*) from flag where content LIKE "v%")=0
-```
-
-Since `load_extension()` was blacklisted, we can instead throw an error by overflowing the size constraint of `randomblob()`.  
+Since `load_extension()` was blacklisted, we can instead throw an error by exceeding the size constraint of `randomblob()`.  
 
 ```sql
-randomblob(10000000000000000000000000000000000000000)
+select randomblob(10000000000000000000000000000000000000000) where (select count(*) from flag where content LIKE "v%")=0
 ```
 
 With this knowledge, we can write a script to bruteforce the flag character by character.  
