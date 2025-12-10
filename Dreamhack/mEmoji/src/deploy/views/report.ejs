@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <h1>Report to admin</h1>
+    <form action="/report" method="post">
+        <label for="path">URL Path:</label>
+        <input type="text" id="path" name="path" required><br><br>
+        
+        <label for="memoId">Memo ID:</label>
+        <input type="text" id="memoId" name="memoId" required><br><br>
+        
+        <input type="submit" value="Submit">
+    </form>
+
+    <% if (typeof msg !== undefined) { %>
+        <p><%= msg %></p>
+    <% } %>
+</body>
+</html>

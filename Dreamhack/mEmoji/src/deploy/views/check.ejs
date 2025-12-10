@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <h1>Memo Details</h1>
+    <% if (content && sourceEncoding) { %>
+        <h2>Memo Content</h2>
+        <div id="content">
+            <p><%- content %></p>
+        </div>
+
+        <h2>Source Encoding</h2>
+        <div id="encoding">
+            <p><%= sourceEncoding %></p>
+        </div>
+    <% } else { %>
+        <p><%= msg %></p>
+    <% } %>
+</body>
+</html>

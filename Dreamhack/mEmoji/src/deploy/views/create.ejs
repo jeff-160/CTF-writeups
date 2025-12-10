@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <h1>Create a Memo</h1>
+
+    <form id="memoForm">
+
+        <label for="content">Content:</label><br>
+        <textarea id="content" name="content" style="width: 500px; height: 100px"></textarea><br>
+
+        <label for="sourceEncoding">Encoding:</label>
+        <select name="sourceEncoding" id="sourceEncoding">
+
+            <% for(let encoding of encodingList) { %>
+                <option value=<%= encoding %>><%= encoding %></option>
+            <% } %>
+
+        </select>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        document.getElementById('memoForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+    
+            const content = document.getElementById('content').value;
+            const sourceEncoding = document.getElementById('sourceEncoding').value;
+    
+            try {
+                const response = await fetch('/memo/create', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify({ content, sourceEncoding})
+                });
+    
+                if (response.ok) {
+                    alert('OK');
+                    const responseData = await response.json();
+                    console.log('Server Response:', responseData);
+                } else {
+                    alert('Fail');
+                    const responseData = await response.json();
+                    console.error('Server Response:', responseData);
+                }
+            } catch (error) {
+                console.error('Fetch Error:', error);
+            }
+        });
+    </script>
+    
+</body>
+</html>

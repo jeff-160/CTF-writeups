@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <h1>Test a Memo</h1>
+
+    <form id="memoForm" method="post">
+
+        <label for="content">Content:</label><br>
+        <textarea id="content" name="content" style="width: 500px; height: 100px"></textarea><br>
+
+        <label for="sourceEncoding">Encoding:</label>
+        <select name="sourceEncoding" id="sourceEncoding">
+
+            <% for(let encoding of encodingList) { %>
+                <option value=<%= encoding %>><%= encoding %></option>
+            <% } %>
+
+        </select>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <% if (memo !== undefined ) { %>
+    <div id="memo">
+        <p><%= memo %></p>
+    </div>
+    <% } %>
+    
+</body>
+</html>
