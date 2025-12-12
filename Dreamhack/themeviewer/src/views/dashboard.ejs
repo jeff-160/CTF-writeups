@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .theme-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        select,
+        button {
+            padding: 0.5rem;
+            margin-right: 1rem;
+        }
+
+        button {
+            background: #ff9200;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #e68200;
+        }
+
+        #adminContent {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: #f0f0f0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <%if (user){ %>
+        <h2>Welcome, <%= user %> <a href="#"
+                    onclick="document.cookie = 'token=;expires=Mon, 01 Mar 1980 00:00:01 GMT;';location.reload()">logout</a>
+        </h2>
+        <% } else { %>
+            <h2>You are not logged in. <a href="/login">Login now</a></h2>
+            <% } %>
+                <h2>Theme Customization</h2>
+                <div class="form-group">
+                    <label for="themeSelect">Base Theme:</label>
+                    <select id="themeSelect">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                    </select>
+                        <input type="color" id="background" name="background" value="#ffffff" />
+                        <label for="background">background</label>
+                        <input type="color" id="text" name="text" value="#000000" />
+                        <label for="text">text</label>
+                    <button onclick="applyTheme()">Apply Theme</button>
+                </div>
+
+                <script>
+                    applyTheme(false)
+
+                    async function applyTheme(update=true) {
+                        const baseTheme = document.getElementById('themeSelect').value;
+
+                        try {
+                            const response = await fetch('/api/theme', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({
+                                    base: baseTheme,
+                                    customizations: update?{
+                                        colors:{
+                                            background:document.querySelector("#background").value,
+                                            text:document.querySelector("#text").value
+                                        }
+                                    }:{}
+                                }),
+                            });
+
+                            const data = await response.json();
+
+                            if (response.ok) {
+                                document.body.style.backgroundColor = data.theme.colors.background;
+                                document.body.style.color = data.theme.colors.text;
+
+                                document.querySelector("#background").value=data.theme.colors.background;
+                                document.querySelector("#text").value=data.theme.colors.text;
+                            }
+                        } catch (err) {
+                            console.error('Error applying theme:', err);
+                        }
+                    }
+                </script>
+</body>
+
+</html>
