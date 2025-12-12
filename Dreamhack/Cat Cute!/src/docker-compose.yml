@@ -1,0 +1,10 @@
+version: "3"
+services:
+    cat_cute:
+        build: .
+        container_name: cat_cute
+        ports:
+            - "10001:3000"
+        restart: always
+        tty: true
+        stdin_open: true

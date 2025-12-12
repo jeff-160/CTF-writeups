@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <title>Cat cute!</title>
+        <style>
+            #main{
+		text-align: center;
+            }
+	    #button{
+		margin-top: 3px;
+	    }
+            .button{
+                border: 1px solid skyblue;
+                background-color: rgba(0,0,0,0);
+                color: skyblue;
+                padding: 5px;
+                width:100px;
+                margin:auto;
+                display:block;
+            }
+        </style>
+    </head>
+    <body>
+	<div id="main"></div>
+	<script>
+		main.innerHTML=`<img class=background src=<%= src ?? "/static/cat.jpg" %>>`;
+	</script>
+	<div id="button">
+                <button class="button" id="report-button">report</button>
+        </div>
+
+    </body>
+    <script defer>
+        const reportButton = document.getElementById('report-button');
+        reportButton.addEventListener('click', () => {
+            fetch('/report', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    text: location.search
+                })
+            })
+            .then(res => res.json())
+            .then(res => {
+                if (res.success) {
+                    alert('Reported!!');
+                } else {
+                    alert('Something wrong!!');
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                alert('Something wrong!!');
+            });
+        });
+    </script>
+</html>
