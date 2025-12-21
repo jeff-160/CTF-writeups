@@ -1,0 +1,17 @@
+{
+  "name": "image-compress",
+  "version": "1.0.0",
+  "description": "Image compression app using Elysia and ImageMagick",
+  "main": "server.ts",
+  "scripts": {
+    "dev": "bun run --watch server.ts",
+    "start": "bun run server.ts"
+  },
+  "dependencies": {
+    "elysia": "^1.4.15"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5.9.3"
+  }
+}

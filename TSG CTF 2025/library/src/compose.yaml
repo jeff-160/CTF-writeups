@@ -1,0 +1,12 @@
+services:
+  web:
+    build:
+      context: ./server
+      dockerfile: ./Dockerfile
+    restart: always
+    read_only: true
+    ports:
+      - "10501:80"
+    environment:
+      - PORT=80
+      - FLAG=TSGCTF{DUMMY}

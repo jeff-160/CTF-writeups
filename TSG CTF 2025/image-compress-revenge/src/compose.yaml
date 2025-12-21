@@ -1,0 +1,13 @@
+services:
+  app:
+    build:
+      context: ./server
+      network: host
+    ports:
+      - "10502:3000"
+    read_only: true
+    tmpfs: 
+      - /app/tmp:size=1M
+    environment:
+      - PORT=3000
+      - FLAG=TSGCTF{DUMMY}

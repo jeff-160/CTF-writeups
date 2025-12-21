@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Compressor</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+          "Oxygen", "Ubuntu", "Cantarell", sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .container {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        padding: 40px;
+        max-width: 600px;
+        width: 100%;
+      }
+
+      h1 {
+        color: #333;
+        margin-bottom: 10px;
+        font-size: 32px;
+        text-align: center;
+      }
+
+      .subtitle {
+        color: #666;
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 14px;
+      }
+
+      .upload-area {
+        border: 3px dashed #667eea;
+        border-radius: 10px;
+        padding: 40px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-bottom: 20px;
+      }
+
+      .upload-area:hover {
+        background: #f8f9ff;
+        border-color: #764ba2;
+      }
+
+      .upload-area.drag-over {
+        background: #f0f0ff;
+        border-color: #764ba2;
+      }
+
+      .upload-icon {
+        font-size: 48px;
+        margin-bottom: 10px;
+      }
+
+      .upload-text {
+        color: #667eea;
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+
+      .upload-hint {
+        color: #999;
+        font-size: 12px;
+      }
+
+      #fileInput {
+        display: none;
+      }
+
+      .preview-container {
+        margin: 20px 0;
+        display: none;
+      }
+
+      .preview-image {
+        max-width: 100%;
+        border-radius: 10px;
+        margin-bottom: 15px;
+      }
+
+      .file-info {
+        background: #f8f9ff;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        color: #333;
+        font-size: 14px;
+      }
+
+      .quality-control {
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        color: #333;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      .quality-slider {
+        width: 100%;
+        height: 6px;
+        border-radius: 3px;
+        background: #ddd;
+        outline: none;
+        -webkit-appearance: none;
+      }
+
+      .quality-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #667eea;
+        cursor: pointer;
+      }
+
+      .quality-slider::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #667eea;
+        cursor: pointer;
+        border: none;
+      }
+
+      .quality-value {
+        text-align: center;
+        color: #667eea;
+        font-weight: 600;
+        font-size: 24px;
+        margin-top: 10px;
+      }
+
+      .btn {
+        width: 100%;
+        padding: 15px;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-bottom: 10px;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+      }
+
+      .btn-primary:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .btn-secondary {
+        background: #f0f0f0;
+        color: #333;
+      }
+
+      .btn-secondary:hover {
+        background: #e0e0e0;
+      }
+
+      .loading {
+        display: none;
+        text-align: center;
+        color: #667eea;
+        margin: 20px 0;
+      }
+
+      .spinner {
+        border: 3px solid #f3f3f3;
+        border-top: 3px solid #667eea;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 10px;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .result-container {
+        display: none;
+        margin-top: 20px;
+      }
+
+      .success-message {
+        background: #d4edda;
+        color: #155724;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>📷 Image Compressor</h1>
+      <p class="subtitle">Upload an image and compress it easily</p>
+
+      <div class="upload-area" id="uploadArea">
+        <div class="upload-icon">📁</div>
+        <div class="upload-text">Click or Drag & Drop</div>
+        <input type="file" id="fileInput" accept="image/*" />
+      </div>
+
+      <div class="preview-container" id="previewContainer">
+        <img class="preview-image" id="previewImage" alt="Preview" />
+        <div class="file-info" id="fileInfo"></div>
+
+        <div class="quality-control">
+          <label for="qualitySlider">Quality</label>
+          <input
+            type="range"
+            id="qualitySlider"
+            class="quality-slider"
+            min="1"
+            max="100"
+            value="85"
+          />
+          <div class="quality-value" id="qualityValue">85</div>
+        </div>
+
+        <button class="btn btn-primary" id="compressBtn">
+          Compress and Save
+        </button>
+        <button class="btn btn-secondary" id="resetBtn">Reset</button>
+      </div>
+
+      <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <div>Compressing...</div>
+      </div>
+
+      <div class="result-container" id="resultContainer">
+        <div class="success-message">✅ Compressed successfully!</div>
+      </div>
+    </div>
+
+    <script>
+      const uploadArea = document.getElementById("uploadArea");
+      const fileInput = document.getElementById("fileInput");
+      const previewContainer = document.getElementById("previewContainer");
+      const previewImage = document.getElementById("previewImage");
+      const fileInfo = document.getElementById("fileInfo");
+      const qualitySlider = document.getElementById("qualitySlider");
+      const qualityValue = document.getElementById("qualityValue");
+      const compressBtn = document.getElementById("compressBtn");
+      const resetBtn = document.getElementById("resetBtn");
+      const loading = document.getElementById("loading");
+      const resultContainer = document.getElementById("resultContainer");
+
+      let selectedFile = null;
+
+      // Upload area click
+      uploadArea.addEventListener("click", () => {
+        fileInput.click();
+      });
+
+      // File selection
+      fileInput.addEventListener("change", (e) => {
+        handleFile(e.target.files[0]);
+      });
+
+      // Drag and drop
+      uploadArea.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        uploadArea.classList.add("drag-over");
+      });
+
+      uploadArea.addEventListener("dragleave", () => {
+        uploadArea.classList.remove("drag-over");
+      });
+
+      uploadArea.addEventListener("drop", (e) => {
+        e.preventDefault();
+        uploadArea.classList.remove("drag-over");
+        handleFile(e.dataTransfer.files[0]);
+      });
+
+      // Quality slider
+      qualitySlider.addEventListener("input", (e) => {
+        qualityValue.textContent = e.target.value;
+      });
+
+      // Handle file
+      function handleFile(file) {
+        if (!file || !file.type.startsWith("image/")) {
+          alert("Please select an image file");
+          return;
+        }
+
+        selectedFile = file;
+
+        // Show preview
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          previewImage.src = e.target.result;
+          previewContainer.style.display = "block";
+          uploadArea.style.display = "none";
+          resultContainer.style.display = "none";
+
+          // Show file info
+          const sizeKB = (file.size / 1024).toFixed(2);
+          fileInfo.innerHTML = `
+                    <strong>File Name:</strong> ${file.name}<br>
+                    <strong>Size:</strong> ${sizeKB} KB<br>
+                    <strong>Type:</strong> ${file.type}
+                `;
+        };
+        reader.readAsDataURL(file);
+      }
+
+      // Compress button
+      compressBtn.addEventListener("click", async () => {
+        if (!selectedFile) return;
+
+        compressBtn.disabled = true;
+        loading.style.display = "block";
+        resultContainer.style.display = "none";
+
+        const formData = new FormData();
+        formData.append("image", selectedFile);
+        formData.append("quality", qualitySlider.value);
+
+        try {
+          const response = await fetch("/compress", {
+            method: "POST",
+            body: formData,
+          });
+
+          if (!response.ok) {
+            throw new Error(
+              `Failed to compress: ${response.status}
+              ${(await response.json()).error}`
+            );
+          }
+
+          // Download the compressed image
+          const blob = await response.blob();
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = selectedFile.name;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          window.URL.revokeObjectURL(url);
+
+          resultContainer.style.display = "block";
+        } catch (error) {
+          alert("Error: " + error.message);
+        } finally {
+          loading.style.display = "none";
+          compressBtn.disabled = false;
+        }
+      });
+
+      // Reset button
+      resetBtn.addEventListener("click", () => {
+        selectedFile = null;
+        fileInput.value = "";
+        previewContainer.style.display = "none";
+        uploadArea.style.display = "block";
+        resultContainer.style.display = "none";
+        qualitySlider.value = 85;
+        qualityValue.textContent = "85";
+      });
+    </script>
+  </body>
+</html>
