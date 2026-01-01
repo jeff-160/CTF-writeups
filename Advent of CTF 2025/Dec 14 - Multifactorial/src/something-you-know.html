@@ -1,0 +1,70 @@
+
+<!-- public/something-you-know.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Step 1: Santa's Password</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  </head>
+  <body class="bg-gray-900 text-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-gray-800 rounded-2xl shadow-xl p-8 max-w-lg w-full">
+      <h1 class="text-2xl font-bold mb-2 text-center">Stage 1: Something You Know</h1>
+      <p class="text-gray-300 mb-4 text-center">
+        Santa protects his workshop with a super secret password. Or at least, that's the idea.
+      </p>
+
+      <label class="block text-sm font-medium mb-1" for="password">Santa's Password</label>
+      <input
+        id="password"
+        type="password"
+        class="w-full mb-4 px-3 py-2 rounded-lg bg-gray-900 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Enter password"
+      />
+
+      <button id="submitBtn" class="w-full px-4 py-2 rounded-xl bg-blue-500 hover:bg-blue-600 font-semibold mb-4">
+        Unlock Step 2
+      </button>
+
+      <p id="status" class="text-sm text-gray-300 whitespace-pre-wrap"></p>
+    </div>
+
+    <script>
+      async function submitPassword() {
+      function _0xce3b(){var _0x148159=['4148163vSdrFC','5725159VzzaPT','2397752ODowZJ','20DlKRcS','24TpyFfD','16748QiSgfp','You\x27re\x20really\x20lucky!\x20Here\x27s\x20my\x20hash\x20as\x20a\x20reward.\x20bf33632dd9668787878890cb4fbb54261b6b7571','366wwxTHU','54915cJlHyP','random','240864NVXXPi','926331SmwYQm','82GgSHPB'];_0xce3b=function(){return _0x148159;};return _0xce3b();}var _0x2f6642=_0x13fd;function _0x13fd(_0x43c31d,_0x101d9b){_0x43c31d=_0x43c31d-0x1d6;var _0xce3b7c=_0xce3b();var _0x13fdee=_0xce3b7c[_0x43c31d];return _0x13fdee;}(function(_0xa859af,_0x4b1369){var _0x3a93af=_0x13fd,_0x167804=_0xa859af();while(!![]){try{var _0x33920e=-parseInt(_0x3a93af(0x1d8))/0x1*(-parseInt(_0x3a93af(0x1de))/0x2)+parseInt(_0x3a93af(0x1d6))/0x3+-parseInt(_0x3a93af(0x1db))/0x4+-parseInt(_0x3a93af(0x1e1))/0x5*(parseInt(_0x3a93af(0x1e0))/0x6)+parseInt(_0x3a93af(0x1d7))/0x7*(parseInt(_0x3a93af(0x1dd))/0x8)+-parseInt(_0x3a93af(0x1d9))/0x9+-parseInt(_0x3a93af(0x1dc))/0xa*(-parseInt(_0x3a93af(0x1da))/0xb);if(_0x33920e===_0x4b1369)break;else _0x167804['push'](_0x167804['shift']());}catch(_0x48c0e9){_0x167804['push'](_0x167804['shift']());}}}(_0xce3b,0x73dd9));Math[_0x2f6642(0x1e2)]()===0x0&&alert(_0x2f6642(0x1df));
+
+        const statusEl = document.getElementById("status");
+        const pwd = document.getElementById("password").value;
+
+        statusEl.textContent = "";
+
+        if (!pwd) {
+          statusEl.textContent = "Please enter a password.";
+          return;
+        }
+
+        const resp = await fetch("/api/something-you-know-check", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ password: pwd }),
+        });
+
+        const data = await resp.json();
+        if (!resp.ok) {
+          statusEl.textContent = `Error: ${data.error || "Unknown error"}`;
+          return;
+        }
+
+        statusEl.textContent = `${data.message}\nRedirecting to Step 2...`;
+        setTimeout(() => {
+          window.location.href = "/something-you-have";
+        }, 800);
+      }
+
+      document.getElementById("submitBtn").addEventListener("click", submitPassword);
+      document.getElementById("password").addEventListener("keypress", (e) => e.key === "Enter" && submitPassword());
+    </script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"7e878029e60c45878d4c9e57f121994b","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>

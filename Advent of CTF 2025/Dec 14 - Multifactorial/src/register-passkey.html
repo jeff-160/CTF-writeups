@@ -1,0 +1,129 @@
+
+<!-- public/register.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Step 3: Register Passkey</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  </head>
+  <body class="bg-gray-900 text-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-gray-800 rounded-2xl shadow-xl p-8 max-w-lg w-full">
+      <h1 class="text-2xl font-bold mb-2 text-center">Stage 3: Something You Are</h1>
+      <p class="text-gray-300 mb-4 text-center">
+        Register a real browser passkey (WebAuthn). (HTTP works on localhost.)
+      </p>
+
+      <input
+        id="passkeyName"
+        type="text"
+        class="w-full mb-4 px-3 py-2 rounded-lg bg-gray-900 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
+        placeholder="Name"
+      />
+
+      <button id="registerBtn" class="w-full px-4 py-2 rounded-xl bg-purple-500 hover:bg-purple-600 font-semibold mb-4">
+        Create Passkey
+      </button>
+
+      <button id="goLoginBtn" class="w-full px-4 py-2 rounded-xl bg-blue-500 hover:bg-blue-600 font-semibold mb-4">
+        Continue to Passkey Login
+      </button>
+
+      <p id="status" class="text-sm text-gray-300 whitespace-pre-wrap"></p>
+    </div>
+
+    <script>
+      const statusEl = document.getElementById("status");
+
+      function bufToB64url(buf) {
+        const bytes = new Uint8Array(buf);
+        let bin = "";
+        for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+        return btoa(bin).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/g, "");
+      }
+
+      function b64urlToBuf(s) {
+        s = s.replace(/-/g, "+").replace(/_/g, "/");
+        while (s.length % 4) s += "=";
+        const bin = atob(s);
+        const bytes = new Uint8Array(bin.length);
+        for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+        return bytes.buffer;
+      }
+
+      async function createPasskey() {
+        statusEl.textContent = "";
+
+        const name = document.getElementById("passkeyName").value.trim();
+        if (!name) {
+          statusEl.textContent = "Please enter a name.";
+          return;
+        }
+
+        // 1) get options from server
+        statusEl.textContent = "Requesting registration options...";
+        const optResp = await fetch("/api/webauthn/register/options", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name }),
+        });
+        const optData = await optResp.json();
+        if (!optResp.ok) {
+          statusEl.textContent = `Error: ${optData.error || "unknown"}`;
+          return;
+        }
+
+        const publicKey = optData.publicKey;
+
+        publicKey.challenge = b64urlToBuf(publicKey.challenge);
+        publicKey.user.id = b64urlToBuf(publicKey.user.id);
+
+        // 2) browser passkey prompt
+        statusEl.textContent = "Opening passkey prompt...";
+        const cred = await navigator.credentials.create({ publicKey });
+
+        // 3) send credential to server
+        const payload = {
+          name,
+          id: cred.id,
+          rawId: bufToB64url(cred.rawId),
+          type: cred.type,
+          response: {
+            clientDataJSON: bufToB64url(cred.response.clientDataJSON),
+            attestationObject: bufToB64url(cred.response.attestationObject),
+          },
+        };
+
+        statusEl.textContent = "Verifying registration...";
+        const verResp = await fetch("/api/webauthn/register/verify", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        const verData = await verResp.json();
+        if (!verResp.ok) {
+          statusEl.textContent = `Error: ${verData.error || "unknown"}`;
+          return;
+        }
+
+        // Store helpful bits for login
+        localStorage.setItem("np_name", name);
+        localStorage.setItem("np_credId", verData.credId);
+        localStorage.setItem("np_userHandle", verData.userHandle);
+
+        statusEl.textContent =
+          `${verData.message}\n\n` +
+          `Credential ID: ${verData.credId}\n` +
+          `Internal ID (userHandle): ${verData.userHandle}\n\n` +
+          `Continue to login.`;
+      }
+
+      document.getElementById("registerBtn").addEventListener("click", createPasskey);
+      document
+        .getElementById("goLoginBtn")
+        .addEventListener("click", () => (window.location.href = "/something-you-are"));
+    </script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"7e878029e60c45878d4c9e57f121994b","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>

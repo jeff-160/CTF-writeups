@@ -1,0 +1,116 @@
+
+<!-- public/something-you-are.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Step 3: Passkey Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  </head>
+  <body class="bg-gray-900 text-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-gray-800 rounded-2xl shadow-xl p-8 max-w-lg w-full">
+      <h1 class="text-2xl font-bold mb-2 text-center">Stage 3: Something You Are</h1>
+      <p class="text-gray-300 mb-4 text-center">Authenticate with your passkey.</p>
+
+      <button id="loginBtn" class="w-full px-4 py-2 rounded-xl bg-purple-500 hover:bg-purple-600 font-semibold mb-4">
+        Use Passkey
+      </button>
+
+      <p id="status" class="text-sm text-gray-300 whitespace-pre-wrap"></p>
+
+      <p class="mt-6 text-xs text-gray-500 text-center">
+        Tip: the server trusts an <span class="font-mono">internal ID</span> during login.
+      </p>
+    </div>
+
+    <script>
+      function b64urlToBuf(s) {
+        s = s.replace(/-/g, "+").replace(/_/g, "/");
+        while (s.length % 4) s += "=";
+        const bin = atob(s);
+        const bytes = new Uint8Array(bin.length);
+        for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+        return bytes.buffer;
+      }
+
+      const statusEl = document.getElementById("status");
+
+      function bufToB64url(buf) {
+        const bytes = new Uint8Array(buf);
+        let bin = "";
+        for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+        return btoa(bin).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/g, "");
+      }
+
+      async function passkeyLogin() {
+        statusEl.textContent = "";
+
+        // Stored from registration verify
+        const userHandle = localStorage.getItem("np_userHandle");
+        const credId = localStorage.getItem("np_credId");
+
+        if (!credId || !userHandle) {
+          statusEl.textContent = "No stored registration info. Go register a passkey first.";
+          return;
+        }
+
+        // 1) get auth options from server
+        statusEl.textContent = "Requesting authentication options...";
+        const optResp = await fetch("/api/webauthn/auth/options", { method: "POST" });
+        const optData = await optResp.json();
+        if (!optResp.ok) {
+          statusEl.textContent = `Error: ${optData.error || "unknown"}`;
+          return;
+        }
+
+        const publicKey = optData.publicKey;
+
+        publicKey.challenge = b64urlToBuf(publicKey.challenge);
+        publicKey.allowCredentials = publicKey.allowCredentials.map((c) => ({
+          ...c,
+          id: b64urlToBuf(c.id),
+        }));
+
+        // 2) browser passkey prompt
+        statusEl.textContent = "Opening passkey prompt...";
+
+        console.log(publicKey.challenge instanceof ArrayBuffer); // true
+        console.log(publicKey.allowCredentials[0].id instanceof ArrayBuffer); // true
+
+        const assertion = await navigator.credentials.get({ publicKey });
+
+        // 3) send assertion to server
+        const payload = {
+          id: assertion.id,
+          rawId: bufToB64url(assertion.rawId),
+          type: assertion.type,
+          // IMPORTANT: this field is NOT signed; server should not trust it (but it will)
+          userHandle,
+          response: {
+            clientDataJSON: bufToB64url(assertion.response.clientDataJSON),
+            authenticatorData: bufToB64url(assertion.response.authenticatorData),
+            signature: bufToB64url(assertion.response.signature),
+          },
+        };
+
+        statusEl.textContent = "Verifying assertion...";
+        const verResp = await fetch("/api/webauthn/auth/verify", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        const verData = await verResp.json();
+        if (!verResp.ok) {
+          statusEl.textContent = `Login failed: ${verData.error || "unknown"}`;
+          return;
+        }
+
+        statusEl.textContent = `${verData.message}\nTry /admin`;
+      }
+
+      document.getElementById("loginBtn").addEventListener("click", passkeyLogin);
+    </script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"7e878029e60c45878d4c9e57f121994b","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
