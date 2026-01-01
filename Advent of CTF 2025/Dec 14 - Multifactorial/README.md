@@ -80,7 +80,7 @@ I opened a ticket and got a hint regarding the HMAC.
 
 <img src="images/hint.png" width=600>
 
-Since we know how the formula and the secret key used to generate the HMAC, we can bruteforce the TOTP, which should be valid for around 30 seconds.  
+Since we know the formula and the secret key used to generate the HMAC, we can bruteforce the TOTP, which should be valid for around 30 seconds.  
 
 ```python
 import hashlib, hmac
