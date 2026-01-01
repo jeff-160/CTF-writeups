@@ -22,7 +22,7 @@ In the 1st stage, we are prompted for a password.
 
 <img src="images/stage1.png" width=600>
 
-In the website source, we can some obfuscated JavaScript. 
+In the website source, we can find some obfuscated JavaScript. 
 
 We don't have to concern ourselves with what it does, but for clarity's sake, it will `alert()` the password hash if `Math.random()` returns `0` (you can achieve this by entering `Math.random=()=>0` in the browser console). However, this is redundant as the password hash is already hardcoded in the obfuscated code.  
 
