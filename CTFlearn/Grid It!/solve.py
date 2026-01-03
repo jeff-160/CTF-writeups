@@ -122,7 +122,4 @@ def get_flag():
     flag = re.findall(r'(ctflearn{.+})', res.text)[0]
     print("Flag:", flag)
 
-
-clear()
-add()
-print(inject('(select count(*) from user where username="admin")>0'))
+get_flag()
