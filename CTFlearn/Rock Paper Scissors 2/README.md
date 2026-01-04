@@ -4,7 +4,7 @@
 
 We are given a service where we have to win `30` consecutive rounds of RPS to get the flag.  
 
-Each time we submit play a move, the service will tell us whether we won or lost, and will also output the random number that it based its move upon.  
+Each time we play a move, the service will tell us whether we won or lost, and will also output the random number that it based its move upon.  
 
 <img src="images/leak.png" width=600>
 
