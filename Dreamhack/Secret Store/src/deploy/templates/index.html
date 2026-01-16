@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>재고 확인</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <h1>재고 확인</h1>
+    </header>
+
+    <section class="panel">
+      <label for="name">제품 이름을 입력해주세요</label>
+      <div class="input-row">
+        <input id="name" type="text">
+        <button id="send">검색</button>
+      </div>
+
+      <div id="result" class="result">
+        <div class="meta"></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const sendBtn = document.getElementById('send');
+    const nameInput = document.getElementById('name');
+    const resultBox = document.getElementById('result');
+
+    function renderResponse(json) {
+      resultBox.innerHTML = '';
+
+      const meta = document.createElement('div');
+      meta.className = 'meta';
+
+      if (json.exists === true) {
+        meta.textContent = '해당 상품의 재고가 존재합니다.';
+      } else if (json.exists === false) {
+        meta.textContent = '해당 상품이 존재하지 않습니다.';
+      } else if (json.error) {
+        meta.textContent = `오류: ${json.error}`;
+      } else {
+        meta.textContent = '오류: 서버 응답이 올바르지 않습니다.';
+      }
+
+      resultBox.appendChild(meta);
+    }
+
+    async function queryName(name) {
+      resultBox.innerHTML = '<div class="meta">조회 중...</div>';
+
+      try {
+        const resp = await fetch('/search', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: `name=${encodeURIComponent(name)}`
+        });
+
+        const json = await resp.json();
+        renderResponse(json);
+
+      } catch (e) {
+        resultBox.innerHTML = `<div class="error">오류: ${e.message}</div>`;
+      }
+    }
+
+    sendBtn.addEventListener('click', () => queryName(nameInput.value || ''));
+    nameInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') queryName(nameInput.value || '');
+    });
+
+    nameInput.focus();
+  </script>
+</body>
+</html>

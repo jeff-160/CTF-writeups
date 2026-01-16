@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <h1>Login</h1>
+    </header>
+
+    <section class="panel">
+      <form method="POST" class="login-form">
+        <label>
+          <input type="text" name="username" placeholder="username">
+        </label>
+        <button type="submit">Login</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

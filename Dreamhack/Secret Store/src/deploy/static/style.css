@@ -1,0 +1,121 @@
+:root {
+  --bg: #FFFAF0;         
+  --panel: #FFF8DC;      
+  --accent: #FF6347;     
+  --accent-light: #FFD166; 
+  --muted: #6b6b6b;
+  --radius: 12px;
+  --shadow: 0 6px 18px rgba(33,33,33,0.08);
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; font-family: 'Arial', sans-serif; }
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, var(--bg), #FFF5E1);
+  padding: 24px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.panel {
+  background-color: var(--panel);
+  border-radius: var(--radius);
+  padding: 30px 40px;
+  box-shadow: var(--shadow);
+  border: 2px solid #FFD700;
+  width: 100%;
+  text-align: center;
+}
+
+.header h1 {
+  margin: 0 0 20px;
+  font-size: 2em;
+  color: var(--accent);
+}
+.header h1::after {
+  content: " 🍊";
+  margin-left: 6px;
+  transform: translateY(2px);
+}
+
+.input-row, .login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.input-row input[type="text"],
+.login-form input[type="text"] {
+  padding: 10px 12px;
+  font-size: 1em;
+  border-radius: 8px;
+  border: 1px solid #FFD700;
+  outline: none;
+  transition: 0.3s;
+}
+
+.input-row input[type="text"]:focus,
+.login-form input[type="text"]:focus {
+  border-color: #FF4500;
+  box-shadow: 0 0 5px rgba(255,69,0,0.5);
+}
+
+button {
+  padding: 10px 0;
+  font-size: 1em;
+  font-weight: bold;
+  color: #fff;
+  background-color: var(--accent);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #FF4500;
+}
+
+.result {
+  margin-top: 18px;
+  min-height: 60px;
+  padding: 12px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.6);
+  border: 1px solid rgba(34,34,34,0.03);
+}
+.result .meta { font-weight: 600; color: #2a2a2a; font-size: 15px; }
+.result .empty { color: var(--muted); margin-top: 8px; }
+.result .error { color: #a62a2a; font-weight: 600; }
+
+table.data {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  font-size: 14px;
+}
+table.data thead th {
+  text-align: left;
+  padding: 10px;
+  background: rgba(255,209,153,0.18);
+  color: #3b3b3b;
+}
+table.data td {
+  padding: 10px;
+  border-top: 1px solid rgba(34,34,34,0.04);
+}
+
+@media (max-width: 640px) {
+  .container { padding: 16px; }
+  .header h1 { font-size: 22px; }
+}
