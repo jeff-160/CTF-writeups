@@ -1,0 +1,11 @@
+version: '3.0'
+services:
+  app:
+    container_name: app
+    build: '.'
+    restart: 'always'
+    environment:
+      - DBUS_SESSION_BUS_ADDRESS=/dev/null
+      - SECRET_KEY=REDACTED
+    ports:
+      - '5000:80'

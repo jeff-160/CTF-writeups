@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+            GENERIC TITLE
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/reset.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/base.css') }}">
+</head>
+<body>
+    <header>
+        <ul>
+            {% if session['logined'] %}
+                <li><a href="{{ url_for('theme_edit') }}">Edit</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% else %}
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('signup') }}">Signup</a></li>
+            {% endif %}
+        </ul>
+    </header>
+    {% block content %}
+
+    {% endblock %}
+</body>
+</html>

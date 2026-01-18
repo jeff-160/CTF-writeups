@@ -1,0 +1,33 @@
+{% extends 'base.html'%}
+{% block title %}Hide in template{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Hide in template</h1>
+        <table>
+            <tr>
+                <th>idx</th>
+                <th>username</th>
+                <th>theme</th>
+            </tr>
+            <tr>
+                <td>
+                    {{ session['idx'] }}
+                </td>
+                <td>
+                    {{ session['username'] }}
+                </td>
+                <td>
+                    {{ theme }}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <style>
+        body {
+            {% for key, value in theme.items() %}
+            {{ key }}: {{ value }} !important;
+            {% endfor %}
+        }
+    </style>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html'%}
+{% block title %}Hide in template{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Hide in template</h1>
+        <form action="/theme/edit" method="POST">
+            <select name="key" id="key">
+                <option value="color" selected>color</option>
+                <option value="background-color">background-color</option>
+            </select>
+            <input type="text" name="value" id="value" placeholder="#ffffff">
+            <input type="submit" value="edit">
+        </form>
+    </div>
+{% endblock %}

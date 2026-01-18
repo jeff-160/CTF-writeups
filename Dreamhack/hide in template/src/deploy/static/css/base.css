@@ -1,0 +1,58 @@
+body {
+    width: 1080px;
+    margin: 0 auto;
+}
+
+header {
+    width: 100%;
+    text-align: right;
+}
+
+header ul {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+
+header ul li:not(:last-child) {
+    margin-right: 20px;
+}
+
+header ul li {
+    font-size: 28px;
+    line-height: 40px;
+}
+
+div.container {
+    margin-top: 40px;
+}
+
+div.container h1 {
+    margin-bottom: 40px;
+}
+
+div.container form {
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+}
+
+div.container form input,
+div.container form select {
+    padding: 4px;
+    color: black;
+    border: 1px solid black;
+    background-color: inherit;
+}
+
+div.container form input:not(:last-child),
+div.container form select:not(:last-child) {
+    margin-bottom: 8px;
+}
+
+div.container form input[type="submit"]
+{
+    width: 100px;
+}

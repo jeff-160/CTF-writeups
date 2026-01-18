@@ -1,0 +1,13 @@
+{% extends 'base.html'%}
+{% block title %}Hide in template{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Hide in template</h1>
+        <form action="/login" method="POST">
+            <input type="text" name="username" id="username" placeholder="guest">
+            <input type="password" name="password" id="password" placeholder="guest">
+            <input type="submit" value="login">
+        </form>
+    </div>
+{% endblock %}
