@@ -173,11 +173,13 @@ To bypass this, we can reuse the class pollution exploit again to alter the Jinj
 
 Jinja uses the global variables `comment_start_string` and `comment_end_string` to define comment delimiters.  
 
+This time, we can use the attribute chain to set `comment_start_string` to gibberish, which will cause the templating engine to ignore comments altogether and render our flag.  
+
 ```python
 guest.__class__.__init__.__globals__.__builtins__.help.__call__.__globals__.sys.modules.__main__.app.jinja_env.comment_start_string
 ```
 
-This time, we can use the attribute chain to set `comment_start_string` to gibberish, which will cause the templating engine to ignore comments altogether and render our flag.  
+Accessing the `/admin` endpoint again will finally render the flag.  
 
 <img src="images/flag.png" width=600>
 
