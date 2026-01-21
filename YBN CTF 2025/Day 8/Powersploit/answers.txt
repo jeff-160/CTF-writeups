@@ -1,0 +1,8 @@
+172.16.100.12
+ciminfo.txt
+HKCU\Software\Microsoft\Windows\CurrentVersion\Run
+ServiceUpdater
+443
+110.588415
+0d550b3f9c28988953197836d9f2db696db24fbb64d9dd10e7c6e4ba5003e51f
+Ichinose

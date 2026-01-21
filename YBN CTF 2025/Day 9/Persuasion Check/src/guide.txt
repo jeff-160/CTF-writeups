@@ -1,0 +1,15 @@
+Goal: to get to system("/bin/cat flag.txt") but normal execution will never reach there
+
+Solution: ret2win
+
+1. Fill buffer with 64 + 8 bytes to fill buffer + RBP
+2. Overwrite RIP to desired address to read flag
+3. Win
+
+Good luck
+
+Some useful tools:
+python pwntools
+gdb
+ghidra/ida
+

@@ -1,0 +1,13 @@
+December 20
+
+Only five days to go. The reindeer training grounds are louder than ever, and the workshop smells like pine and fresh paint. Today we tested a new system Santa approved—a gift multiplier.
+
+RULES: The goal of the game is to bet and win to 1000 gifts from the initial 50 and you lose when you run out of gifts.
+
+/start to start the game /quit to end the game
+
+Each round uses a six-sided dice (values 1–6) to determine the multiplier outcome and if you correctly guess the condition, betted gifts are doubled. In the first round, you have to bet if the dice would be small(1,2,3) or big(4,5,6). For subsequent rounds you have to bet if the next dice value would be higher or lower than the current value. For special cases like 1 and 6, you may choose to bet that the same value will appear in the next round. If successful, the betted gifts would be five times the original. Remember, you must set the bet amount every round!
+
+Good luck!
+
+-Brindle

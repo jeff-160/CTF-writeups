@@ -1,0 +1,32 @@
+BEGIN:VCALENDAR
+PRODID:-//Google Inc//Google Calendar 70.9054//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:brindle.elf@gmail.com
+X-WR-TIMEZONE:Asia/Singapore
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20201225
+DTEND;VALUE=DATE:20201226
+DTSTAMP:20251229T140134Z
+UID:2bept7c031ssitv9caaa5iiv3v@google.com
+CREATED:20251228T171226Z
+DESCRIPTION:<h3><span style="font-weight: normal\;"><span>December 14<br><b
+ r>Today didn’t go quite as planned. One of the toy-making machines jammed\,
+  and glitter exploded everywhere. </span><span><span>During the cleanup\, I
+  was asked to archive a special workshop document\, so I tucked the note aw
+ ay carefully.</span><span> By the end </span></span><span>of the cleanup\, 
+ even my ears were sparkling. Still\, we laughed through most of it\, especi
+ ally when Jingle slipped and landed in a pile of tinsel. Santa says mistake
+ s remind us we’re a team. I think he’s right. Christmas wouldn’t feel the s
+ ame without a little chaos.<br><br>-Brindle</span></span></h3>
+LAST-MODIFIED:20251228T190628Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Gift Delivery
+TRANSP:TRANSPARENT
+ATTACH;FILENAME=Delivery Locations.xlsx;FMTTYPE=application/vnd.openxmlform
+ ats-officedocument.spreadsheetml.sheet:https://drive.google.com/open?id=1da
+ ZxptEjnivnyOf54B14q13ceuX9M35N
+END:VEVENT
+END:VCALENDAR

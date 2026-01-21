@@ -1,0 +1,233 @@
+
+
+PS C:\Windows\system32\WindowsPowerShell\v1.0> 
+whoami
+
+desktop-8g1r36m\solitude
+PS C:\Windows\system32\WindowsPowerShell\v1.0> 
+pwd
+
+
+Path                                      
+----                                      
+C:\Windows\system32\WindowsPowerShell\v1.0
+
+
+PS C:\Windows\system32\WindowsPowerShell\v1.0> 
+ipconfig
+
+
+Windows IP Configuration
+
+
+Ethernet adapter Ethernet0:
+
+   Connection-specific DNS Suffix  . : localdomain
+   Link-local IPv6 Address . . . . . : fe80::bdbe:691e:de74:2f37%4
+   IPv4 Address. . . . . . . . . . . : 172.16.100.134
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . : 
+PS C:\Windows\system32\WindowsPowerShell\v1.0> 
+net user Solitude
+
+User name                    Solitude
+Full Name                    
+Comment                      
+User's comment               
+Country/region code          000 (System Default)
+Account active               Yes
+Account expires              Never
+
+Password last set            3/26/2025 7:12:53 PM
+Password expires             Never
+Password changeable          3/26/2025 7:12:53 PM
+Password required            No
+User may change password     Yes
+
+Workstations allowed         All
+Logon script                 
+User profile                 
+Home directory               
+Last logon                   9/19/2025 4:44:19 PM
+
+Logon hours allowed          All
+
+Local Group Memberships      *Administrators       
+Global Group memberships     *None                 
+The command completed successfully.
+
+PS C:\Windows\system32\WindowsPowerShell\v1.0> 
+net localgroup
+
+
+Aliases for \\DESKTOP-8G1R36M
+
+-------------------------------------------------------------------------------
+*Access Control Assistance Operators
+*Administrators
+*Backup Operators
+*Cryptographic Operators
+*Device Owners
+*Distributed COM Users
+*Event Log Readers
+*Guests
+*Hyper-V Administrators
+*IIS_IUSRS
+*Network Configuration Operators
+*Performance Log Users
+*Performance Monitor Users
+*Power Users
+*Remote Desktop Users
+*Remote Management Users
+*Replicator
+*System Managed Accounts Group
+*Users
+The command completed successfully.
+
+PS C:\Windows\system32\WindowsPowerShell\v1.0> 
+net user /add Ichinose password123
+
+PS C:\Windows\system32\WindowsPowerShell\v1.0> 
+net localgroup Administrators Ichinose /add
+
+PS C:\Windows\system32\WindowsPowerShell\v1.0> 
+net user Ichinose
+
+PS C:\Windows\system32\WindowsPowerShell\v1.0> 
+cd C:\Users\Solitude
+
+PS C:\Users\Solitude> 
+dir
+
+
+
+    Directory: C:\Users\Solitude
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+d-r---         3/26/2025   7:13 PM                3D Objects                                                           
+d-r---         3/26/2025   7:13 PM                Contacts                                                             
+d-r---         9/19/2025  11:31 AM                Desktop                                                              
+d-r---         3/26/2025   7:13 PM                Documents                                                            
+d-r---         3/26/2025   7:13 PM                Downloads                                                            
+d-r---         3/26/2025   7:13 PM                Favorites                                                            
+d-r---         3/26/2025   7:13 PM                Links                                                                
+d-r---         3/26/2025   7:13 PM                Music                                                                
+d-r---         4/12/2025   8:03 PM                OneDrive                                                             
+d-r---         3/26/2025   7:14 PM                Pictures                                                             
+d-r---         3/26/2025   7:13 PM                Saved Games                                                          
+d-r---         3/26/2025   7:14 PM                Searches                                                             
+d-r---         3/26/2025   7:13 PM                Videos                                                               
+-a----         9/19/2025   4:52 PM           2462 ciminfo.txt                                                          
+
+
+PS C:\Users\Solitude> 
+type ciminfo.txt
+
+Host Name:                 DESKTOP-8G1R36M
+OS Name:                   Microsoft Windows 10 Pro
+System.Object[]
+OS Configuration:          Standalone Workstation
+System Type:               x64-based PC
+Registered Owner:          Solitude
+BIOS Version:              VMware, Inc. VMW201.00V.24006586.B64.2406042154, 6/4/2024
+Domain:                    WORKGROUP
+Logon Server:              \\DESKTOP-8G1R36M
+
+
+AuthenticationType : NTLM
+ImpersonationLevel : None
+IsAuthenticated    : True
+IsGuest            : False
+IsSystem           : False
+IsAnonymous        : False
+Name               : DESKTOP-8G1R36M\Solitude
+Owner              : S-1-5-21-3158368066-3589243292-3412012299-1001
+User               : S-1-5-21-3158368066-3589243292-3412012299-1001
+Groups             : {S-1-5-21-3158368066-3589243292-3412012299-513, S-1-1-0, S-1-5-32-545, S-1-5-4...}
+Token              : 2924
+AccessToken        : Microsoft.Win32.SafeHandles.SafeAccessTokenHandle
+UserClaims         : {http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name: DESKTOP-8G1R36M\Solitude, 
+                     http://schemas.microsoft.com/ws/2008/06/identity/claims/primarysid: 
+                     S-1-5-21-3158368066-3589243292-3412012299-1001, 
+                     http://schemas.microsoft.com/ws/2008/06/identity/claims/primarygroupsid: 
+                     S-1-5-21-3158368066-3589243292-3412012299-513, 
+                     http://schemas.microsoft.com/ws/2008/06/identity/claims/groupsid: 
+                     S-1-5-21-3158368066-3589243292-3412012299-513...}
+DeviceClaims       : {}
+Claims             : {http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name: DESKTOP-8G1R36M\Solitude, 
+                     http://schemas.microsoft.com/ws/2008/06/identity/claims/primarysid: 
+                     S-1-5-21-3158368066-3589243292-3412012299-1001, 
+                     http://schemas.microsoft.com/ws/2008/06/identity/claims/primarygroupsid: 
+                     S-1-5-21-3158368066-3589243292-3412012299-513, 
+                     http://schemas.microsoft.com/ws/2008/06/identity/claims/groupsid: 
+                     S-1-5-21-3158368066-3589243292-3412012299-513...}
+Actor              : 
+BootstrapContext   : 
+Label              : 
+NameClaimType      : http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name
+RoleClaimType      : http://schemas.microsoft.com/ws/2008/06/identity/claims/groupsid
+
+Is Admin     : False
+
+
+PS C:\Users\Solitude> 
+dir
+
+
+
+    Directory: C:\Users\Solitude
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+d-r---         3/26/2025   7:13 PM                3D Objects                                                           
+d-r---         3/26/2025   7:13 PM                Contacts                                                             
+d-r---         9/19/2025  11:31 AM                Desktop                                                              
+d-r---         3/26/2025   7:13 PM                Documents                                                            
+d-r---         3/26/2025   7:13 PM                Downloads                                                            
+d-r---         3/26/2025   7:13 PM                Favorites                                                            
+d-r---         3/26/2025   7:13 PM                Links                                                                
+d-r---         3/26/2025   7:13 PM                Music                                                                
+d-r---         4/12/2025   8:03 PM                OneDrive                                                             
+d-r---         3/26/2025   7:14 PM                Pictures                                                             
+d-r---         3/26/2025   7:13 PM                Saved Games                                                          
+d-r---         3/26/2025   7:14 PM                Searches                                                             
+d-r---         3/26/2025   7:13 PM                Videos                                                               
+-a----         9/19/2025   4:52 PM           2462 ciminfo.txt                                                          
+
+
+PS C:\Users\Solitude> 
+cd Desktop
+
+PS C:\Users\Solitude\Desktop> 
+dir
+
+
+
+    Directory: C:\Users\Solitude\Desktop
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+d-----         9/19/2025   9:32 AM                Sysmon                                                               
+-a----         9/19/2025   4:44 PM             64 confidential.txt                                                     
+-a----          9/7/2025   8:37 PM        4866436 Sysmon.zip                                                           
+
+
+PS C:\Users\Solitude\Desktop> 
+type confidential.txt
+
+0d550b3f9c28988953197836d9f2db696db24fbb64d9dd10e7c6e4ba5003e51f
+PS C:\Users\Solitude\Desktop> 
+cd C:\Windows\System32
+
+PS C:\Windows\System32> 
+cd config
+
+PS C:\Windows\System32\config> 
+dir
+
+PS C:\Windows\System32\config> 
+ls -al

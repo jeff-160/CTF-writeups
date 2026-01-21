@@ -1,0 +1,9 @@
+120.225.134.131
+wordpress
+gobuster
+file_manager:v6.0
+CVE-2020-25213
+python3 -c "import pty;pty.spawn('/bin/bash')"
+host_discovery.sh,linpeas.sh,port_discovery.sh
+id_ed25519.pub
+172.16.100.125

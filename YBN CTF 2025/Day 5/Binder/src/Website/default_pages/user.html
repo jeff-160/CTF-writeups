@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome {username}</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    label {
+      font-weight: bold;
+      color: #444;
+      text-align: left;
+      margin-bottom: 0;
+    }
+
+    input[type="text"] {
+      padding: 12px 12px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: none;
+      background-color: #e9f0ff;
+      color: #333;
+      font-weight: bold;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    input[type="text"]:hover {
+      background-color: #dbe7ff;
+    }
+
+    input[type="text"]:focus {
+      background-color: #fff;
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    }
+
+    #submit {
+      padding: 12px 20px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.1s ease;
+    }
+
+    #submit:hover {
+      background-color: #0056b3;
+      transform: translateY(-1px);
+    }
+
+    #submit:active {
+      transform: translateY(0);
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Welcome {username}</h1>
+  <p>{description}</p>
+  <form method="POST" action="/visit">
+    <button type="submit" id="submit">Have Admin Bot Visit Your Profile</button>
+  </form>
+</body>
+
+</html>

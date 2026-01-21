@@ -1,0 +1,24 @@
+services:
+  binder-admin-bot:
+    image: binder-admin-bot
+    container_name: binder-admin-bot
+    build: 
+      context: ./AdminBot
+      dockerfile: Dockerfile
+    networks:
+      - binder-network
+
+  binder-website:
+    image: binder-website
+    container_name: binder-website
+    build:
+      context: ./Website
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"  # Exposing the website on port 3000
+    networks:
+      - binder-network
+    
+networks:
+  binder-network:
+    driver: bridge
