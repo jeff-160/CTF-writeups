@@ -1,0 +1,409 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin dashboard</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='tailwind/use.css')}}">
+</head>
+<div class="flex">
+    <aside class="sticky top-0 h-screen w-56 bg-gray-100 text-gray-800 p-4">
+      <div class="flex items-center mb-4 space-x-1">
+        <svg width="50" height="50" viewBox="0 0 321.87495304567454 321.875" class="css"><defs id="Svg"></defs><g id="SvgjsG2290" featurekey="rootContainer" transform="matrix(3.0771987438201904,0,0,3.0771987438201904,0.000011738581364497438,0.000011738581364497438)" fill="#d82020"><path xmlns="http://www.w3.org/2000/svg" d="M52.3 104.6a52.3 52.3 0 1 1 52.3-52.3 52.4 52.4 0 0 1-52.3 52.3zm0-102.3a50 50 0 1 0 50 50 50 50 0 0 0-50-50z"></path></g><g id="SvgjsG2291" featurekey="symbolFeature-0" transform="matrix(29.824037551879883,0,0,29.824037551879883,86.42499371778096,33.45481737052407)" fill="#d82020"><g xmlns="http://www.w3.org/2000/svg"><path d="M3.726,1.855C3.44,2.127,3.042,2.237,2.661,2.292c-0.34,0.05-0.695,0.071-0.999,0.203C1.344,2.634,1.144,2.864,1.16,3.22   c0.01,0.214,0.125,0.423,0.287,0.584C1.492,3.84,1.538,3.874,1.586,3.905C1.583,3.899,1.58,3.892,1.575,3.886   C1.382,3.621,1.232,2.862,2.242,2.697C2.445,2.664,2.648,2.63,2.85,2.584c0.178-0.041,0.496-0.141,0.531-0.16   c0.029-0.017-0.189,0.228-0.857,0.42C1.463,3.149,1.789,4.03,2.113,4.131C2.237,4.161,2.367,4.176,2.5,4.176   c0.926,0,1.677-0.75,1.677-1.676c0-0.333-0.097-0.643-0.264-0.903C3.868,1.695,3.805,1.779,3.726,1.855z"></path><path d="M0.824,2.5c0,0.184,0.03,0.359,0.084,0.525c0.02-0.182,0.082-0.354,0.198-0.5c0.21-0.267,0.536-0.392,0.875-0.459   C2.319,2,2.679,1.992,3.026,1.908c0.192-0.046,0.387-0.121,0.542-0.244C3.697,1.56,3.757,1.402,3.623,1.255   C3.574,1.211,3.522,1.169,3.468,1.131c0.098,0.201,0.022,0.5-0.773,0.578C2.491,1.73,2.288,1.749,2.087,1.777   C2.028,1.785,1.955,1.796,1.88,1.809c0,0,0.066-0.082,0.532-0.188c0.958-0.216,0.779-0.633,0.495-0.748   c-0.13-0.032-0.267-0.05-0.407-0.05C1.574,0.824,0.824,1.574,0.824,2.5z"></path></g></g><g id="SvgjsG2292" featurekey="nameFeature-0" transform="matrix(1.1268874406814575,0,0,1.1268874406814575,57.97994178223814,166.91142930344165)" fill="#014780"><path d="M2.68 40 l0 -29.6 l8.36 0 c4.64 0 7.04 0.64 8.6 1.72 c2.44 1.6 3.92 4.68 3.92 8 c0 2.08 -0.6 4.08 -1.68 5.64 c-1.52 2.12 -3.44 2.84 -5.72 3.24 l6.96 11 l-5 0 l-8.12 -13.36 l1.04 0 c2.04 0 4.52 -0.08 5.92 -1.28 c1.36 -1.2 2.04 -2.92 2.04 -4.84 c0 -2 -0.96 -3.96 -2.52 -5 c-1.28 -0.8 -2.92 -0.96 -5.04 -0.96 l-4.04 0 l0 25.44 l-4.72 0 z M27.2 40 l0 -29.6 l16.56 0 l0 4.16 l-11.84 0 l0 8.4 l11.68 0 l0 4.12 l-11.68 0 l0 8.76 l11.84 0 l0 4.16 l-16.56 0 z M48.68000000000001 40 l0 -29.6 l9.16 0 c3.96 0 8.88 0.6 12.16 4.8 c2.24 2.68 3.24 6.08 3.24 9.96 c0 8.64 -4.68 14.84 -15.08 14.84 l-9.48 0 z M53.400000000000006 14.559999999999999 l0 21.28 l5 0 c6.96 0 10.16 -4.44 10.16 -10.6 c0 -2.84 -0.76 -5.56 -2.4 -7.56 c-1.56 -1.8 -3.92 -3.12 -7.72 -3.12 l-5.04 0 z M82.08000000000001 10.399999999999999 l15.36 22.52 l-0.08 -22.52 l4.56 0 l0 29.6 l-4.32 0 l-15.48 -22.56 l0.08 22.56 l-4.56 0 l0 -29.6 l4.44 0 z M106.32000000000001 25.4 l0 -0.04 c0 -9.32 7.16 -15.52 15.48 -15.52 c8.84 0 15.52 6.84 15.52 15.36 s-6.68 15.36 -15.56 15.36 c-8.92 0 -15.44 -7 -15.44 -15.16 z M111.00000000000001 25.16 l0 0.04 c0 6.16 4.56 11.2 10.88 11.2 c6.44 0 10.72 -5.4 10.72 -11.16 c0 -5.8 -4.28 -11.24 -10.76 -11.24 c-6.44 0 -10.84 5.2 -10.84 11.16 z M140.20000000000002 31.240000000000002 l4.68 0 c0.32 4.44 3.44 5.32 5 5.32 c2.64 0 4.92 -2.08 4.92 -4.72 c0 -3.28 -2.8 -4.04 -6.6 -5.44 c-2.32 -0.76 -7.48 -2.48 -7.48 -8.04 c-0.04 -5.52 4.68 -8.52 9.32 -8.52 c3.8 0 8.56 2.08 8.92 8.16 l-4.64 0 c-0.32 -1.6 -1.04 -4.16 -4.44 -4.16 c-2.4 0 -4.48 1.64 -4.48 4.16 c0 2.88 2.2 3.6 6.96 5.36 c3.68 1.56 7.12 3.44 7.12 8.24 s-3.24 8.96 -9.56 8.96 c-5.88 0 -9.64 -3.6 -9.72 -9.32 z M163.6 40 l0 -29.6 l16.56 0 l0 4.16 l-11.84 0 l0 8.4 l11.68 0 l0 4.12 l-11.68 0 l0 8.76 l11.84 0 l0 4.16 l-16.56 0 z"></path></g><g id="SvgjsG2293" featurekey="nameFeature-1" transform="matrix(1.4116319417953491,0,0,1.4116319417953491,60.54827821659124,208.3190312693185)" fill="#014780"><path d="M8.16 33 l-2.72 7 l-5.12 0 l12.16 -29.6 l4.28 0 l11.96 29.6 l-5.12 0 l-2.8 -7 l-12.64 0 z M19.52 29.2 l-5.08 -13.32 l-5 13.32 l10.08 0 z M31.88 40 l0 -29.6 l4.72 0 l0 29.6 l-4.72 0 z M42.16 40 l0 -29.6 l8.36 0 c4.64 0 7.04 0.64 8.6 1.72 c2.44 1.6 3.92 4.68 3.92 8 c0 2.08 -0.6 4.08 -1.68 5.64 c-1.52 2.12 -3.44 2.84 -5.72 3.24 l6.96 11 l-5 0 l-8.12 -13.36 l1.04 0 c2.04 0 4.52 -0.08 5.92 -1.28 c1.36 -1.2 2.04 -2.92 2.04 -4.84 c0 -2 -0.96 -3.96 -2.52 -5 c-1.28 -0.8 -2.92 -0.96 -5.04 -0.96 l-4.04 0 l0 25.44 l-4.72 0 z M66.8 40 l0 -29.6 l4.72 0 l0 25.44 l10.44 0 l0 4.16 l-15.16 0 z M85 40 l0 -29.6 l4.72 0 l0 29.6 l-4.72 0 z M99.88 10.399999999999999 l15.36 22.52 l-0.08 -22.52 l4.56 0 l0 29.6 l-4.32 0 l-15.48 -22.56 l0.08 22.56 l-4.56 0 l0 -29.6 l4.44 0 z M125.44 40 l0 -29.6 l16.56 0 l0 4.16 l-11.84 0 l0 8.4 l11.68 0 l0 4.12 l-11.68 0 l0 8.76 l11.84 0 l0 4.16 l-16.56 0 z"></path></g></svg>
+        <h1 class="text-lg font-medium">Welcome, Admin!</h1>
+      </div>
+      <nav class="space-y-2">
+        <button class="w-full flex items-center space-x-2 hover:bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-500">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class=" w-4 h-4"
+          >
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          <span class="text-sm font-medium">Home</span>
+        </button>
+        <button class="w-full flex items-center space-x-2 bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-800">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z" />
+              </svg>              
+            <span class="text-sm font-medium">METAR</span>
+        </button>
+        <button class="w-full flex items-center space-x-2 hover:bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-500">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class=" w-4 h-4"
+          >
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+          <span class="text-sm font-medium">Accounts</span>
+        </button>
+        <button class="w-full flex items-center space-x-2 hover:bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-500">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class=" w-4 h-4"
+          >
+            <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"></path>
+            <path d="M13 5v2"></path>
+            <path d="M13 17v2"></path>
+            <path d="M13 11v2"></path>
+          </svg>
+          <span class="text-sm font-medium">Tickets</span>
+        </button>
+      </nav>
+    </aside>
+    <main class="flex-grow p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h1 class="text-lg font-medium">Meteorological Aviation Report 정시관측항공기상보고</h1>
+        <button
+          class="justify-center font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-2 py-1 bg-gray-800 text-white rounded-lg flex items-center space-x-2 text-sm"
+          type="button" onclick="location.reload();"
+        >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+          </svg>
+        <span>Reload</span>
+        </button>
+      </div>
+      <div class="w-full overflow-auto">
+        <table class="w-full caption-bottom text-sm">
+          <thead class="[&amp;_tr]:border-b">
+            <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+              <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                Airport
+              </th>
+              <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                METAR (Live)
+              </th>
+              <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                Category
+              </th>
+              <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0"></th>
+            </tr>
+          </thead>
+          <tbody class="[&amp;_tr:last-child]:border-0">
+            <script>
+                function fetchMETAR(airportCode) {
+                    const url = '/api/metar?airport=https://aviationweather.gov/api/data/metar?ids=' + airportCode; // !! 절대 API 서버로 공격하지 마세요 !!
+                    fetch(url)
+                        .then(response => response.text())
+                        .then(data => {
+                            const metarCell = document.querySelector(`#metar-${airportCode}`);
+                            metarCell.textContent = data;
+                        })
+                        .catch(error => console.error('Error fetching METAR data:', error));
+                }
+                window.onload = () => {
+                    fetchMETAR('RKSI');
+                    fetchMETAR('RKSS');
+                    fetchMETAR('RKTN');
+                    fetchMETAR('RKPK');
+                    fetchMETAR('RKPC');
+                };
+            </script>
+            <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">RKSI 인천국제공항</td>
+              <td id="metar-RKSI" class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Loading..</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                <span class="px-2 py-1 bg-red-200 text-red-800 rounded-md">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class=" w-4 h-4 inline-block mr-1"
+                  >
+                    <path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path>
+                    <path d="M7 7h.01"></path>
+                  </svg>
+                  Busy
+                </span>
+              </td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                <button
+                  type="button"
+                  aria-haspopup="dialog"
+                  aria-expanded="false"
+                  aria-controls="radix-:r0:"
+                  data-state="closed"
+                >
+                  <button
+                    class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-2 py-1 bg-transparent text-black hover:bg-gray-200 active:bg-gray-300 rounded"
+                    type="button"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class=" w-4 h-4"
+                    >
+                      <circle cx="12" cy="12" r="1"></circle>
+                      <circle cx="12" cy="5" r="1"></circle>
+                      <circle cx="12" cy="19" r="1"></circle>
+                    </svg>
+                  </button>
+                </button>
+              </td>
+            </tr>
+            <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">RKSS 김포국제공항</td>
+              <td id="metar-RKSS" class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Loading..</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                <span class="px-2 py-1 bg-blue-200 text-blue-800 rounded-md">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class=" w-4 h-4 inline-block mr-1"
+                  >
+                    <path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path>
+                    <path d="M7 7h.01"></path>
+                  </svg>
+                  Moderate
+                </span>
+              </td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                <button
+                  type="button"
+                  aria-haspopup="dialog"
+                  aria-expanded="false"
+                  aria-controls="radix-:r1:"
+                  data-state="closed"
+                >
+                  <button
+                    class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-2 py-1 bg-transparent text-black hover:bg-gray-200 active:bg-gray-300 rounded"
+                    type="button"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class=" w-4 h-4"
+                    >
+                      <circle cx="12" cy="12" r="1"></circle>
+                      <circle cx="12" cy="5" r="1"></circle>
+                      <circle cx="12" cy="19" r="1"></circle>
+                    </svg>
+                  </button>
+                </button>
+              </td>
+            </tr>
+            <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">RKTN 대구국제공항</td>
+              <td id="metar-RKTN" class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Loading..</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                <span class="px-2 py-1 bg-blue-200 text-blue-800 rounded-md">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class=" w-4 h-4 inline-block mr-1"
+                  >
+                    <path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path>
+                    <path d="M7 7h.01"></path>
+                  </svg>
+                  Moderate
+                </span>
+              </td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                <button
+                  type="button"
+                  aria-haspopup="dialog"
+                  aria-expanded="false"
+                  aria-controls="radix-:r2:"
+                  data-state="closed"
+                >
+                  <button
+                    class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-2 py-1 bg-transparent text-black hover:bg-gray-200 active:bg-gray-300 rounded"
+                    type="button"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class=" w-4 h-4"
+                    >
+                      <circle cx="12" cy="12" r="1"></circle>
+                      <circle cx="12" cy="5" r="1"></circle>
+                      <circle cx="12" cy="19" r="1"></circle>
+                    </svg>
+                  </button>
+                </button>
+              </td>
+            </tr>
+            <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">RKPK 김해국제공항</td>
+              <td id="metar-RKPK" class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Loading..</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                <span class="px-2 py-1 bg-green-200 text-green-800 rounded-md">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class=" w-4 h-4 inline-block mr-1"
+                  >
+                    <path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path>
+                    <path d="M7 7h.01"></path>
+                  </svg>
+                  Light
+                </span>
+              </td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                <button
+                  type="button"
+                  aria-haspopup="dialog"
+                  aria-expanded="false"
+                  aria-controls="radix-:r3:"
+                  data-state="closed"
+                >
+                  <button
+                    class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-2 py-1 bg-transparent text-black hover:bg-gray-200 active:bg-gray-300 rounded"
+                    type="button"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class=" w-4 h-4"
+                    >
+                      <circle cx="12" cy="12" r="1"></circle>
+                      <circle cx="12" cy="5" r="1"></circle>
+                      <circle cx="12" cy="19" r="1"></circle>
+                    </svg>
+                  </button>
+                </button>
+              </td>
+            </tr>
+            <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">RKPC 제주국제공항</td>
+              <td id="metar-RKPC" class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Loading..</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                <span class="px-2 py-1 bg-red-200 text-red-800 rounded-md">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class=" w-4 h-4 inline-block mr-1"
+                  >
+                    <path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path>
+                    <path d="M7 7h.01"></path>
+                  </svg>
+                  Busy
+                </span>
+              </td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                <button
+                  type="button"
+                  aria-haspopup="dialog"
+                  aria-expanded="false"
+                  aria-controls="radix-:r4:"
+                  data-state="closed"
+                >
+                  <button
+                    class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-2 py-1 bg-transparent text-black hover:bg-gray-200 active:bg-gray-300 rounded"
+                    type="button"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class=" w-4 h-4"
+                    >
+                      <circle cx="12" cy="12" r="1"></circle>
+                      <circle cx="12" cy="5" r="1"></circle>
+                      <circle cx="12" cy="19" r="1"></circle>
+                    </svg>
+                  </button>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>

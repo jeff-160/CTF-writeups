@@ -1,0 +1,60 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rednose Airline</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='tailwind/use.css')}}">
+</head>
+<body class="bg-white dark:bg-gray-800">
+<section class="bg-white dark:bg-gray-800">
+  <header class="container mx-auto px-4 py-6 md:flex md:items-center md:justify-between">
+    <div class="flex items-center justify-between">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class=" h-6 w-6"
+      >
+        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+      </svg>
+      <span class="sr-only">Vercel</span>
+      <nav class="md:ml-10 md:pr-4 md:space-x-8">
+        <a
+          class="text-base font-medium text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
+          href="#"
+        >
+          METAR
+        </a>
+        <a
+          class="text-base font-medium text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
+          href="#"
+        >
+          NOTAM
+        </a>
+      </nav>
+    </div>
+    <div class="flex items-center justify-center mt-4 md:mt-0">
+        <div class="flex items-center justify-center mt-4 md:mt-0">
+            <a class="padding:5px text-sm font-medium text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100" href="dashboard">
+                Dashboard  
+            </a>
+            <a class="padding:5px ml-4 inline-flex h-10 items-center justify-center rounded-md bg-gray-900 px-6 text-sm font-medium text-white shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 disabled:pointer-events-none disabled:opacity-50 dark:bg-white dark:text-gray-900 dark:hover:bg-white/90 dark:focus-visible:ring-gray-200" href="login">
+                login
+            </a>
+        </div>
+          </header>
+  <main class="container mx-auto px-4 py-20 text-center">
+    <h2 class="text-4xl font-extrabold tracking-tighter text-blue-500 sm:text-6xl">Rednose.</h2>
+    <h2 class="text-4xl font-extrabold tracking-tighter text-blue-700 sm:text-6xl">Airlines.</h2>
+    <h2 class="text-4xl font-extrabold tracking-tighter text-black sm:text-6xl">Intranet.</h2>
+    <p class="max-w-md mx-auto text-gray-500 md:text-xl lg:text-lg xl:text-xl dark:text-gray-400 mt-10">
+        At Rednose Airlines, we prioritize the well-being of our employees. Start by logging in and accessing our intranet.
+    </p>
+  </main>
+</section>
