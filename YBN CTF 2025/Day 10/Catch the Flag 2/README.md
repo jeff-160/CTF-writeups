@@ -18,7 +18,7 @@ One of the TCP packets appears to have ran shell commands on a vulnerable machin
 
 <img src="images/shell.png" width=600>
 
-The packet includes the vulnerable machine's IP address, so we can 
+The packet also includes the vulnerable machine's IP address.   
 
 <img src="images/address.png" width=600>
 
