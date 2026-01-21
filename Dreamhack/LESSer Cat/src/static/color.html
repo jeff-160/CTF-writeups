@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Picker</title>
+    <style>
+        #color-chart {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .color-box {
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+        }
+
+        #selected-color {
+            margin-top: 20px;
+        }
+
+        button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="color-chart"></div>
+<div id="selected-color"><h2>Selected Color: <span id="color-code"></span></h2></div>
+<button onclick="sendColorRequest()">Pick Color</button>
+
+<script>
+      const colors = ['#F07857', '#EBB8DD', '#5C62D6', '#F07857', '#43A5BE', '#F5C26B', '#53BDA5', '#4FB06D', '#BF2C34', '#5C26D6'];
+
+    const colorChart = document.getElementById('color-chart');
+    colors.forEach(color => {
+        const colorBox = document.createElement('div');
+        colorBox.className = 'color-box';
+        colorBox.style.backgroundColor = color;
+        colorBox.addEventListener('click', () => displayColorCode(color));
+        colorChart.appendChild(colorBox);
+    });
+
+    function displayColorCode(color) {
+        const colorCodeElement = document.getElementById('color-code');
+        colorCodeElement.textContent = color;
+    }
+
+    function sendColorRequest() {
+        const selectedColor = document.getElementById('color-code').textContent;
+
+        var details = {
+        'bgColor': selectedColor,
+        "fontColor" : '#000000'
+    };
+
+var formBody = [];
+for (var property in details) {
+    var encodedKey = encodeURIComponent(property);
+    var encodedValue = encodeURIComponent(details[property]);
+    formBody.push(encodedKey + "=" + encodedValue);
+}
+formBody = formBody.join("&");
+
+        fetch('/color', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: formBody
+        }) 
+    }
+</script>
+
+</body>
+</html>
