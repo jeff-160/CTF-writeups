@@ -75,7 +75,7 @@ def givekey():
 
 `c1` and `c2` are the two ciphertexts that the encryption function produces, which are the admin and guest password hashes.  
 
-To retrieve them, we can notice a NoSQLi vuln in the `/search endpoint`, as our query is embedded directly into the query.  
+To retrieve them, we can notice a NoSQLi vuln in the `/search endpoint`, as our input is embedded directly into the query.  
 
 ```python
 @app.route('/search')
