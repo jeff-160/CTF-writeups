@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Search</title>
+</head>
+
+<body>
+    <div class="nav">
+        <h1>Search Users</h1>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="flash-message flash-{{ category }}">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+        <form method="GET" action="{{ url_for('search') }}" class="search-form">
+            <p>
+                <label for="q">Search user:</label>
+                <input type="text" id="q" name="q" value="{{ request.args.get('q', '') }}">
+                <input type="submit" value="Search">
+            </p>
+        </form>
+
+        {% if request.args.get('q') %}
+        <h2>Search Results</h2>
+        {% if users %}
+        <ul class="user-list">
+            {% for user in users %}
+            <li>{{ user.username }}</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No users found matching your search.</p>
+        {% endif %}
+        {% endif %}
+
+        <p><a href="{{ url_for('index') }}">Back to Home</a></p>
+    </div>
+</body>
+
+</html>

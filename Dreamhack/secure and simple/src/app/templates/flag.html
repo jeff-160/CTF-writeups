@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flag Page</title>
+</head>
+<body>
+    <h1>Flag Page</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p style="color: green;">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <p>Welcome, {{ username }}!</p>
+    <p>Here's your flag: {{ flag }}</p>
+    <p><a href="{{ url_for('logout') }}">Logout</a></p>
+</body>
+</html>

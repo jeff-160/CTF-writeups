@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Key Page</title>
+</head>
+<body>
+    <h1>Key Page</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p style="color: green;">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <p>N: {{ N }}</p>
+    <p>e: {{ e }}</p>
+</body>
+</html>
