@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Predict</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+				background-color: #f9f9f9;
+			}
+			.container {
+				text-align: center;
+				background: #fff;
+				padding: 20px;
+				border-radius: 12px;
+				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+				width: 400px;
+			}
+			h1 {
+				color: #333;
+			}
+			p {
+				margin: 10px 0;
+			}
+			input[type='text'] {
+				width: 100%;
+				padding: 12px;
+				font-size: 16px;
+				border: 1px solid #ccc;
+				border-radius: 8px;
+				outline: none;
+				box-sizing: border-box;
+			}
+			input[type='text']:focus {
+				border-color: #007bff;
+				box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+			}
+			button {
+				padding: 10px 20px;
+				background-color: #007bff;
+				color: #fff;
+				font-size: 16px;
+				border: none;
+				border-radius: 8px;
+				cursor: pointer;
+				margin-top: 10px;
+			}
+			button:hover {
+				background-color: #0056b3;
+			}
+			#responseMessage {
+				margin-top: 15px;
+				font-weight: bold;
+				color: green;
+				max-height: 200px;
+				overflow: auto;
+				padding: 10px;
+				border: 1px solid #ddd;
+				background-color: #f1f1f1;
+				border-radius: 8px;
+				text-align: left;
+				font-size: 14px;
+			}
+			#toggleButton {
+				display: none;
+				margin-top: 10px;
+				padding: 5px 10px;
+				background-color: #007bff;
+				color: white;
+				font-size: 14px;
+				border: none;
+				border-radius: 5px;
+				cursor: pointer;
+			}
+			#toggleButton:hover {
+				background-color: #0056b3;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<h1>Predict</h1>
+			<p>URL Handshake</p>
+			<p>
+				<input type="text" id="urlInput" placeholder="Enter URL" required />
+			</p>
+			<button id="goButton">Go</button>
+			<div id="responseMessage"></div>
+			<button id="toggleButton">Show More</button>
+		</div>
+		<script>
+			document.getElementById('goButton').addEventListener('click', () => {
+				const urlInput = document.getElementById('urlInput').value;
+				const responseDiv = document.getElementById('responseMessage');
+				const formData = new URLSearchParams();
+				formData.append('url', urlInput);
+
+				responseDiv.textContent = '';
+
+				fetch('/handshake', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/x-www-form-urlencoded'
+					},
+					body: formData
+				})
+					.then(response => response.text())
+					.then(data => {
+						responseDiv.textContent = data;
+					})
+					.catch(error => {
+						responseDiv.textContent =
+							'An error occurred while sending the request.';
+						responseDiv.style.color = 'red';
+					});
+			});
+		</script>
+	</body>
+</html>
