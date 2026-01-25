@@ -1,7 +1,3 @@
-sending nonsense like `$#\` will get the terminal to output "eval failed", so our payload is being run with bash
-
-`\$$#` gets a shell for some reason
-
 ## HashCashSlash  
 
 <img src="images/chall.png" width=600>
