@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    title 2023 BISC Note
+  body
+    include function
+    div(class="container text-center " style="padding-top:10%")
+      +print('Login : '+name)
+      form(action="/write", method="POST")
+        div(style="padding:10px")
+          input(class="form-control" type="text", id="title", name="title" placeholder="title")
+        div(style="padding:10px; padding-top:0px")
+          textarea(class="form-control" id="content" name="content" rows="4" cols="50" placeholder="Contents")
+        div(class="d-grid gap-2 d-md-flex justify-content-md-end" style="padding:10px; padding-top:0px")
+          +but('Write')

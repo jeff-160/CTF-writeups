@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    title 2023 BISC Note
+  body
+    include function
+    div(class="container text-center " style="padding-top:10%")
+      +print('Login : '+name)
+      +note(title+" - "+board[title][0])
+      +note(board[title][1])
+      if name===board[title][0]
+        div(class="d-grid gap-2 d-md-flex justify-content-md-end" style="padding:10px; padding-top:0px")
+          a(href="/edit?title="+title)
+            +but('Edit')
+
+    
+    

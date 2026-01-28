@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    title 2023 BISC Note
+  body
+    include function
+    form(action="/login", method="POST")
+      div(style="padding:10px")
+        input(type="text", id="id", name="id" class="form-control form-control-lg" placeholder="ID" aria-label=".form-control-lg example")
+      div(style="padding:10px; padding-top:0px")
+        input(type="password", id="pw", name="pw" class="form-control form-control-lg" placeholder="PW" aria-label=".form-control-lg example")
+      div(class="d-grid gap-2 d-md-flex justify-content-md-end")
+        +but('Login')
+    div(class="d-grid gap-2 d-md-flex justify-content-md-end")
+      a(href="/register")
+        +but('Register')
+      
+    

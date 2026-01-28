@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    title 2023 BISC Note
+  body
+    include function
+    
+    div(class="container text-center " style="padding-top:10%")
+      +print('Login : '+name)
+      table(class="table table-sm border border-success p-2 mb-2 border-opacity-75")
+        th Title 
+        th Author 
+        each content,title in board
+          tr
+            td 
+              a(href="/note?title="+title) #{title}
+            td #{content[0]}
+      div(class="d-grid gap-2 d-md-flex justify-content-md-end")
+        a(href="/write")
+          +but('Write')
+        a(href="/logout" style="padding-left:5px")
+          +but('Logout')
+    
+    
