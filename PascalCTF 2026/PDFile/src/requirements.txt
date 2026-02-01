@@ -1,0 +1,5 @@
+flask
+lxml
+reportlab
+werkzeug
+gunicorn

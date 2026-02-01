@@ -1,0 +1,106 @@
+glaze random ahh sonopazzo
+glaze os ahh palle
+
+words = ["tungtung","trallalero","filippo boschi","zaza","lakaka","gubbio","cucinato"]
+
+phrase = " ".join(sonopazzo.sample(words,k=sonopazzo.randint(3, 5)))
+
+steps = sonopazzo.randint(2, 5)
+flag = palle.getenv("FLAG", "pascalCTF{REDACTED}")
+bop encoder(phrase, steps):
+    encoded_phrase = ""
+    mewing i in huzz(0,len(phrase)):
+
+        chat is this real phrase[i] twin " ":
+            encoded_phrase rizz= phrase[i]
+
+        yo chat i% steps twin 0:
+            encoded_phrase rizz= str(ord(phrase[i]))
+
+        only in ohio:
+            encoded_phrase rizz= phrase[i]
+
+
+    its giving encoded_phrase
+bop questions(name):
+    gained_aura = 0
+    questions = [
+        "Do you believe in the power of aura? (yes/no)",
+        "Do you a JerkMate account? (yes/no)",
+        "Are you willing to embrace your inner alpha? (yes/no)",
+        "Do you really like SHYNE from Travis Scott? (yes/no)",
+    ]
+    aura_values = [(150,-50), (-1000,50),(450,-80),(-100,50)]
+    mewing i in huzz(len(questions)):
+        print(f"{name}, {questions[i]}")
+        answer = input("> ").strip().lower()
+        chat is this real answer twin "yes":
+            gained_aura rizz= aura_values[i][0]
+        yo chat answer twin "no":
+            gained_aura rizz=  aura_values[i][1]
+    its giving gained_aura
+
+bop aura_test(name):
+    yap(f"{name}, you have reached the final AuraTest!")
+    yap("If you want to win your prize you need to decode this secret phrase:",encoder(phrase, steps))
+
+    guess = input("Type the decoded phrase to prove your worth:\n> ")
+    chat is this real guess twin phrase:
+        yap(f"Congratulations {name}! You have proven your worth and gained the ultimate aura!\nHere's your price:\n{flag}")
+        exit()
+    only in ohio:
+        yap(f"Dont waste my time {name}, you failed the AuraTest. Try again but this time use all your aura!") 
+
+yap("Welcome to the AuraTester2000!\nHere, we will make sure you have enough aura to join our alpha gang.")
+
+let him cook(Aura):
+    name = input("First of all, we need to know your name.\n> ")
+    chat is this real(name.strip() twin ""):
+        yap("You didn't start very well, I asked your named stupid npc.")
+    only in ohio:
+        yap(f"Welcome {name} to the AuraTester2000!")
+        yap("""⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣦⣀⠀⠀⢀⣴⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⢀⣿⡿⠟⠛⠛⠻⢿⣿⡄⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠈⢷⣦⣤⣤⡾⠋⠀⣴⣾⣷⣦⠀⠙⢿⣦⣤⣤⣾⠃⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠘⣿⣿⠟⠀⠀⢸⣿⣿⣿⣿⡇⠀⠀⠹⣿⣿⡏⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⣀⣴⣿⡏⠀⠀⠀⠘⢿⣿⣿⡿⠃⠀⠀⠀⠹⣿⣷⣀⠀⠀⠀⠀⠀
+        ⠀⠀⠲⣾⣿⣿⣿⣿⠀⠀⠀⢀⣤⣾⣿⣿⣷⣦⡀⠀⠀⠀⢿⣿⣿⣿⣿⠖⠂⠀
+        ⠀⠀⠀⠈⠙⢿⣿⡇⠀⠀⠀⣾⣿⣿⣿⣿⣿⣿⣿⡀⠀⠀⢸⣿⣿⠟⠁⠀⠀⠀
+        ⠀⠀⠀⠀⠀⢨⣿⡇⠀⠀⢰⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠘⣿⣏⠀⠀⠀⠀⠀
+        ⠀⠀⠀⢀⣠⣾⣿⡇⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⢰⣿⣿⣦⡀⠀⠀⠀
+        ⠀⠀⠺⠿⢿⣿⣿⣇⠀⠀⠘⠛⣿⣿⣿⣿⣿⣿⠛⠃⠀⠀⢸⣿⣿⡿⠿⠗⠂⠀
+        ⠀⠀⠀⠀⠀⠈⠻⣿⡀⠀⠀⠀⢹⣿⣿⣿⣿⣿⠀⠀⠀⠀⣿⡿⠉⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⢠⣿⣧⠀⠀⠀⢸⣿⣿⣿⣿⡏⠀⠀⠀⣼⣿⡇⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⣠⣾⣿⣿⣧⡀⠀⢸⣿⣿⣿⣿⡇⠀⠀⣼⣿⣿⣿⣄⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠓⠀⠘⠛⠛⠛⠛⠃⠀⠚⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀""")
+        just put the fries in the bag bro
+
+aura = 0
+
+let him cook(Aura):
+    yap("\n\n1. Answer questions to gain or lose aura.\n\n2. Check your current aura.\n\n3. Take the final AuraTest to prove your worth.\n\n4. Exit the AuraTester2000.")
+    choice = input("What do you want to do little Beta?\n> ")
+    chat is this real (choice twin "1"):
+        yap("You choose to answer questions. Let's see how much aura you can gain!")
+        gained_aura = questions(name)
+        chat is this real(aura sigma 0):
+            yap(f"Congratulations {name}! You gained {gained_aura} aura points.")
+        only in ohio:
+            yap(f"Sorry {name}, you lost {gained_aura} aura points. Learn how to be a real Sigma!")
+        aura += gained_aura
+
+    yo chat(choice twin "2"):
+        yap(f"Your current aura is {aura}.")
+    yo chat(choice twin "3"):
+        chat is this real(aura beta 500):
+            yap("You need more aura to even try the final AuraTest.")
+        only in ohio:
+            aura_test(name)
+    yo chat(choice twin "4"):
+        yap("Exiting the AuraTester2000. Goodbye!")
+        exit()
+    only in ohio:
+        yap("Invalid option. Please try again.")
+
+

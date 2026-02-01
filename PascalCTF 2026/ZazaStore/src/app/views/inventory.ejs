@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory - ZazaStore</title>
+    <link rel="stylesheet" href="/style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1><i class="fas fa-box-open"></i> Inventory</h1>
+        <div id="links">
+            <a href="/cart" title="View Cart">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
+            <a id="Home" href="/" title="Back to Store">
+                <i class="fa-solid fa-house"></i>
+            </a>
+            <a href="/logout" title="Logout" class="logout-btn">
+                <i class="fa-solid fa-right-from-bracket"></i>
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <div class="inventory-container">
+            <% if (Object.keys(inventory).length===0) { %>
+                <div class="empty-inventory">
+                    <i class="fas fa-box-open fa-3x"></i>
+                    <p>Your inventory is empty</p>
+                </div>
+                <% } else { %>
+                    <% for (const product in inventory) { %>
+                        <div class="inventory-item">
+                            <div class="inventory-header">
+                                <i class="fas fa-box"></i>
+                                <h2>
+                                    <%= product %> x<%= inventory[product] %>
+                                </h2>
+                            </div>
+                            <div class="inventory-content">
+                                <p class="content-label"><i class="fas fa-info-circle"></i> Content:</p>
+                                <div class="content-value"><%- content[product] %></div>
+                            </div>
+                        </div>
+                        <% } %>
+                            <% } %>
+        </div>
+    </main>
+</body>
+
+</html>

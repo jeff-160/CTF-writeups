@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZazaStore - Your Premium Store</title>
+    <link rel="stylesheet" href="/style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1><i class="fas fa-store"></i> ZazaStore</h1>
+        <div id="Balance">
+            <i class="fas fa-wallet"></i> Balance: <%= balance %>$
+        </div>
+        <div id="links">
+            <a id="Cart" href="/cart" title="View Cart">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
+            <a id="Inventory" href="/inventory" title="View Inventory">
+                <i class="fa-solid fa-user"></i>
+            </a>
+            <a href="/logout" title="Logout" class="logout-btn">
+                <i class="fa-solid fa-right-from-bracket"></i>
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <div id="images">
+            <div id="image1" class="product-card">
+                <div class="img-cont">
+                    <img src="images/FakeZa.jpeg" alt="Fake Zaza Product">
+                </div>
+                <div class="product-info">
+                    <p class="prod-name">Fake Zaza</p>
+                    <p class="prod-price"><span class="currency">$</span><span class="amount">
+                            <%= prices['FakeZa']%>
+                        </span></p>
+                    <input type="number" id="qty-FakeZa" value="1" min="1" class="qty-input">
+                    <button onclick="AddToCart('FakeZa')" class="add-to-cart-btn">
+                        <i class="fas fa-cart-plus"></i> Add to cart
+                    </button>
+                </div>
+            </div>
+
+            <div id="image2" class="product-card">
+                <div class="img-cont">
+                    <img src="images/ElectricZa.jpeg" alt="Electric Za Product">
+                </div>
+                <div class="product-info">
+                    <p class="prod-name">Electric Za</p>
+                    <p class="prod-price"><span class="currency">$</span><span class="amount">
+                            <%= prices['ElectricZa']%>
+                        </span></p>
+                    <input type="number" id="qty-ElectricZa" value="1" min="1" class="qty-input">
+                    <button onclick="AddToCart('ElectricZa')" class="add-to-cart-btn">
+                        <i class="fas fa-cart-plus"></i> Add to cart
+                    </button>
+                </div>
+            </div>
+
+            <div id="image3" class="product-card">
+                <div class="img-cont">
+                    <img src="images/CartoonZa.png" alt="Cartoon Za Product">
+                </div>
+                <div class="product-info">
+                    <p class="prod-name">Cartoon Za</p>
+                    <p class="prod-price"><span class="currency">$</span><span class="amount">
+                            <%= prices['CartoonZa']%>
+                        </span></p>
+                    <input type="number" id="qty-CartoonZa" value="1" min="1" class="qty-input">
+                    <button onclick="AddToCart('CartoonZa')" class="add-to-cart-btn">
+                        <i class="fas fa-cart-plus"></i> Add to cart
+                    </button>
+                </div>
+            </div>
+
+            <div id="image4" class="product-card">
+                <div class="img-cont">
+                    <img src="images/RealZa.jpeg" alt="Real Za Product">
+                </div>
+                <div class="product-info">
+                    <p class="prod-name">Real Za</p>
+                    <p class="prod-price"><span class="currency">$</span><span class="amount">
+                            <%= prices['RealZa']%>
+                        </span></p>
+                    <input type="number" id="qty-RealZa" value="1" min="1" class="qty-input">
+                    <button onclick="AddToCart('RealZa')" class="add-to-cart-btn">
+                        <i class="fas fa-cart-plus"></i> Add to cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="alert-cont" class="alert-container">
+        <div id="img-wrap">
+            <img src="images/ZazaIsBad.png" alt="Zaza is bad" id="alert-img">
+        </div>
+    </div>
+
+    <script>
+        const AddToCart = async (product) => {
+            try {
+                const button = event.target.closest('button');
+                const originalText = button.innerHTML;
+
+                // Visual feedback
+                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Adding...';
+                button.disabled = true;
+
+                const quantity = document.getElementById('qty-' + product).value;
+                const response = await fetch('/add-cart', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ product, quantity }),
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    button.innerHTML = '<i class="fas fa-check"></i> Added!';
+                    setTimeout(() => {
+                        button.innerHTML = originalText;
+                        button.disabled = false;
+                    }, 1500);
+                } else {
+                    throw new Error('Failed to add item to cart');
+                }
+            } catch (err) {
+                alert('Error: ' + err.message);
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }
+        }
+    </script>
+</body>
+
+</html>

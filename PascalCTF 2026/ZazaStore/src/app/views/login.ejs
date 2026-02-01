@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZazaStore - Login</title>
+    <link rel="stylesheet" href="/style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <form id="login-form" action="/login" method="POST">
+        <input type="text" id="username" placeholder="Username" required="true">
+        <input type="password" id="password" placeholder="Password" required="true">
+        <div class="checkbox-container">
+            <input id="accept" type="checkbox" />
+            <label for="accept">I know that Zaza is bad for my health.</label>
+        </div>
+        <button>Login</button>
+    </form>
+    <div id="Result"></div>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('login-form');
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                try {
+                    const response = await fetch('/login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ username, password }),
+                    });
+
+                    const result = await response.json()
+                    if (!result.success) {
+                        const ResDiv = document.getElementById('Result');
+                        ResDiv.innerText = "Invalid username or password";
+                        return;
+                    }
+                    window.location.href = "/"
+                } catch (err) {
+                    alert(err)
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

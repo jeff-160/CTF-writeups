@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - ZazaStore</title>
+    <link rel="stylesheet" href="/style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1><i class="fas fa-shopping-cart"></i> Cart</h1>
+        <div id="links">
+            <a id="Inventory" href="/inventory" title="View Inventory">
+                <i class="fa-solid fa-user"></i>
+            </a>
+            <a id="Home" href="/" title="Back to Store">
+                <i class="fa-solid fa-house"></i>
+            </a>
+            <a href="/logout" title="Logout" class="logout-btn">
+                <i class="fa-solid fa-right-from-bracket"></i>
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <div id="cart-cont" class="cart-container">
+            <% if (Object.keys(JSON.parse(cartObj)).length===0) { %>
+                <div class="empty-cart">
+                    <i class="fas fa-shopping-cart fa-3x"></i>
+                    <p>Your cart is empty</p>
+                </div>
+                <% } else { %>
+                    <% for (const product in JSON.parse(cartObj)) { %>
+                        <div class="cart-item">
+                            <i class="fas fa-box"></i>
+                            <h2 class="products">
+                                <%= product %> x<%- JSON.parse(cartObj)[product] %>
+                            </h2>
+                            <p class="item-price">
+                                <%= JSON.parse(pricesObj)[product] %>$ each
+                            </p>
+                        </div>
+                        <% } %>
+                            <% } %>
+        </div>
+
+        <div id="checkout-cont" class="checkout-container">
+            <button id="checkout" onclick='checkout()' class="checkout-btn">
+                <i class="fas fa-credit-card"></i> Checkout
+            </button>
+        </div>
+        <div id="response-cont" class="response-container"></div>
+    </main>
+
+    <script>
+        const cart = JSON.parse('<%- cartObj %>');
+        const prices = JSON.parse('<%- pricesObj %>');
+
+        function checkout() {
+            const button = document.getElementById('checkout');
+            const originalText = button.innerHTML;
+
+            // Visual feedback
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            button.disabled = true;
+
+            let total = 0;
+            for (const product in cart) {
+                total += prices[product] * cart[product];
+            }
+
+            fetch('/checkout', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ total })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    const container = document.getElementById('response-cont');
+                    if (!data.success) {
+                        container.innerHTML = '<i class="fas fa-exclamation-circle"></i> Error processing payment';
+                        container.style.backgroundColor = "#ff6b6b";
+                    } else {
+                        if (data.balance) {
+                            container.innerHTML = '<i class="fas fa-times-circle"></i> Insufficient Balance';
+                            container.style.backgroundColor = "#ff6b6b";
+                        } else {
+                            container.innerHTML = '<i class="fas fa-check-circle"></i> Successful purchase';
+                            container.style.backgroundColor = "#2ecc71";
+                        }
+                    }
+                    button.innerHTML = originalText;
+                    button.disabled = false;
+                })
+                .catch(error => {
+                    const container = document.getElementById('response-cont');
+                    container.innerHTML = '<i class="fas fa-exclamation-circle"></i> Error: ' + error.message;
+                    container.style.backgroundColor = "#ff6b6b";
+                    button.innerHTML = originalText;
+                    button.disabled = false;
+                });
+        }
+    </script>
+</body>
+
+</html>

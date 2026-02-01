@@ -1,0 +1,18 @@
+name: web04
+services:
+  pdfile:
+    build:
+      context: .
+      args:
+        - FLAG=pascalCTF{redacted}
+    ports:
+      - "127.0.0.1:8004:5000"
+    volumes:
+      - uploads:/app/uploads
+    environment:
+      - FLASK_ENV=production
+    container_name: web04-pdfile
+    restart: unless-stopped
+
+volumes:
+  uploads:

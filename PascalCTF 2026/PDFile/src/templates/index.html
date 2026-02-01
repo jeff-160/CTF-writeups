@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>PasX Book Parser</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+
+<body class="min-h-screen bg-gray-50 text-gray-900">
+    <div class="container mx-auto px-4 py-12 max-w-2xl">
+        <div class="text-center mb-10">
+            <h1 class="text-4xl font-bold tracking-tight mb-2">
+                <i class="bi bi-book mr-2"></i>PasX Book Parser
+            </h1>
+            <p class="text-gray-500">Upload .pasx book files and convert them to PDF</p>
+        </div>
+
+        <!-- Upload Section -->
+        <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-6 mb-4" id="upload-section">
+            <!-- Input OUTSIDE label to prevent double-trigger -->
+            <input type="file" id="file-input" accept=".pasx" class="hidden">
+            <label for="file-input"
+                class="block border-2 border-dashed border-gray-300 rounded-lg p-12 text-center cursor-pointer hover:border-gray-900 hover:bg-gray-50 transition-colors">
+                <i class="bi bi-cloud-arrow-up text-5xl text-gray-400 mb-4 block"></i>
+                <h5 class="text-lg font-medium mb-2">Click to upload or drag .pasx file</h5>
+                <p class="text-gray-500">Only .pasx XML files are accepted</p>
+            </label>
+
+            <!-- File Info -->
+            <div class="bg-gray-100 border-l-4 border-gray-900 p-4 rounded mt-4 hidden" id="file-info">
+                <div class="flex items-center">
+                    <i class="bi bi-file-earmark-text text-2xl mr-4"></i>
+                    <div class="flex-grow">
+                        <div class="font-medium" id="file-name">-</div>
+                        <small class="text-gray-500" id="file-size">-</small>
+                    </div>
+                    <button class="text-gray-600 hover:text-gray-900 p-2" id="clear-btn">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Upload Button -->
+            <div class="text-center mt-6 hidden" id="upload-btn-container">
+                <button
+                    class="bg-gray-900 text-white px-8 py-3 rounded-md font-medium text-lg hover:bg-gray-700 transition-colors"
+                    id="upload-btn">
+                    <i class="bi bi-file-pdf mr-2"></i>Generate PDF
+                </button>
+            </div>
+        </div>
+
+        <!-- Loading State -->
+        <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-12 text-center hidden" id="loading-section">
+            <div class="animate-spin rounded-full h-10 w-10 border-4 border-gray-900 border-t-transparent mx-auto mb-4">
+            </div>
+            <h5 class="text-lg font-medium">Processing your book...</h5>
+            <p class="text-gray-500">Parsing XML and generating PDF</p>
+        </div>
+
+        <!-- Error Alert -->
+        <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg hidden" id="error-alert">
+            <i class="bi bi-exclamation-triangle mr-2"></i>
+            <span id="error-message"></span>
+        </div>
+
+        <!-- PDF Result -->
+        <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-6 hidden" id="result-section">
+            <div class="flex justify-between items-center mb-4">
+                <div>
+                    <h5 class="text-lg font-medium" id="book-title">-</h5>
+                    <small class="text-gray-500" id="book-author">-</small>
+                </div>
+                <div class="flex gap-2">
+                    <a href="#"
+                        class="bg-gray-900 text-white px-4 py-2 rounded-md font-medium hover:bg-gray-700 transition-colors"
+                        id="download-btn" download>
+                        <i class="bi bi-download mr-1"></i>Download
+                    </a>
+                    <button
+                        class="border border-gray-900 text-gray-900 px-4 py-2 rounded-md font-medium hover:bg-gray-900 hover:text-white transition-colors"
+                        id="new-btn">
+                        <i class="bi bi-arrow-repeat mr-1"></i>New
+                    </button>
+                </div>
+            </div>
+            <div class="bg-gray-100 rounded-lg overflow-hidden border border-gray-200">
+                <iframe id="pdf-frame" src="" class="w-full h-[700px] border-0"></iframe>
+            </div>
+        </div>
+
+        <footer class="text-center mt-10 text-gray-400 text-sm">
+            PasX Book Parser &bull; .pasx XML format
+        </footer>
+    </div>
+
+    <script>
+        (function () {
+            // Encapsulate everything to avoid any global conflicts
+            let selectedFile = null;
+
+            const fileInput = document.getElementById('file-input');
+            const fileInfo = document.getElementById('file-info');
+            const fileName = document.getElementById('file-name');
+            const fileSize = document.getElementById('file-size');
+            const uploadBtnContainer = document.getElementById('upload-btn-container');
+            const uploadBtn = document.getElementById('upload-btn');
+            const clearBtn = document.getElementById('clear-btn');
+            const newBtn = document.getElementById('new-btn');
+            const uploadSection = document.getElementById('upload-section');
+            const loadingSection = document.getElementById('loading-section');
+            const resultSection = document.getElementById('result-section');
+            const errorAlert = document.getElementById('error-alert');
+            const errorMessage = document.getElementById('error-message');
+            const bookTitle = document.getElementById('book-title');
+            const bookAuthor = document.getElementById('book-author');
+            const pdfFrame = document.getElementById('pdf-frame');
+            const downloadBtn = document.getElementById('download-btn');
+
+            // File input change handler
+            fileInput.addEventListener('change', function (e) {
+                if (e.target.files.length > 0) {
+                    processFile(e.target.files[0]);
+                }
+            });
+
+            // Clear button
+            clearBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                clearFile();
+            });
+
+            // Upload button
+            uploadBtn.addEventListener('click', function () {
+                uploadFile();
+            });
+
+            // New button
+            newBtn.addEventListener('click', function () {
+                resetUpload();
+            });
+
+            function processFile(file) {
+                if (!file.name.endsWith('.pasx')) {
+                    showError('Please select a .pasx file');
+                    return;
+                }
+
+                selectedFile = file;
+                fileName.textContent = file.name;
+                fileSize.textContent = formatFileSize(file.size);
+                fileInfo.classList.remove('hidden');
+                uploadBtnContainer.classList.remove('hidden');
+                hideError();
+            }
+
+            function formatFileSize(bytes) {
+                if (bytes < 1024) return bytes + ' bytes';
+                if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+                return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+            }
+
+            function clearFile() {
+                selectedFile = null;
+                fileInput.value = '';
+                fileInfo.classList.add('hidden');
+                uploadBtnContainer.classList.add('hidden');
+            }
+
+            async function uploadFile() {
+                if (!selectedFile) return;
+
+                const formData = new FormData();
+                formData.append('file', selectedFile);
+
+                uploadSection.classList.add('hidden');
+                loadingSection.classList.remove('hidden');
+                hideError();
+
+                try {
+                    const response = await fetch('/upload', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    const data = await response.json();
+                    loadingSection.classList.add('hidden');
+
+                    if (data.error) {
+                        showError(data.error);
+                        uploadSection.classList.remove('hidden');
+                        return;
+                    }
+
+                    bookTitle.textContent = data.book_title;
+                    bookAuthor.textContent = 'by ' + data.book_author;
+                    pdfFrame.src = data.pdf_url;
+                    downloadBtn.href = data.pdf_url;
+                    resultSection.classList.remove('hidden');
+
+                } catch (error) {
+                    loadingSection.classList.add('hidden');
+                    uploadSection.classList.remove('hidden');
+                    showError('Network error. Please try again.');
+                }
+            }
+
+            function resetUpload() {
+                clearFile();
+                resultSection.classList.add('hidden');
+                uploadSection.classList.remove('hidden');
+                pdfFrame.src = '';
+            }
+
+            function showError(message) {
+                errorMessage.textContent = message;
+                errorAlert.classList.remove('hidden');
+            }
+
+            function hideError() {
+                errorAlert.classList.add('hidden');
+            }
+        })();
+    </script>
+</body>
+
+</html>
