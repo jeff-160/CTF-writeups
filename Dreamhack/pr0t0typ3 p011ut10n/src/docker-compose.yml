@@ -1,0 +1,12 @@
+services:
+  db:
+    image: mariadb:latest
+    environment:
+      MYSQL_DATABASE: test
+      MYSQL_ROOT_PASSWORD: password
+  chall:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
