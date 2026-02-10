@@ -1,7 +1,5 @@
 ## narnes and bobles  
 
-sql returns null
-
 <img src="images/chall.png" width=600>
 
 We are given a webapp that allows us to purchases books, as well as preview book samples. The backend mainly uses Bun SQL for data storage.  
