@@ -91,9 +91,7 @@ For the actual side-channel attack, we can check every successive index of the f
 
 My initial idea was to collect all the candidates, then generate all possible combinations of the flag, but my first attack attempt revealed that the fake flag was just filled with `q`, which makes the solve way simpler.  
 
-Thus, I was able to come up with a revised solve script. If the server returns `False` against the index check, it means both flags share the same character at that index, so we can automatically add that character to the flag.  
-
-If `2` of the leaks returns `???`, we pick the candidate that isn't `q` if the candidates differ, otherwise, we just add `q` to the flag.   
+Thus, I was able to come up with a revised solve script. If the server returns `False` against the index check, it means both flags share the same character at that index, so we can automatically add that character to the flag. If `2` of the leaks returns `???`, we pick the candidate that isn't `q`, but if the candidates differ, we just add `q` to the flag.   
 
 ```python
 def req(code):
