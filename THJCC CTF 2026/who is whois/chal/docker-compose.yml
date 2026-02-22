@@ -1,0 +1,8 @@
+services:
+  whoru:
+    build: .
+    ports:
+      - "13316:13316"
+    restart: always
+    environment:
+      PYTHONUNBUFFERED: 1
