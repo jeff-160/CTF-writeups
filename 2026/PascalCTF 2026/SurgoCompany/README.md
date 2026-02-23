@@ -1,7 +1,3 @@
-just create a test account with the email generator
-then netcat the server and login the invoice website and submit the payload file
-server will execute the payload file and print the flag
-
 ## SurgoCompany  
 
 <img src="images/chall.png" width=600>
