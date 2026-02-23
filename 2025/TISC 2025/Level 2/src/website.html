@@ -1,0 +1,86 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>SPECTRECULAR Chat</title>
+<style>
+h1 {
+  color: white;
+  text-align: center;
+}
+
+body{
+  font-family:sans-serif;max-width:700px;margin:auto;padding:1rem;
+  background-image: url("/static/background.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: inherit;         
+  filter: blur(5px);         
+  transform: scale(1.1);      
+  z-index: -1;                 
+  mask-image: radial-gradient(circle, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+}
+
+#log{  border: 1px solid #ccc;
+  padding: .5rem;
+  height: 60vh;
+  overflow: auto;
+  white-space: pre-wrap;
+  background-color: rgba(255,255,255,0.8);
+  box-sizing: border-box;}
+#msg{  width: 100%;
+  padding: .5rem;
+  box-sizing: border-box;}
+
+.actions {
+  display: flex;
+  justify-content: flex-end; /* push button to the right */
+}
+
+button{margin-top:.5rem;padding:.5rem 1rem}
+.user{color:#006}
+.assistant{color:#900}
+.tool{color:#080}
+</style>
+</head>
+<body>
+<h1>Chat with SPECTRE</h1>
+<div id="log"></div>
+<input id="msg" placeholder="Type your message…">
+<button onclick="send()">Send</button>
+<script>const log = document.getElementById('log');
+const msg = document.getElementById('msg');
+
+function add(role, text){
+  const p = document.createElement('div');
+  p.className = role;
+  p.textContent = `[${role}] ` + text;
+  log.appendChild(p);
+  log.scrollTop = log.scrollHeight;
+}
+
+async function send(){
+  if(!msg.value.trim()) return;
+  add('user', msg.value);
+  const payload = JSON.stringify({msg: msg.value});
+  msg.value='';
+  const r = await fetch('/chat', {method:'POST', headers:{'Content-Type':'application/json'}, body: payload});
+  const data = await r.json();
+  if(data.assistant) add('assistant', data.assistant);
+  if(data.tool_response) add('tool', JSON.stringify(data.tool_response));
+}
+msg.addEventListener('keydown', e=>{if(e.key==='Enter')send()});</script>
+  <!--
+    To remind myself of the passphrase in case I forget it someday...
+    kietm veeb deeltrex nmvb tmrkeiemiivic tf ntvkyp mfyytzln
+  -->
+</body>
+</html>
