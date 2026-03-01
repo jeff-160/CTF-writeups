@@ -1,0 +1,15 @@
+services:
+  haproxy:
+    image: haproxy:1.9.1-alpine
+    volumes:
+      - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    ports:
+      - '9098:8080'
+    depends_on:
+      - backend
+
+  backend:
+    build: ./backend
+    expose:
+      - '5000'
+    restart: always

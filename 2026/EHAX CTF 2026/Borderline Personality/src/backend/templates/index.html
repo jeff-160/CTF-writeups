@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EHAX Secure Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="bg-slate-900 text-slate-100 min-h-screen flex items-center justify-center font-sans"
+  >
+    <div
+      class="max-w-md w-full bg-slate-800 p-8 rounded-xl shadow-2xl border border-slate-700"
+    >
+      <div class="mb-8 text-center">
+        <h1 class="text-3xl font-bold text-blue-400 mb-2">
+          Borderline Personality
+        </h1>
+      </div>
+
+      <div class="space-y-4">
+        <div>
+          <label
+            class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1"
+            >Data Payload</label
+          >
+          <textarea
+            id="payload"
+            class="w-full bg-slate-900 border border-slate-700 rounded p-3 text-sm focus:outline-none focus:border-blue-500 transition-colors"
+            rows="4"
+            placeholder="Enter JSON or text data..."
+          ></textarea>
+        </div>
+        <button
+          onclick="submitData()"
+          class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 rounded transition-colors shadow-lg"
+        >
+          Submit to API
+        </button>
+      </div>
+
+      <div class="my-6 border-t border-slate-700"></div>
+
+      <div class="space-y-3">
+        <p class="text-xs text-center text-slate-500 italic">
+          Restricted Administrative Operations
+        </p>
+        <button
+          onclick="tryAdmin()"
+          class="w-full bg-red-900/30 border border-red-500/50 hover:bg-red-900/50 text-red-400 text-xs py-2 rounded transition-all"
+        >
+          Access /admin/flag (Internal Only)
+        </button>
+      </div>
+
+      <div
+        id="status"
+        class="mt-6 p-3 rounded bg-slate-900 border border-slate-700 text-xs font-mono hidden"
+      ></div>
+    </div>
+
+    <script>
+      const statusBox = document.getElementById('status');
+
+      async function submitData() {
+        const val = document.getElementById('payload').value;
+        statusBox.classList.remove('hidden');
+        statusBox.innerText = 'Sending to /api/submit...';
+
+        try {
+          const res = await fetch('/api/submit', {
+            method: 'POST',
+            body: val,
+          });
+          const data = await res.json();
+          statusBox.innerText = JSON.stringify(data, null, 2);
+        } catch (e) {
+          statusBox.innerText = 'Error: Connection lost or refused.';
+        }
+      }
+
+      async function tryAdmin() {
+        statusBox.classList.remove('hidden');
+        statusBox.innerText = 'Requesting /admin/flag...';
+
+        try {
+          const res = await fetch('/admin/flag');
+          if (res.status === 403) {
+            statusBox.innerHTML = `<span class="text-red-500">HTTP 403 Forbidden: HAProxy WAF blocked this request. Only local-origin traffic allowed.</span>`;
+          } else {
+            const text = await res.text();
+            statusBox.innerText = text;
+          }
+        } catch (e) {
+          statusBox.innerText = 'Critical error accessing restricted path.';
+        }
+      }
+    </script>
+  </body>
+</html>
