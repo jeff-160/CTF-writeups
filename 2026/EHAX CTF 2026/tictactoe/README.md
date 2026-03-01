@@ -1,7 +1,3 @@
-send winning 3x3 board --> flag only prints for valid dimensional shift
-switch to 4x4 --> ghost sectors (server only uses 3x3 logic, doesnt validate some indices)
-win in 4x4 column
-
 ## tictactoe  
 
 <img src="images/chall.png" width=600>
