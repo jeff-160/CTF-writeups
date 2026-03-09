@@ -1,6 +1,6 @@
 ## DEvELOPmENT A Casino  
 
-![alt text](image.png)
+<img src="images/chall.png" width=600>
 
 This challenge involves a casino system where we have to play slots until we rack up enough credits to purchase the flag.  
 
