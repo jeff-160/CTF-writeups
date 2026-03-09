@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+    <style>
+        body {
+            font-family: Georgia, serif;
+            max-width: 600px; margin: 40px auto;
+            padding: 20px; line-height: 1.8;
+            color: #333;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 30px;
+            font-weight: normal;
+        }
+        .content {
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+        a { color: #666; }
+    </style>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+    <div class="content">{{ content }}</div>
+    <p><a href="/memos">← Back</a></p>
+</body>
+</html>

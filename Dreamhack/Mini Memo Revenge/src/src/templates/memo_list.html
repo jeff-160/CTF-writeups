@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Memos</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 20px auto; padding: 0 20px; }
+        .header { display: flex; justify-content: space-between; align-items: center; }
+        .btn { background: #007bff; color: white; padding: 10px 20px; border: none; cursor: pointer; text-decoration: none; display: inline-block; }
+        .btn:hover { background: #0056b3; }
+        .btn-danger { background: #dc3545; }
+        .btn-danger:hover { background: #c82333; }
+        .memo-item { border: 1px solid #ddd; margin: 10px 0; padding: 15px; border-radius: 5px; }
+        .memo-title { font-size: 18px; font-weight: bold; margin-bottom: 10px; }
+        .memo-content { color: #666; max-height: 100px; overflow: hidden; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>My Memos ({{ session.username }})</h2>
+        <div>
+            <a href="{{ url_for('memo_new') }}" class="btn">New Memo</a>
+            <a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a>
+        </div>
+    </div>
+
+    {% if memos %}
+        {% for memo in memos %}
+            <div class="memo-item">
+                <div class="memo-title">{{ memo[1] }}</div>
+                <div class="memo-content">{{ memo[2][:100] }}{% if memo[2]|length > 100 %}...{% endif %}</div>
+                <p><a href="{{ url_for('memo_view', memo_id=memo[0]) }}" class="btn">View Memo</a></p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No memos found. <a href="{{ url_for('memo_new') }}">Create your first memo!</a></p>
+    {% endif %}
+</body>
+</html>

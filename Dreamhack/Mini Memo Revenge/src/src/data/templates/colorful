@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive;
+            max-width: 800px; margin: 20px auto; padding: 20px;
+            background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+        }
+        h1 {
+            color: #ff4757;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            border-bottom: 3px solid #ff6b7a;
+            padding-bottom: 10px;
+        }
+        .content {
+            background: rgba(255,255,255,0.9);
+            padding: 20px;
+            border-radius: 15px;
+            line-height: 1.8;
+            margin-top: 20px;
+            color: #2f3542;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>🌈 {{ title }} 🌈</h1>
+    <div class="content">{{ content }}</div>
+    <p><a href="/memos" style="color: #ff4757; font-weight: bold;">🔙 Back to Memos</a></p>
+</body>
+</html>
