@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+    <style>
+
+       body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #4CAF50;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #banner {
+            font-size: 32px;
+            background-color: #ffffff; 
+            color: black;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        #content {
+            font-size: 20px;
+            color: black;
+            text-align: center;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        p {
+            margin: 0;
+            line-height: 1.6;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="banner">You can't trigger XSS!! haha</div>
+    <p id="content"></p>
+</body>
+<script>
+
+        let clean = '';
+        let data = '';
+        
+        
+        const usp = new URLSearchParams(window.location.search);
+        const content = decodeURIComponent(usp.get('content'));
+        document.getElementById('content').innerHTML = DOMPurify.sanitize(content);
+        
+        window.set = window.set || {
+            env: "production",
+            ver: "1.1.0"
+        }
+
+        try{
+            const response = fetch(`/xss?content=${content}`)
+            .then(response =>{
+            if (response.ok){
+                return response.json();
+                }
+            }).then(data => {
+                data = data.content;
+                
+                if (window.set.env !== "production"){
+                    clean = data;
+                }else {
+                    clean = DOMPurify.sanitize(data);
+                    console.log(clean)
+                }
+                document.getElementById('content').innerHTML = clean;
+            })
+            
+
+        } catch (e) {
+            console.log(`Error : ${e}`);
+        }
+    
+</script>
+</html>
