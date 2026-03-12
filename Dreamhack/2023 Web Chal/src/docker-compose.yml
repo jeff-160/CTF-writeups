@@ -1,0 +1,8 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: deploy
+    ports:
+      - 8080:8080
