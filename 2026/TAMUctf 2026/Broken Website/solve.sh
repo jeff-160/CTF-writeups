@@ -1,0 +1,1 @@
+echo Flag: $(curl --http3 -k -s https://broken-website.tamuctf.cybr.club | grep -o 'gigem{[^}]*}')
