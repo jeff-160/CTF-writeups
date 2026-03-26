@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Grandiflora+One&display=swap" rel="stylesheet">
+  <style>
+    * {
+      font-family: 'Grandiflora One', cursive;
+    }
+    .form-container {
+      max-width: 1000px;
+      margin: 50px auto;
+      padding: 40px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .form-group input[type="text"],
+    .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+    }
+
+    .form-group input[type="submit"] {
+      background-color: green;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .form-group input[type="submit"]:hover {
+      background-color: black;
+    }
+  </style>
+  </style>
+</head>
+<body style="background-color:black">
+<div class="form-container">
+  <h2>Write confidential documents.</h2>
+  <form action="/report.php" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" id="title" name="title">
+    </div>
+    <div class="form-group">
+      <label for="content">Details</label>
+      <textarea id="content" name="content" rows="4"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="file">Attach Image</label>
+      <input type="file" id="file" name="file">
+    </div>
+    <div class="form-group">
+      <input type="submit" value="Report">
+    </div>
+  </form>
+</div>
+</body>
+</html>

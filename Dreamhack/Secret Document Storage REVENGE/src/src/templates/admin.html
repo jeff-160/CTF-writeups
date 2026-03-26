@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Access Code Entry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Grandiflora+One&display=swap" rel="stylesheet">
+  <style>
+  * {
+    font-family: 'Grandiflora One', cursive;
+  }
+    .form-container {
+      max-width: 300px;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      background-color:white;
+      border-radius: 5px;
+    }
+
+    input[type="text"], input[type="submit"] {
+      box-sizing: border-box;
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body style="background-color:black">
+<div class="form-container">
+  <h2>Admin Access</h2>
+  <form action="/admin.php" method="post">
+    <label for="access_code">Access Code:</label>
+    <input type="text" id="access_code" name="access_code" required>
+    <input type="submit" value="Submit">
+  </form>
+</div>
+</body>
+</html>
+

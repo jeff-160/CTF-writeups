@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Grandiflora+One&display=swap" rel="stylesheet">
+  <title>Delete Confidential Document</title>
+  <style>
+    * {
+      font-family: 'Grandiflora One', cursive;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 500px;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h1 {
+      color: black;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .form-group input[type="text"] {
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .form-group input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      border-color: black;
+      border-radius: 5px;
+      background-color: white;
+      color: black;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .form-group input[type="submit"]:hover {
+      background-color: white;
+    }
+
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Delete Confidential Document</h1>
+  <form action="/delete.php" method="post">
+    <div class="form-group">
+      <label for="title">Input Image Name</label>
+      <input type="text" id="title" name="title" required>
+    </div>
+    <div class="form-group">
+      <input type="submit" value="Delete Document">
+    </div>
+  </form>
+</div>
+</body>
+</html>
+

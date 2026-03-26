@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Name Input</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Grandiflora+One&display=swap" rel="stylesheet">
+  <style>
+    * {
+      font-family: 'Grandiflora One', cursive;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+    }
+
+    .input-container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    label {
+      font-size: 16px;
+    }
+
+  </style>
+</head>
+<body>
+<form action="/check.php" method="post" class="input-container">
+  <label for="admin-name">Welcome, new Admin.</label>
+  <input type="text" id="admin-name" name="admin-name" placeholder="Enter your name">
+  <button type="submit">submit</button>
+</form>
+</body>
+</html>
