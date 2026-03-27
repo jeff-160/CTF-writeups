@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  "app":
+    build: .
+    ports:
+      - "80:80"
+    environment:
+      MYSQL_HOST: db
+      MYSQL_DATABASE: prob
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+    depends_on:
+      - db
+  "db":
+    image: mysql:8.0.40
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=prob
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=pass

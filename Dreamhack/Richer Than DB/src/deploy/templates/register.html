@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Bank Website</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Create a New Account</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Main</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="register">
+            <form action="/register" method="post">
+                <div class="account">
+                    <label for="username1">Username:</label>
+                    <input type="text" id="username1" name="username1" required>
+                    <label for="password1">Password:</label>
+                    <input type="password" id="password1" name="password1" required>
+                    <label for="money1">Money:</label>
+                    <input type="number" id="money1" name="money1" required>
+                </div>
+                <div class="account">
+                    <label for="username2">Username:</label>
+                    <input type="text" id="username2" name="username2" required>
+                    <label for="password2">Password:</label>
+                    <input type="password" id="password2" name="password2" required>
+                    <label for="money2">Money:</label>
+                    <input type="number" id="money2" name="money2" required>
+                </div>
+                <button type="submit">Register</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; Layer7CTF2024</p>
+    </footer>
+    {% if msg %}
+    <script>
+        alert("{{ msg }}");
+    </script>
+    {% endif %}
+</body>
+</html>

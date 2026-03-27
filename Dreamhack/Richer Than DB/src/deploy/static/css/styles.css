@@ -1,0 +1,85 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+header, footer {
+    text-align: center;
+    padding: 20px;
+}
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+nav ul li a {
+    color: yellow;
+    text-decoration: none;
+}
+section {
+    text-align: center;
+    margin: 50px auto;
+    max-width: 1000px;
+}
+h2 h1 {
+    color: yellow;
+}
+p {
+    font-size: 1.2em;
+}
+a {
+    color: yellow;
+    text-decoration: none;
+    font-weight: bold;
+}
+#register form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 100%;
+}
+form {
+    display: inline-block;
+    text-align: left;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+button {
+    width: 400px;
+    padding: 10px;
+    background-color: yellow;
+    border: none;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+}
+button:hover {
+    background-color: darkorange;
+}
+.account {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.account label, .account input {
+    margin-right: 10px;
+}
