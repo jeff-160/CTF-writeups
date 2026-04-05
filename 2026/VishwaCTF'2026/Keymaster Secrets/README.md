@@ -2,6 +2,6 @@ ok honestly this wouldve been a pretty good chall if the admins accounted for in
 
 /robots.txt --> admin creds in /maintenance, /api/docs shows syncope docs
 
-xxe bypass using PUBLIC instead of SYSTEM --> /app/docker-compose.yml --> /opt/syncope/runtime/.flag
+xxe filter bypass using PUBLIC instead of SYSTEM --> /app/docker-compose.yml --> /opt/syncope/runtime/.flag
 
 Flag: `VishwaCTF{XXE_1nj3ct10n_4p4ch3_sync0p3_CVE-2026-23795}`
