@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+  <h1>Welcome{% if username %}, {{ username }}{% endif %}!</h1>
+  <p>Welcome to Regular Dude's Model Runner!</p>
+  <div class="actions">
+    {% if username %}
+      <a class="btn" href="/upload-model">Upload & Run Model</a>
+    {% else %}
+      <a class="btn" href="/register">Create an account</a>
+      <a class="btn ghost" href="/login">Login</a>
+    {% endif %}
+  </div>
+{% endblock %}

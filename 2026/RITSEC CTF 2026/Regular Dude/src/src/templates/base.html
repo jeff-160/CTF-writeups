@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Regular Dude{% endblock %}</title>
+    <link rel="stylesheet" href="/static/style.css">
+  </head>
+  <body>
+    <header>
+      <nav class="nav">
+        <div class="nav-left">
+          <a class="brand" href="/">Regular Dude</a>
+        </div>
+        <div class="nav-right">
+          {% if username %}
+            <span class="signed">Signed in as {{ username }}</span>
+            <a href="/logout">Logout</a>
+            <a href="/upload-model">Upload Model</a>
+          {% else %}
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+          {% endif %}
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="container">
+        <section class="card">
+          {% block content %}{% endblock %}
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <small>&copy; 2026 Regular Dude</small>
+    </footer>
+  </body>
+</html>

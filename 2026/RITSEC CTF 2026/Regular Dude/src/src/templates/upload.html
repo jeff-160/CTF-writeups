@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Upload Model{% endblock %}
+{% block content %}
+  <h2>Upload Model</h2>
+  <form class="form" method="post" action="/model" enctype="multipart/form-data">
+    <label class="field">Model file (.h5)
+      <input type="file" name="model" required>
+    </label>
+    <div class="form-actions">
+      <button class="btn" type="submit">Upload & Run</button>
+    </div>
+  </form>
+{% endblock %}
