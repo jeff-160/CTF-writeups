@@ -1,0 +1,16 @@
+version: '3'
+services:
+  proxy:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    expose:
+      - "5000"

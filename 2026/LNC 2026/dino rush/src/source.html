@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Dino Rush</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&display=swap');
+
+  :root {
+    --bg:        #0d0d0d;
+    --surface:   #141414;
+    --surface2:  #1a1a1a;
+    --border:    #2a2a2a;
+    --green:     #39ff14;
+    --green-dim: #1a7a0a;
+    --amber:     #ffb000;
+    --red:       #ff3838;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background: var(--bg);
+    font-family: 'Share Tech Mono', monospace;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 16px 48px;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 2px,
+      rgba(0, 0, 0, 0.1) 2px,
+      rgba(0, 0, 0, 0.1) 4px
+    );
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(
+      ellipse at center,
+      transparent 55%,
+      rgba(0, 0, 0, 0.6) 100%
+    );
+    pointer-events: none;
+    z-index: 998;
+  }
+
+  header {
+    width: 100%;
+    max-width: 780px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid var(--green-dim);
+    padding-bottom: 10px;
+    margin-bottom: 14px;
+  }
+
+  .title {
+    font-family: 'VT323', monospace;
+    font-size: 2.4rem;
+    color: var(--green);
+    text-shadow: 0 0 10px var(--green), 0 0 28px var(--green-dim);
+    letter-spacing: 3px;
+  }
+
+  .rules {
+    width: 100%;
+    max-width: 780px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    padding: 12px 16px;
+    margin-bottom: 12px;
+    font-size: 0.82rem;
+    line-height: 1.75;
+    color: #aaa;
+  }
+
+  .rules strong {
+    color: var(--amber);
+    font-weight: normal;
+  }
+
+  .game-wrapper {
+    width: 100%;
+    max-width: 780px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .game-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .score-block,
+  .hi-block {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+
+  .score-label,
+  .hi-label {
+    color: #979797;
+    letter-spacing: 2px;
+    font-size: 0.68rem;
+  }
+
+  #score-display {
+    font-family: 'VT323', monospace;
+    font-size: 1.8rem;
+    color: var(--green);
+    text-shadow: 0 0 8px var(--green);
+    letter-spacing: 4px;
+    line-height: 1;
+  }
+
+  #hi-display {
+    font-family: 'VT323', monospace;
+    font-size: 1.8rem;
+    color: #8c8c8c;
+    letter-spacing: 4px;
+    line-height: 1;
+  }
+
+  .controls-hint {
+    font-size: 0.65rem;
+    color: #979797;
+  }
+
+  canvas#dino-canvas {
+    display: block;
+    width: 100%;
+    background: #ffffff;
+    cursor: pointer;
+    image-rendering: pixelated;
+  }
+
+  .submit-panel {
+    border-top: 1px solid var(--border);
+    padding: 14px 16px 16px;
+    background: var(--surface2);
+  }
+
+  .submit-panel .panel-heading {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    color: white;
+  }
+
+  .submit-panel .panel-heading span {
+    color: var(--green);
+  }
+
+  .token-submit-row {
+    display: flex;
+    height: 40px;
+  }
+
+  .token-submit-row input {
+    flex: 1;
+    background: #0c0c0c;
+    border: 1px solid #444;
+    border-right: none;
+    color: #ddd;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.78rem;
+    padding: 0 12px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  .token-submit-row input:focus {
+    border-color: #777;
+  }
+
+  .token-submit-row input::placeholder {
+    color: #6d6d6d;
+  }
+
+  .token-submit-row button {
+    background: #252525;
+    border: 1px solid #555;
+    color: #aaa;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.78rem;
+    padding: 0 20px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  .token-submit-row button:hover {
+    background: var(--green);
+    border-color: var(--green);
+    color: #000;
+  }
+
+  #result-box {
+    margin-top: 10px;
+    padding: 10px 13px;
+    font-size: 0.82rem;
+    display: none;
+    border-left: 2px solid;
+    white-space: pre-wrap;
+    line-height: 1.65;
+    animation: fadeIn 0.2s ease;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  #result-box.success {
+    border-color: var(--green);
+    background: rgba(57, 255, 20, .05);
+    color: var(--green);
+  }
+
+  #result-box.error {
+    border-color: var(--red);
+    background: rgba(255, 56, 56, .05);
+    color: var(--red);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="title">🦖 Dino Rush</div>
+</header>
+
+<div class="rules">
+  <strong>HOW TO PLAY</strong><br>
+  - Use <strong>SPACE</strong>, <strong>↑</strong>, or <strong>click</strong> to jump over obstacles.<br>
+  - Reach a score of <strong>9999</strong> and a token will be generated automatically.<br>
+  - Paste the token below and hit <strong>SUBMIT</strong> to claim the flag.
+</div>
+
+<div class="game-wrapper">
+  <div class="game-topbar">
+    <div class="score-block">
+      <span class="score-label">SCORE</span>
+      <span id="score-display">00000</span>
+    </div>
+    <div class="hi-block">
+      <span class="hi-label">HI</span>
+      <span id="hi-display">00000</span>
+    </div>
+    <div class="controls-hint">SPACE / ↑ / CLICK to jump</div>
+  </div>
+
+  <canvas id="dino-canvas" width="780" height="300"></canvas>
+
+  <div class="submit-panel">
+    <div class="panel-heading">// TOKEN SUBMISSION — <span>Paste your token and submit to get the flag</span></div>
+    <div class="token-submit-row">
+      <input id="token-input" type="text" placeholder="Token appears here after reaching 9999..." />
+      <button onclick="submitToken()">SUBMIT →</button>
+    </div>
+    <div id="result-box"></div>
+  </div>
+</div>
+<script src="game.js"></script>
+<script>
+async function submitToken() {
+  const token = document.getElementById('token-input').value.trim();
+  if (!token) { showResult('error', 'No token provided.'); return; }
+  try {
+    const res = await fetch('/api/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token })
+    });
+    const data = await res.json();
+    if (data.success) showResult('success', `${data.message}\n\n🚩 ${data.flag}`);
+    else showResult('error', data.error || 'Unknown error.');
+  } catch(e) {
+    showResult('error', 'Request failed: ' + e.message);
+  }
+}
+
+function showResult(type, msg) {
+  const box = document.getElementById('result-box');
+  box.className = type;
+  box.style.display = 'block';
+  box.textContent = msg;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('token-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') submitToken();
+  });
+});
+</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"ec0d7e9ac5024fe1b99c673a0f5f2c68","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
