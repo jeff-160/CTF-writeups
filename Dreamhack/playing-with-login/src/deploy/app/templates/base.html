@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#7c5cff" />
+  <title>{% block title %}My Simple Page{% endblock %}</title>
+
+  <!-- App styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+  {% block head_extra %}{% endblock %}
+</head>
+<body>
+  <div class="app">
+    <!-- Header / Nav -->
+    <header class="site-header">
+      <div class="container navbar">
+        <a class="brand" href="{{ url_for('home') }}">
+          <span class="brand__dot" aria-hidden="true"></span>
+          <span>My Simple Page</span>
+        </a>
+
+        <nav class="nav" aria-label="Primary">
+          <a class="{% if request.endpoint == 'home' %}is-active{% endif %}" href="{{ url_for('home') }}">Home</a>
+
+          {% if 'user' in session %}
+            <a class="{% if request.endpoint == 'mypage' %}is-active{% endif %}" href="{{ url_for('mypage') }}">My Page</a>
+            <a class="{% if request.endpoint == 'request_password_change' %}is-active{% endif %}" href="{{ url_for('request_password_change') }}">Request Password Change</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+          {% else %}
+            <a class="{% if request.endpoint == 'request_password_change' %}is-active{% endif %}" href="{{ url_for('request_password_change') }}">Request Password Change</a>
+            <a class="{% if request.endpoint == 'login' %}is-active{% endif %}" href="{{ url_for('login') }}">Login</a>
+            <a class="{% if request.endpoint == 'signup' %}is-active{% endif %}" href="{{ url_for('signup') }}">Sign Up</a>
+          {% endif %}
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main -->
+    <main class="container">
+      <!-- Flash messages -->
+      {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+          <section class="stack" aria-live="polite" aria-atomic="true">
+            {% for category, message in messages %}
+              {# Normalize common category names to CSS modifiers #}
+              {% set cat = (category or 'info')|lower %}
+              {% if cat in ['success','info','warning','danger','error'] %}
+                {% set cat = 'danger' if cat == 'error' else cat %}
+              {% else %}
+                {% set cat = 'info' %}
+              {% endif %}
+              <div class="flash flash--{{ cat }}">{{ message }}</div>
+            {% endfor %}
+          </section>
+        {% endif %}
+      {% endwith %}
+
+      <!-- Page surface / content -->
+      <section class="surface stack mt-4">
+        {% block content %}{% endblock %}
+      </section>
+
+      <hr class="hr">
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <small>playing-with-login</small>
+      </div>
+    </footer>
+  </div>
+
+  {% block body_end %}{% endblock %}
+</body>
+</html>

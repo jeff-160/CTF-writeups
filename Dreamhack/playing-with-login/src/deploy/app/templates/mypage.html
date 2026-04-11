@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}My Page{% endblock %}
+
+{% block content %}
+  <h2>My Page — {{ username }}</h2>
+  <p class="mt-2 text-dim">Private messages sent to you will appear below.</p>
+
+  {% if messages and messages|length > 0 %}
+    <div class="surface mt-3">
+      <ul class="stack">
+        {% for m in messages|reverse %}
+          <li>
+            <div class="mb-2"><strong>{{ m.created_at }}</strong></div>
+            <div>
+              {# If message contains a link path like /change-password/<token>, display as a link #}
+              {% set parts = m.text.split() %}
+              {% for part in parts %}
+                {% if part.startswith('/') %}
+                  <a href="{{ part }}">{{ part }}</a>
+                {% else %}
+                  {{ part }}
+                {% endif %}
+                {% if not loop.last %} {% endif %}
+              {% endfor %}
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% else %}
+    <p class="mt-3">No messages yet.</p>
+  {% endif %}
+{% endblock %}

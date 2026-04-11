@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+  {% if 'user' in session %}
+    <h2>Welcome, {{ session['user'] }}!</h2>
+    <p class="mt-2">You’re logged in.</p>
+
+    <div class="mt-3" role="group" aria-label="Primary actions">
+      <a class="btn btn--primary" href="{{ url_for('mypage') }}">My Page</a>
+      <a class="btn" href="{{ url_for('request_password_change') }}">Request Password Change</a>
+      <a class="btn btn--danger" href="{{ url_for('logout') }}">Logout</a>
+    </div>
+  {% else %}
+    <h2>Welcome</h2>
+    <p class="mt-2">Please log in or create an account to continue.</p>
+
+    <div class="mt-3" role="group" aria-label="Auth actions">
+      <a class="btn btn--primary" href="{{ url_for('login') }}">Login</a>
+      <a class="btn" href="{{ url_for('signup') }}">Sign Up</a>
+    </div>
+  {% endif %}
+{% endblock %}
