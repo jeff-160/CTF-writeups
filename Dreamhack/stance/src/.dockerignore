@@ -1,0 +1,4 @@
+flag.txt
+.env
+__pycache__/
+*.pyc

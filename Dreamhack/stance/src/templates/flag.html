@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Flag - XSS Insane{% endblock %}
+{% block content %}
+
+{% if message %}
+  <div style="margin-bottom:18px;" class="flash {{ message.type }}">{{ message.text }}</div>
+{% endif %}
+
+{% if username %}
+    <h2>Hello, {{username}}!</h2>
+{% else %}
+    <h2>Hello, Guest!</h2>
+{% endif %}
+
+<p class="muted">This page shows a flag only when accessed by admin internally.</p>
+
+{% if flag %}
+    <div style="margin-top:18px; ">
+        <div class="muted">Your flag:</div>
+        <div style="margin-top:8px;"><span class="flag">{{ flag }}</span></div>
+    </div>
+{% else %}
+    <div style="margin-top:18px;" class="error">There is no flag for you.</div>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Home - XSS Insane{% endblock %}
+{% block content %}
+{% if message %}
+  <div style="margin-bottom:18px;" class="flash {{ message.type }}">{{ message.text }}</div>
+{% endif %}
+<h1>Welcome!</h1>
+<p class="muted"><i>"Seek knowledge from the cradle to the grave. "</i> (Prophet Muhammad صلى الله عليه وسلم) </p>
+
+{% endblock %}

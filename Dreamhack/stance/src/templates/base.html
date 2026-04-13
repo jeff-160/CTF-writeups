@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}XSS Insane{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Inter:400,600,700&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-inner">
+            <div class="brand">Stance</div>
+            <div class="nav-links">
+                {% if 'username' in session %}
+                    <a href="{{ url_for('home') }}">Home</a>
+                    <a href="{{ url_for('test') }}">Test</a>
+                    <a href="{{ url_for('report') }}">Report</a>
+                    <a href="{{ url_for('flag') }}">Flag</a>
+                {% else %}
+                    {# On the login page show only Register; on the register page show only Login; otherwise show both #}
+                    {% if request.path == url_for('login') %}
+                        <a href="{{ url_for('register') }}">Register</a>
+                    {% elif request.path == url_for('register') %}
+                        <a href="{{ url_for('login') }}">Login</a>
+                    {% else %}
+                        <a href="{{ url_for('login') }}">Login</a>
+                        <a href="{{ url_for('register') }}">Register</a>
+                    {% endif %}
+                {% endif %}
+             </div>
+        </div>
+    </nav>
+    <main class="page">
+        <div class="card">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+</body>
+</html>

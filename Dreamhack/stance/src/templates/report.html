@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Report - XSS Insane{% endblock %}
+{% block content %}
+<h2>Report</h2>
+<p class="muted">Report to the admin!</p>
+
+
+{% if message is not none %}
+	<div style="margin-top:18px; text-align:center;">{% if message == 'Success' %}<div class="success">{{ message }}</div>{% else %}<div class="error">{{ message }}</div>{% endif %}</div>
+{% endif %}
+
+<div style="margin-top:18px;">
+    <p class="muted">You can send report <code>/report?payload=YOUR_PAYLOAD</code>.</p>
+    </div>
+
+{% endblock %}

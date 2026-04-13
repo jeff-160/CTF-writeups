@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Register • Flask Demo{% endblock %}
+{% block content %}
+  <div class="auth">
+    <form method="post" action="{{ url_for('register') }}">
+      <h2>Create account</h2>
+      {% if message %}
+        <div class="flash {{ message.type }}">{{ message.text }}</div>
+      {% endif %}
+
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" required autocomplete="username" />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" required autocomplete="new-password" />
+      </div>
+
+      <div class="form-group">
+        <label for="confirm">Confirm password</label>
+        <input id="confirm" name="confirm" type="password" required autocomplete="new-password" />
+      </div>
+
+      <div class="form-actions">
+        <button type="submit">Register</button>
+        <div class="links">Already have an account? <a href="{{ url_for('login') }}">Log in</a>.</div>
+      </div>
+    </form>
+  </div>
+{% endblock %}

@@ -1,0 +1,9 @@
+services:
+  xss-insane:
+    build: .
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
+      - FLAG=${FLAG:-flag{test_flag}}

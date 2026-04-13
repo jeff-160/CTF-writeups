@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Test Payload - XSS Insane{% endblock %}
+{% block content %}
+<h2>Test Payload</h2>
+<p class="muted">Enter a payload to see how the server sanitizes it. The server applies a strict banlist and a sanitizer.</p>
+
+
+
+{% if error %}
+    <div style="margin-top:18px;" class="error">{{ error }}</div>
+{% elif result %}
+    <div style="margin-top:18px;"><div class="muted">Output:</div><div style="margin-top:8px;">{{ result | safe }}</div></div>
+{% endif %}
+
+<div style="margin-top:18px;">
+    <p class="muted">You can test by visiting <code>/test?payload=YOUR_PAYLOAD</code>.</p>
+    </div>
+{% endblock %}
