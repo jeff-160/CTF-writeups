@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  web:
+    build: ./deploy/web
+    ports:
+      - "8080:8080"
+    depends_on:
+      - internalapi
+      - redirector
+    networks:
+      - ctfnet
+  internalapi:
+    build: ./deploy/internal
+    networks:
+      - ctfnet
+  redirector:
+    build: ./deploy/redirector
+    networks:
+      - ctfnet
+networks:
+  ctfnet:
