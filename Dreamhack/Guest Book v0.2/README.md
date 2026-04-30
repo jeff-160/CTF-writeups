@@ -2,6 +2,8 @@
 
 <img src="images/chall.png" width=600>
 
+This challenge involves a typical XSS setup.  
+  
 `/GuestBook.php` allows us to render arbitrary content, while `/Report.php` gets the server to visit our payload on `/GuestBook.php` with an admin bot.  
 
 <img src="images/webpage.png" width=800>
