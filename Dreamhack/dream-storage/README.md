@@ -154,9 +154,18 @@ def signin():
         return render_template('signin.html')
 ```
 
-To bypass this, we can use a URL-encoding trick to get path traversal.  
+Looking at the Dockerfile, we can see that it installs a docker image that runs the Flask app behind Nginx.  
 
-If we report `/user/..%2ffile`, Flask normalises it and routes to `/file`, executing our XSS payload, but the browser doesn't normalise and retains the full URL, so the path gets detected as `/user`.  
+```dockerfile
+FROM tiangolo/uwsgi-nginx-flask:python3.8
+
+# ENV
+ENV port 80
+```
+
+We can leverage this and use a URL-encoding trick to get path traversal.  
+
+If we report `/user/..%2ffile`, Nginx normalises it behind the scenes and routes to `/file`, executing our XSS payload, but the browser doesn't normalise and retains the full URL, so the path gets detected as `/user`.  
 
 This allows us to leak the flag cookie into our payload page.  
 
