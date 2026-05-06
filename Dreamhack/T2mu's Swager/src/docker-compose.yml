@@ -1,0 +1,16 @@
+services:
+  app.com:
+    container_name: app.com
+    build:
+      context: ./deploy/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api.app.com
+  api.app.com:
+    container_name: api.app.com
+    build:
+      context: ./deploy/api-server
+    ports:
+      - "8000:8000"
+    
