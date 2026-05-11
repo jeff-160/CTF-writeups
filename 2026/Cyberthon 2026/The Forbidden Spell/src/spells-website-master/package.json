@@ -1,0 +1,21 @@
+{
+	"name": "the-forbidden-spell",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "bun --hot src/index.ts",
+		"build": "bun build ./src/index.ts --compile --outfile dist --target=bun-linux-x64 --minify --define:process.env.NODE_ENV='\"production\"' --env inline",
+		"start": "NODE_ENV=production bun src/index.ts",
+		"format": "NODE_TLS_REJECT_UNAUTHORIZED=0 bunx --bun @biomejs/biome format --write"
+	},
+	"dependencies": {
+		"react": "^19",
+		"react-dom": "^19"
+	},
+	"devDependencies": {
+		"@types/react": "^19",
+		"@types/react-dom": "^19",
+		"@types/bun": "latest"
+	}
+}

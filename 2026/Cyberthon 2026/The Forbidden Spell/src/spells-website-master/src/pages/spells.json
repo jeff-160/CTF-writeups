@@ -1,0 +1,66 @@
+[
+	{
+		"name": "accio",
+		"detail": {
+			"effect": "Summon an object toward the caster.",
+			"type": "Charm"
+		},
+		"isSafe": true
+	},
+	{
+		"name": "calvorio",
+		"detail": {
+			"effect": "Cause the target's hair to fall off.",
+			"type": "Curse"
+		},
+		"isSafe": true
+	},
+	{
+		"name": "ducklifors",
+		"detail": {
+			"effect": "Transform the target into a duck.",
+			"type": "Jinx"
+		},
+		"isSafe": false
+	},
+	{
+		"name": "deletrius",
+		"detail": {
+			"effect": "Disintegrate an image.",
+			"type": "Charm"
+		},
+		"isSafe": true
+	},
+	{
+		"name": "mimblewimble",
+		"detail": {
+			"effect": "Ties the target's tongue in a knot.",
+			"type": "Curse"
+		},
+		"isSafe": true
+	},
+	{
+		"name": "quietus",
+		"detail": {
+			"effect": "Made a target sound quieter.",
+			"type": "Charm"
+		},
+		"isSafe": true
+	},
+	{
+		"name": "periculum",
+		"detail": {
+			"effect": "Produce a burst of red sparks.",
+			"type": "Charm"
+		},
+		"isSafe": true
+	},
+	{
+		"name": "impedimenta",
+		"detail": {
+			"effect": "Slow down or stopped the target.",
+			"type": "Charm"
+		},
+		"isSafe": true
+	}
+]

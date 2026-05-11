@@ -1,0 +1,642 @@
+@property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
+:root {
+    --bg-deep: #0d0a14;
+    --card-bg: #1a1329;
+    --surface: #241b35;
+    --gold: #c4983a;
+    --gold-light: #e8c468;
+    --amethyst: #8b6cc1;
+    --dusk: #5c4a82;
+    --text: #e8dcc8;
+    --text-muted: #9a8f80;
+    --success: #5da87a;
+    --error: #c45a5a;
+    --legendary-glow: #f0c040;
+    --legendary-accent: #d44fa0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Crimson Pro', 'Georgia', serif;
+    background: var(--bg-deep);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background:
+        radial-gradient(ellipse 700px 700px at 30% 40%, rgba(139, 108, 193, 0.18) 0%, transparent 65%),
+        radial-gradient(ellipse 600px 600px at 70% 60%, rgba(196, 152, 58, 0.12) 0%, transparent 65%),
+        radial-gradient(ellipse 500px 500px at 50% 30%, rgba(212, 79, 160, 0.08) 0%, transparent 65%);
+    animation: ambient-drift 20s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes ambient-drift {
+    0% {
+        transform: translate(0%, 0%) rotate(0deg);
+    }
+    25% {
+        transform: translate(8%, -5%) rotate(2deg);
+    }
+    50% {
+        transform: translate(-5%, 8%) rotate(-1deg);
+    }
+    75% {
+        transform: translate(-8%, -3%) rotate(1.5deg);
+    }
+    100% {
+        transform: translate(5%, 5%) rotate(-0.5deg);
+    }
+}
+
+/* ═══════════════ Registration Page ═══════════════ */
+
+.page-register {
+    background: radial-gradient(ellipse at 50% 30%, #1e1435 0%, #130e1e 40%, var(--bg-deep) 80%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.register-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+    padding: 2rem;
+}
+
+.register-card {
+    background: var(--card-bg);
+    border: 1px solid var(--dusk);
+    border-radius: 16px;
+    padding: 3rem 2.5rem;
+    max-width: 460px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 80px rgba(139, 108, 193, 0.08);
+}
+
+.register-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.register-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gold);
+    text-shadow: 0 0 20px rgba(196, 152, 58, 0.3);
+    margin-bottom: 0.4rem;
+}
+
+.register-subtitle {
+    font-style: italic;
+    color: var(--amethyst);
+    margin-bottom: 2rem;
+    font-size: 1.05rem;
+}
+
+.promo-banner {
+    background: linear-gradient(135deg, rgba(196, 152, 58, 0.15) 0%, rgba(232, 196, 104, 0.1) 100%);
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    padding: 0.9rem 1.2rem;
+    margin-bottom: 1.8rem;
+    color: var(--gold-light);
+    font-size: 1rem;
+}
+
+.promo-badge {
+    margin-right: 0.3rem;
+}
+
+.register-label {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 0.6rem;
+    text-align: left;
+}
+
+.register-input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: var(--surface);
+    border: 1px solid var(--dusk);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.05rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    margin-bottom: 1.2rem;
+}
+
+.register-input:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(196, 152, 58, 0.15);
+}
+
+.register-input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.6;
+}
+
+/* ═══════════════ Buttons ═══════════════ */
+
+.btn {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+    color: var(--bg-deep);
+    padding: 0.75rem 1.6rem;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.2s, filter 0.2s;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(196, 152, 58, 0.35);
+    filter: brightness(1.1);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-register {
+    width: 100%;
+    padding: 0.9rem;
+    font-size: 1.05rem;
+}
+
+.btn-buy {
+    width: 100%;
+    padding: 0.6rem;
+    font-size: 0.9rem;
+}
+
+.btn-buy-legendary {
+    font-size: 1rem;
+    padding: 0.8rem 2rem;
+    max-width: 240px;
+}
+
+.btn-logout {
+    padding: 0.4rem 0.9rem;
+    font-size: 0.8rem;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--dusk);
+}
+
+.btn-logout:hover {
+    color: var(--error);
+    border-color: var(--error);
+    background: rgba(196, 90, 90, 0.1);
+    box-shadow: none;
+    filter: none;
+}
+
+.btn-modal-close {
+    margin-top: 1.2rem;
+}
+
+/* ═══════════════ Shop Header ═══════════════ */
+
+.shop-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(13, 10, 20, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(92, 74, 130, 0.3);
+    padding: 0.8rem 0;
+}
+
+.header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.header-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--gold);
+    text-shadow: 0 0 12px rgba(196, 152, 58, 0.2);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 0.9rem;
+}
+
+.header-welcome {
+    color: var(--text-muted);
+}
+
+.header-welcome strong {
+    color: var(--text);
+}
+
+.header-balance strong {
+    color: var(--gold-light);
+}
+
+.header-divider {
+    color: var(--dusk);
+}
+
+/* ═══════════════ Shop Main ═══════════════ */
+
+.page-shop {
+    background: var(--bg-deep);
+}
+
+.shop-main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+}
+
+/* ═══════════════ Alerts ═══════════════ */
+
+.alert {
+    padding: 0.9rem 1.2rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+.alert.success {
+    background: rgba(93, 168, 122, 0.12);
+    border: 1px solid rgba(93, 168, 122, 0.3);
+    color: var(--success);
+}
+
+.alert.error {
+    background: rgba(196, 90, 90, 0.12);
+    border: 1px solid rgba(196, 90, 90, 0.3);
+    color: var(--error);
+}
+
+/* ═══════════════ Sale Banner ═══════════════ */
+
+.sale-banner {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 1rem 1.5rem;
+    background: linear-gradient(135deg, rgba(196, 152, 58, 0.08) 0%, rgba(139, 108, 193, 0.06) 100%);
+    border: 1px solid rgba(196, 152, 58, 0.15);
+    border-radius: 10px;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    font-style: italic;
+}
+
+/* ═══════════════ Sections ═══════════════ */
+
+.shop-section {
+    margin-bottom: 2.5rem;
+}
+
+.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--amethyst);
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(139, 108, 193, 0.2);
+}
+
+/* ═══════════════ Wand Grid ═══════════════ */
+
+.wand-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.2rem;
+}
+
+.wand-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(92, 74, 130, 0.3);
+    border-radius: 12px;
+    padding: 1.5rem 1.2rem;
+    text-align: center;
+    transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+}
+
+.wand-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(196, 152, 58, 0.08);
+}
+
+/* ═══════════════ Wand Icon Float Animation ═══════════════ */
+
+.wand-icon {
+    font-size: 2.8rem;
+    margin-bottom: 0.8rem;
+    display: inline-block;
+    animation: wand-float 3s ease-in-out infinite;
+    animation-delay: calc(var(--card-index, 0) * 0.3s);
+}
+
+@keyframes wand-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+.wand-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+    min-height: 2.4em;
+    line-height: 1.2;
+}
+
+.wand-price {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.8rem;
+}
+
+/* ═══════════════ Legendary Card ═══════════════ */
+
+.legendary-section {
+    margin-top: 1rem;
+}
+
+.legendary-card {
+    position: relative;
+    padding: 3px;
+    border-radius: 16px;
+    background: conic-gradient(from var(--angle), var(--legendary-glow), var(--legendary-accent), var(--amethyst), var(--legendary-glow));
+    animation: legendary-spin 4s linear infinite;
+}
+
+@keyframes legendary-spin {
+    to { --angle: 360deg; }
+}
+
+.legendary-card-inner {
+    background: linear-gradient(135deg, var(--card-bg) 0%, #221740 100%);
+    border-radius: 13px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    position: relative;
+}
+
+.legendary-badge {
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background: linear-gradient(135deg, var(--legendary-glow), var(--legendary-accent));
+    color: var(--bg-deep);
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    padding: 0.35rem 1.2rem;
+    border-radius: 20px;
+}
+
+.wand-icon-legendary {
+    font-size: 4rem;
+    animation: wand-float 2.5s ease-in-out infinite;
+    filter: drop-shadow(0 0 12px rgba(240, 192, 64, 0.4));
+}
+
+.wand-name-legendary {
+    font-size: 1.4rem;
+    color: var(--legendary-glow);
+    text-shadow: 0 0 16px rgba(240, 192, 64, 0.3);
+    min-height: auto;
+}
+
+.wand-price-legendary {
+    font-size: 1.3rem;
+    color: var(--legendary-glow);
+}
+
+.legendary-card .btn-buy {
+    background: linear-gradient(135deg, var(--legendary-glow) 0%, var(--legendary-accent) 100%);
+}
+
+.legendary-card .btn-buy:hover {
+    box-shadow: 0 4px 20px rgba(240, 192, 64, 0.4);
+}
+
+/* ═══════════════ Inventory ═══════════════ */
+
+.inventory-section {
+    margin-top: 1rem;
+}
+
+.inventory-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.inventory-badge {
+    background: var(--surface);
+    border: 1px solid var(--dusk);
+    border-radius: 20px;
+    padding: 0.4rem 1rem;
+    font-size: 0.85rem;
+    color: var(--text);
+    white-space: nowrap;
+}
+
+/* ═══════════════ Modal ═══════════════ */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-card {
+    background: var(--card-bg);
+    border: 1px solid var(--dusk);
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    max-width: 440px;
+    width: 90%;
+    text-align: center;
+    transform: translateY(20px) scale(0.95);
+    transition: transform 0.3s;
+}
+
+.modal-overlay.active .modal-card {
+    transform: translateY(0) scale(1);
+}
+
+.modal-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.modal-spin {
+    animation: wand-float 1s ease-in-out infinite;
+}
+
+.modal-heading {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+}
+
+.modal-text {
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+.modal-subtext {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.modal-error-icon {
+    filter: hue-rotate(0deg);
+}
+
+/* ═══════════════ Legendary Modal ═══════════════ */
+
+.modal-legendary .modal-card {
+    border-color: var(--legendary-glow);
+    box-shadow: 0 0 40px rgba(240, 192, 64, 0.2), 0 0 80px rgba(240, 192, 64, 0.1);
+}
+
+.modal-card-legendary {
+    background: linear-gradient(135deg, var(--card-bg) 0%, #221740 100%);
+}
+
+.modal-heading-legendary {
+    color: var(--legendary-glow);
+    text-shadow: 0 0 16px rgba(240, 192, 64, 0.3);
+}
+
+.modal-legendary-icon {
+    font-size: 4rem;
+    animation: wand-float 2s ease-in-out infinite;
+    filter: drop-shadow(0 0 16px rgba(240, 192, 64, 0.5));
+}
+
+.modal-flag {
+    background: var(--surface);
+    border: 1px solid var(--legendary-glow);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 1rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    color: var(--legendary-glow);
+    word-break: break-all;
+    min-height: 2.5rem;
+    text-shadow: 0 0 8px rgba(240, 192, 64, 0.3);
+}
+
+/* ═══════════════ Responsive ═══════════════ */
+
+@media (max-width: 768px) {
+    .wand-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .header-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+    .header-right {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .register-card {
+        padding: 2rem 1.5rem;
+    }
+    .register-title {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .wand-grid {
+        grid-template-columns: 1fr;
+    }
+    .header-right {
+        font-size: 0.8rem;
+        gap: 0.5rem;
+    }
+}
