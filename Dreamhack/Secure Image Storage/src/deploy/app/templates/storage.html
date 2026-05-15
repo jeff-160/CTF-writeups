@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>File Storage</title>
+</head>
+<body>
+    <h1>Stored Files</h1>
+    <ul>
+        {% for file in files %}
+            <li><a href="static/{{file.uuid}}/{{file.filename}}">{{ file.filename }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

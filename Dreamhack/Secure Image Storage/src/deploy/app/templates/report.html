@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Report</title>
+</head>
+<body>
+    <h1>Report to Admin</h1>
+    {% if msg %}
+        <p>{{ msg }}</p>
+    {% endif %}
+    <form method="post" action="/report">
+        <label for="username">Path:</label>
+        <input type="text" name="path" id="path" style="width: 400px;height: 100;" required>
+        <input type="submit" value="Report">
+    </form>
+</body>
+</html>

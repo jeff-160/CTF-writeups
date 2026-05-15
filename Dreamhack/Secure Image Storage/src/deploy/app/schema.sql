@@ -1,0 +1,10 @@
+DROP TABLE IF EXISTS file;
+
+CREATE TABLE files (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT NOT NULL,
+    filename TEXT NOT NULL,
+    hash TEXT NOT NULL,
+    uuid TEXT NOT NULL,
+    date TEXT NOT NULL
+);
