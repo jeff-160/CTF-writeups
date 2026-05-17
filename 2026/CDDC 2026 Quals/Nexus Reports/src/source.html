@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<!-- TODO: disable debug endpoints before public launch (/health) -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nexus Reports - On-chain styled business reporting for the Nexus Protocol ecosystem.">
+  <title>Nexus Reports - PDF Report Studio</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="main-header">
+    <div class="container">
+      <nav class="navbar">
+        <div class="nav-brand">
+          <a href="/">
+            <h1>&#x2B22; Nexus Reports</h1>
+          </a>
+          <span class="badge">Studio</span>
+        </div>
+        <ul class="nav-menu">
+          <li><a href="/">Studio</a></li>
+          <li><a href="#">Docs</a></li>
+          <li><a href="#">Status</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="account-bar">
+    <div class="container">
+      <div class="account-info">
+        <div class="stat">
+          <span class="label">Engine</span>
+          <span class="value">Puppeteer</span>
+        </div>
+        <div class="stat">
+          <span class="label">Format</span>
+          <span class="value">A4 / PDF</span>
+        </div>
+        <div class="stat">
+          <span class="label">Logo</span>
+          <span class="value">SVG only</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="main-content">
+    <div class="container">
+      <section class="hero">
+        <div class="hero-content">
+          <h2>Generate verifiable business reports</h2>
+          <p class="hero-subtitle">
+            Upload your brand mark, drop in quarterly metrics, and mint a clean,
+            print-ready PDF report - styled to match the Nexus Protocol design system.
+          </p>
+        </div>
+      </section>
+
+      <section class="workflow">
+
+        <div class="workflow-card">
+          <div class="workflow-card-header">
+            <div class="step-number">01</div>
+            <h2>Upload Brand Mark</h2>
+          </div>
+          <p class="step-hint">SVG only. Sanitized server-side before rendering.</p>
+          <div class="form-group">
+            <label for="logo">SVG Logo</label>
+            <input type="file" id="logo" accept=".svg,image/svg+xml" required>
+          </div>
+          <button class="btn btn-secondary btn-block" onclick="uploadLogo()">Upload Logo</button>
+        </div>
+
+        <div class="workflow-card">
+          <div class="workflow-card-header">
+            <div class="step-number">02</div>
+            <h2>Compose Report</h2>
+          </div>
+          <p class="step-hint">Title, period, and a JSON payload of metrics.</p>
+
+          <div class="form-group">
+            <label for="title">Report Title</label>
+            <input type="text" id="title" placeholder="Q4 2024 Sales Summary" value="Q4 2024 Sales Summary">
+          </div>
+
+          <div class="form-group">
+            <label for="quarter">Reporting Period</label>
+            <select id="quarter">
+              <option value="Q1 2024">Q1 2024</option>
+              <option value="Q2 2024">Q2 2024</option>
+              <option value="Q3 2024">Q3 2024</option>
+              <option value="Q4 2024" selected>Q4 2024</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="sales_data">Metrics Payload (JSON)</label>
+            <textarea id="sales_data" placeholder='{"revenue": 1000000, "growth": "25%"}'>{
+  "revenue": 1250000,
+  "growth": "15%",
+  "customers": 450,
+  "satisfaction": "94%"
+}</textarea>
+          </div>
+
+          <button class="btn btn-primary btn-block" onclick="generateReport()">Generate PDF Report</button>
+        </div>
+
+        <div id="message" class="message"></div>
+
+        <div class="session-info">
+          Session ID: <span>9f85aa98-0c0a-4f62-becc-41144ff55f8a</span>
+        </div>
+
+      </section>
+    </div>
+  </main>
+
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Nexus Protocol. All rights reserved.</p>
+        <div class="tech-info">Nexus Reports &bull; Powered by Puppeteer &bull; PDF/A4</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const userId = '9f85aa98-0c0a-4f62-becc-41144ff55f8a';
+
+    async function uploadLogo() {
+      const fileInput = document.getElementById('logo');
+      const file = fileInput.files[0];
+
+      if (!file) {
+        showMessage('Please select a file', 'error');
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('logo', file);
+
+      try {
+        const response = await fetch('/upload-logo', {
+          method: 'POST',
+          headers: {
+            'X-User-Id': userId
+          },
+          body: formData
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          showMessage('[OK] Logo uploaded successfully.', 'success');
+        } else {
+          showMessage('[ERR] ' + (data.error || 'Upload failed'), 'error');
+        }
+      } catch (error) {
+        showMessage('[ERR] Upload failed: ' + error.message, 'error');
+      }
+    }
+
+    async function generateReport() {
+      const title = document.getElementById('title').value;
+      const quarter = document.getElementById('quarter').value;
+      const sales_data = document.getElementById('sales_data').value;
+
+      if (!title || !sales_data) {
+        showMessage('Please fill in all fields', 'error');
+        return;
+      }
+
+      try {
+        JSON.parse(sales_data); // Validate JSON
+      } catch (e) {
+        showMessage('Invalid JSON format in metrics payload', 'error');
+        return;
+      }
+
+      try {
+        showMessage('[..] Generating report...', 'success');
+
+        const response = await fetch('/generate-report', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-User-Id': userId
+          },
+          body: JSON.stringify({
+            title,
+            quarter,
+            sales_data
+          })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          showMessage(`[OK] Report generated. <a href="${data.downloadUrl}">Download PDF</a> &middot; <a href="/preview/${userId}/${data.reportId}" target="_blank">Preview HTML</a>`, 'success');
+        } else {
+          showMessage('[ERR] ' + (data.error || 'Generation failed'), 'error');
+        }
+      } catch (error) {
+        showMessage('[ERR] Generation failed: ' + error.message, 'error');
+      }
+    }
+
+    function showMessage(text, type) {
+      const msgDiv = document.getElementById('message');
+      msgDiv.innerHTML = text;
+      msgDiv.className = 'message ' + type;
+      msgDiv.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
