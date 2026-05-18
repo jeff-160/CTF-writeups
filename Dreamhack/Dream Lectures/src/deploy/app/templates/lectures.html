@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="/static/css/lectures.css">
+</head>
+<body>
+  <div id="lectures_page">
+    <h1>Dream Lectures</h1>
+    <div class="grid-container">
+      {% if lectures %}
+        {% for idx, name in lectures %}
+          <a href="/lectures/{{ idx }}">
+            <div class="grid-item">
+              <img src="/static/images/lecture.png" width=230px height=230px />
+              <div>{{ name }}</div>
+            </div>
+          </a>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</body>
+</html>

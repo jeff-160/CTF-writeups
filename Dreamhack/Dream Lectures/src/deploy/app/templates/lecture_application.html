@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/static/css/lecture_application.css">
+</head>
+<body>
+  <div id="margin">
+  </div>
+  <h1>Lecture Information</h1>
+  <div id="lecture_info">
+    <div id="form">
+      <form>
+        <div>
+          <h2>Lecture Name</h2>
+          {{ lecture_name }}
+        </div>
+        <div>
+          <h2>Lecturer</h2>
+          {{ lecturer_name }}
+        </div>
+        <div>
+          <h2>Description</h2>
+          {{ description }}
+        </div>
+        <div>
+          <h2>Lecture Date</h2>
+          {{ lecture_start }} ~ {{ lecture_end }}
+        </div>
+        <div>
+          <h2>Registration Date</h2>
+          {{ registration_start }} ~ {{ registration_due }}
+        </div>
+      </form>
+    </div>
+  </div>
+
+  {% if is_ended %}
+    {% if msg %}
+      <h1>{{ msg }}</h1>
+    {% else %}
+      <h1>The lecture application is ended up!</h1>
+    {% endif %}
+  {% else %}
+    <h1>Application Form</h1>
+    <div id="application_form">
+      <div id="form">
+        <form id="apply_lecture" method="post" action="/apply_lecture">
+          <input type="hidden" id="lecture_id" name="lecture_id" value="{{ lecture_id }}">
+          <div>
+            Your Name
+            <textarea id="applicant_name" name="applicant_name" rows="1" cols="80" placeholder="Your Name" maxlength="32" required></textarea>
+          </div>
+          &nbsp;
+          <div>
+            Email
+            <textarea id="email" name="email" rows="1" cols="80" placeholder="abc@abc.com" maxlength="128" required></textarea>
+          </div>
+          &nbsp;
+          <div>
+            Contact
+            <textarea id="contact" name="contact" rows="1" cols="80" placeholder="000-0000-0000" maxlength="128" required></textarea>
+          </div>
+          &nbsp;
+          <div>
+            Why do you want to take this lecture?
+            <textarea id="reason" name="reason" rows="3" cols="80" placeholder="Explain the reason" maxlength="256" required></textarea>
+          </div>
+          &nbsp;
+          <button>apply lecture</button>
+          {% block content %}
+              {% if msg %}
+                <p id="msg">{{ msg }}</p>
+              {% else %}
+                <p id="msg">&nbsp;</p>
+              {% endif %}
+          {% endblock content %}
+        </form>
+      </div>
+    </div>
+  {% endif %}
+</body>
+</html>

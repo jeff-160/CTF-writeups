@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/static/css/create_lecture.css">
+</head>
+<body>
+  <div id="margin">
+  </div>
+  <div id="create_lecture_page">
+    <div id="form">
+      <form id="create_lecture" method="post" action="/create_lecture">
+        <div>
+          Lecture Name
+          <textarea id="lecture_name" name="lecture_name" rows="1" cols="80" placeholder="the name of your lecture" maxlength="128" required></textarea>
+          &nbsp;
+        </div>
+        <div>
+          Lecturer Name
+          <textarea id="lecturer_name" name="lecturer_name" rows="1" cols="80" placeholder="the lecturer's name of your lecture" maxlength="32" required></textarea>
+          &nbsp;
+        </div>
+        <div>
+          Lecture Description
+          <textarea id="description" name="description" rows="3" cols="80" placeholder="the description of your lecture" maxlength="256" required></textarea>
+          &nbsp;
+        </div>
+        <div>
+          Registration Start Datetime
+          <textarea id="registration_start" name="registration_start" rows="1" cols="80" placeholder="YYYY-mm-dd HH:MM:SS" maxlength="32" required></textarea>
+          &nbsp;
+        </div>
+        <div>
+          Registration Due Datetime
+          <textarea id="registration_due" name="registration_due" rows="1" cols="80" placeholder="YYYY-mm-dd HH:MM:SS" maxlength="32" required></textarea>
+          &nbsp;
+        </div>
+        <div>
+          Lecture Start Datetime
+          <textarea id="lecture_start" name="lecture_start" rows="1" cols="80" placeholder="YYYY-mm-dd HH:MM:SS" maxlength="32" required></textarea>
+          &nbsp;
+        </div>
+        <div>
+          Lecture End Datetime
+          <textarea id="lecture_end" name="lecture_end" rows="1" cols="80" placeholder="YYYY-mm-dd HH:MM:SS" maxlength="32" required></textarea>
+          &nbsp;
+        </div>
+        <button>create lecture</button>
+        {% block content %}
+            {% if msg %}
+              <p id="msg">{{ msg }}</p>
+            {% else %}
+              <p id="msg">&nbsp;</p>
+            {% endif %}
+        {% endblock content %}
+      </form>
+    </div>
+  </div>
+</body>
+</html>

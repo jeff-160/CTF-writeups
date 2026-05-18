@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="/static/css/applications.css">
+</head>
+<body>
+  <div id="applications_page">
+    <h1>Applications required to be checked</h1>
+    <div>
+      {% if applications %}
+        {% for application_idx, lecture_idx, lecture_name, applicant_name in applications %}
+          <a href="/applications/{{ application_idx }}">
+            <div>
+              <p>({{ application_idx }}, {{ lecture_idx }}, {{ lecture_name }}, {{ applicant_name }})</p>
+            </div>
+          </a>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</body>
+</html>

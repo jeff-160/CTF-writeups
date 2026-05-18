@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/static/css/login.css">
+</head>
+<body>
+  <div id="margin">
+  </div>
+  <div id="logo">
+    <img src="/static/images/logo.png" height="340" class="logo_img" />
+  </div>
+  <div id="login_page">
+    <div id="form">
+      <form id="login" method="post" action="/sign_in">
+        <input type="text" placeholder="username" name="username" />
+        <input type="password" placeholder="password" name="password" />
+        <button formaction="/sign_in">sign in</button>
+        <button formaction="/sign_up">sign up</button>
+        {% block content %}
+            {% if msg %}
+              <p id="msg">{{ msg }}</p>
+            {% else %}
+              <p id="msg">&nbsp;</p>
+            {% endif %}
+        {% endblock content %}
+      </form>
+    </div>
+  </div>
+</body>
+</html>

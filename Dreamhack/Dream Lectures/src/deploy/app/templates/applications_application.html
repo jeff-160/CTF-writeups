@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="/static/css/applications_application.css">
+</head>
+<body>
+  <h1>Lecture Information</h1>
+  <div id="lecture_info">
+    <div id="form">
+      <form id="apply_lecture" method="post" action="/apply_lecture">
+        <div>
+          <h2>Lecture Name</h2>
+          {{ lecture_name }}
+        </div>
+        <div>
+          <h2>Lecturer</h2>
+          {{ lecturer_name }}
+        </div>
+        <div>
+          <h2>Description</h2>
+          {{ description }}
+        </div>
+        <div>
+          <h2>Lecture Date</h2>
+          {{ lecture_start }} ~ {{ lecture_end }}
+        </div>
+        <div>
+          <h2>Registration Date</h2>
+          {{ registration_start }} ~ {{registration_due }}
+        </div>
+      </form>
+    </div>
+  </div>
+  <h1>Submitted Application</h1>
+  <div>
+    <div id="form">
+      <form id="apply_lecture" method="post" action="/apply_lecture">
+        <div>
+          <h2>Applicant Name</h2>
+          {{ applicant_name }}
+        </div>
+        <div>
+          <h2>Email</h2>
+          {{ email }}
+        </div>
+        <div>
+          <h2>Contact</h2>
+          {{ contact }}
+        </div>
+        <div>
+          <h2>Application Reason</h2>
+          {% autoescape false %}
+          {{ reason }}
+          {% endautoescape %}
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+body {
+  background: #F6DDC8;
+  font-family: "Monaco", "Lucida Console", "Courier New", monospace;
+}
+
+div.margin {
+}
+
+img.logo_img {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center;
+}
+
+#form {
+  background: #FFFFFF;
+  box-shadow: 5px 5px 5px 3px rgba(0, 0, 0, 0.2);
+  font-family: "Monaco", "Lucida Console", "Courier New", monospace;
+  margin: 0 auto 100px;
+  max-width: 360px;
+  padding: 45px;
+  text-align: center;
+}
+
+#form button {
+  background: #EDBC92;
+  border: 0;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-family: "Monaco", "Lucida Console", "Courier New", monospace;
+  font-size: 14px;
+  height: 3.5em;
+  margin: 0 0 6px;
+  width: 100%;
+}
+
+#form input {
+  background: #FDF4ED;
+  border: 0;
+  box-sizing: border-box;
+  font-family: "Monaco", "Lucida Console", "Courier New", monospace;
+  font-size: 14px;
+  margin: 0 0 12px;
+  padding: 14px;
+  width: 100%;
+}
+
+#login_page {
+  margin: auto;
+  padding: 1.618% 0 0;
+  width: 400px;
+}
+
+#msg {
+  font-family: "Monaco", "Lucida Console", "Courier New", monospace;
+  color: #FF6961;
+}

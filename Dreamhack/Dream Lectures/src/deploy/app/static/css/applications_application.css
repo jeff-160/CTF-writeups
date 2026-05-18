@@ -1,0 +1,11 @@
+body {
+  background: #F6DDC8;
+  font-family: "Monaco", "Lucida Console", "Courier New", monospace;
+}
+
+h1 {
+  color: #72472D;
+  font-size: 60px;
+  font-weight: bold;
+  text-align: center;
+}
