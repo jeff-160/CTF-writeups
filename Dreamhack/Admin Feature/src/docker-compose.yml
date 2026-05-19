@@ -1,0 +1,14 @@
+services:
+  app:
+    build: ./deploy/
+    container_name: app
+    ports:
+      - "8003:8003"
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
