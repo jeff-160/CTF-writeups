@@ -1,0 +1,12 @@
+services:
+  web:
+    container_name: web
+    build: ./app
+    ports:
+      - '8000:8000'
+  bot:
+    container_name: bot
+    build: ./bot
+    ports:
+      - '9999:9999'
+      

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>View File Content</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #000000 0%, #000080 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 10px;
+      padding: 20px 40px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      max-width: 600px;
+      width: 90%;
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+    form {
+      margin-bottom: 20px;
+    }
+    input[type="text"] {
+      width: 80%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #000080;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+    button:hover {
+      background-color: #000066;
+    }
+    #resultViewer {
+      background: #fafafa;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 20px;
+      text-align: left;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>View File Content</h1>
+    <form id="loadFileForm">
+      <input type="text" id="filenameInput" placeholder="Enter file name..." required>
+      <button type="submit">Load</button>
+    </form>
+    <div id="resultViewer">
+      Enter a file name and click the Load button to view the file content.
+    </div>
+  </div>
+  
+  <script>
+    const form = document.getElementById('loadFileForm');
+    const filenameInput = document.getElementById('filenameInput');
+    const resultViewer = document.getElementById('resultViewer');
+    
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const filename = filenameInput.value.trim();
+      if (!filename) {
+        alert("Please enter a file name!");
+        return;
+      }
+      fetch(`/load-file?filename=${encodeURIComponent(filename)}`)
+        .then(response => {
+          if (!response.ok) {
+            return response.text().then(text => { throw new Error(text) });
+          }
+          return response.text();
+        })
+        .then(data => {
+          resultViewer.innerHTML = data;
+        })
+        .catch(error => {
+          resultViewer.textContent = `Error: ${error.message}`;
+        });
+    });
+  </script>
+</body>
+</html>
