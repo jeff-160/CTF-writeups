@@ -1,0 +1,55 @@
+.report-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    background-color: #fff5e6; 
+}
+
+
+.report-box {
+    text-align: center;
+}
+
+label {
+    font-weight: bold;
+    color: #5a3825; 
+}
+
+input[type="text"] {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    background-color: #ffffff;
+}
+
+.report-button {
+    background-color: #d2691e;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.report-button:hover {
+    background-color: #8b4513;
+}
+
+.success-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    font-size: 24px;
+}
+
+.fail-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    font-size: 24px;
+}

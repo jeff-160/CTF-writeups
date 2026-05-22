@@ -1,0 +1,12 @@
+.memo-container {
+    padding: 20px;
+    text-align: center;
+}
+.memo-box {
+    background-color: #f3e5ab;
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+}

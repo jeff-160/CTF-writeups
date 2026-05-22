@@ -1,0 +1,28 @@
+body {
+    font-family: 'Times New Roman', serif;
+    background-color: #fff5e6;
+    color: #5a3825;
+}
+
+.container h2 {
+    color: #d2691e;
+}
+
+.form-group label {
+    color: #8b4513;
+}
+
+.form-control {
+    background-color: #ffffff;
+    border: 1px solid #deb887;
+}
+
+.btn-brown {
+    background-color: #6b4226;
+    border-color: #6b4226;
+}
+
+.btn-brown:hover {
+    background-color: #8b4513;
+    border-color: #8b4513;
+}

@@ -1,0 +1,17 @@
+{% include "header.html" %}
+
+    {% block content %}
+    <div class="memo-container">
+        <div class="memo-box">
+            <h2>Memo:</h2>
+            {% if memo %}
+            <p>{{ memo | safe }}</p>
+            {% else %}
+            <p>No memo provided.</p>
+            {% endif %}
+        </div>
+    </div>
+    {% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+.bread-container {
+    text-align: center;
+    padding: 20px;
+    background-color: #f3e5ab;
+    margin: 20px auto;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+}
+.bread-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}

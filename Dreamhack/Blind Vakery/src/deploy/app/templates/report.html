@@ -1,0 +1,29 @@
+{% include "header.html" %}
+
+{% block content %}
+<div class="comment">
+</div>
+<section class="report-container">
+    <form action="/report" method="post">
+        <div class="report-box">
+            <input type="text" class="report-input" id="memo" name="memo" placeholder="Please enter text">
+            <button class="report-button">Report</button>
+        </div>
+    </form>
+</section>
+{% if msg=="success" %}
+<div class="success-message">
+    <p>{{msg}}</p>
+</div>
+{% elif msg=="fail" %}
+<div class="fail-message">
+    <p>{{msg}}</p>
+</div>
+{% endif %}
+{% endblock %}
+
+
+</body>
+
+</html>
+

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/default.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/memo.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/report.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bread.css') }}">
+</head>
+
+<body>
+    <header>
+        <h1>Vakery</h1>
+        <nav>
+            <ul>
+                {% if session["username"] %}
+                <li><a href="/logout">Logout</a></li>
+                {% else %}
+                <li><a href="/login">Login</a></li>
+                {% endif %}
+                <li><a href="/memo">Memo</a></li>
+                <li><a href="/bread">Bread</a></li>
+                <li><a href="/report">Report</a></li>
+            </ul>
+        </nav>
+    </header>
