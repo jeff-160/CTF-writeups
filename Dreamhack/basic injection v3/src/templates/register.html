@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+</head>
+<body>
+    <h1>Register</h1>
+    <form onsubmit="register(event)">
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <input type="email" id="email" placeholder="Email">
+        <button type="submit">Register</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        async function register(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const email = document.getElementById('email').value;
+
+            const response = await fetch('/api/register', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({username, password, email})
+            });
+            
+            const data = await response.json();
+            document.getElementById('result').textContent = data.status;
+            location.href = '/login'; 
+        }
+    </script>
+    
+</body>
+</html>

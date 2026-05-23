@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+</head>
+<body>
+    <h1>Home</h1>
+    <div id="welcome"></div>
+    <a href="/login">Login</a>
+    <a href="/register">Register</a>
+
+    <script>
+        const username = sessionStorage.getItem('username');
+        if (username) {
+            document.getElementById('welcome').textContent = 'Welcome ' + username;
+        }
+    </script>
+</body>
+</html>
