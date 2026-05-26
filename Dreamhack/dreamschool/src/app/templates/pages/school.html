@@ -1,0 +1,40 @@
+{% extends "layouts/main.html" %}
+{% block title %}{{ school_name }}{% endblock %}
+{% block content %}
+    <div class="main wrapper">
+        {{ title(school_name) }}
+        <div class="boards">
+            {% for board in boards %}
+                <div class="card board">
+                {% if (board.data.mfa_enabled and mfa_passed) or (not board.data.mfa_enabled and board.visible) %}
+                    <div class="top">
+                        <a class="title" href="/s/{{ school_name }}/{{ board.data.id }}">{{ board.data.name }}</a>
+                        <a class="sticky-button" href="/s/{{ school_name }}/{{ board.data.id }}">더보기</a>
+                    </div>
+                    <div class="content">
+                        {% for post in board.data.post[::-1][:4] %}
+                            {{ post_list_elem(post, board.data.id) }}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <a class="title" href="/s/{{ school_name }}">{{ board.data.name }}</a>
+                    {% if board.visible and board.data.mfa_enabled %}
+                        <div class="banner">2차 인증이 활성화되어 있는 게시판입니다. 한번 더 로그인해주세요.</div>
+                        <form class="subcard form" method="post">
+                            {{ form.csrf_token }}
+
+                            {{ form.username(class_ = 'form-control first-input', placeholder = form.username.label.text, required = true, autofocus = true) }}
+                            {{ form.password(class_ = 'form-control last-input', placeholder = form.password.label.text, required = true) }}
+                            {{ form_error() }}
+                            <input type="submit" value="인증">
+                        </form>
+                    {% else %}
+                        <p>{{ board.data.school_name }} 재학생만 확인할 수 있는 게시판입니다.</p>
+                    {% endif %}
+                {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

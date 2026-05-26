@@ -1,0 +1,16 @@
+{% extends 'layouts/form.html' %}
+{% block title %}글쓰기{% endblock %}
+{% block content %}
+    <div class="main">
+        {{ title(school_name) }}
+        <form class="card form" method="post">
+            <h1>글쓰기</h1>
+            {{ form.csrf_token }}
+
+            {{ form.title(class_ = 'form-control first-input', placeholder = form.title.label.text, required = true, autofocus = true) }}
+            {{ form.content(class_ = 'form-control last-input', placeholder = form.content.label.text, required = true) }}
+            {{ form_error() }}
+            <input type="submit" value="올리기">
+        </form>
+    </div>
+{% endblock %}

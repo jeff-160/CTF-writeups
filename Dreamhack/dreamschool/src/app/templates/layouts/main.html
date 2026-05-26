@@ -1,0 +1,58 @@
+{% macro title(school_name, school_id) -%}
+    <div class="title">
+        <img class="logo" onclick="location.href='/'" src="{{ url_for("static", filename="img/logo.svg") }}">
+        <h1 class="name" onclick="location.href='/s/{{ school_name }}'">{{ school_name }}</h1>
+    </div>
+{%- endmacro %}
+
+{% macro post_list_elem(post, board_id) -%}
+    <a class="post-list-elem" href="/s/{{ school_name }}/{{ board_id }}/{{ post.id }}">
+        <div class="row">
+            <div class="title">
+                {{ post.title }}
+            </div>
+            <div class="datetime">
+                {{ post.created_at | strftime("brief") }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="author capsule">
+                {{ post.username }}
+            </div>
+            <div class="content">
+                {{ post.content | post_list_elem_content }}
+            </div>
+        </div>
+    </a>
+{%- endmacro %}
+
+{% macro form_error() -%}
+    {% if form.errors.items() or error %}
+        <div class="error">
+            <ul>
+                {% for key, value in form.errors.items() %}
+                    {% for error in value %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+                {% if error %}
+                    <li>{{ error }}</li>
+                {% endif %}
+            </ul>
+        </div>
+    {% endif %}
+{%- endmacro %}
+
+<!doctype html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %}{% endblock %} — dreamschool</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    </head>
+    <body>
+        {% block content %}{% endblock %}
+    </body>
+</html>

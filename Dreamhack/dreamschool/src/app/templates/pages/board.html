@@ -1,0 +1,23 @@
+{% extends "layouts/main.html" %}
+{% block title %}{{ school_name }}{% endblock %}
+{% block content %}
+    <div class="main wrapper">
+        {{ title(school_name) }}
+        {% if board.visible %}
+        <div class="card board">
+            <div class="top">
+                <a class="title" href="/s/{{ school_name }}/{{ board.data.id }}">{{ board.data.name }}</a>
+                <a class="sticky-button" href="/s/{{ school_name }}/{{ board.data.id }}/post">글쓰기</a>
+            </div>
+            <div class="content">
+                {% for post in board.data.post[::-1] %}
+                    {{ post_list_elem(post, board.data.id) }}
+                {% endfor %}
+            </div>
+        </div>
+        {% else %}
+            <p>열람할 수 있는 권한이 없습니다.</p>
+        {% endif %}
+    </div>
+
+{% endblock %}

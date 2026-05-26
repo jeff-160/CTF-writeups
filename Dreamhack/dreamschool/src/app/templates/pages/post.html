@@ -1,0 +1,23 @@
+{% extends "layouts/main.html" %}
+{% block title %}{{ school_name }}{% endblock %}
+{% block content %}
+    <div class="main wrapper">
+        {{ title(school_name) }}
+        <div class="card">
+            <div class="post">
+                <div class="top">
+                    <h1 class="post-title">{{ post.title }}</h1>
+                    <a class="sticky-button" href="/s/{{ school_name }}/{{ board.data.id }}">{{ board.data.name }}</a>
+                </div>
+
+                <div class="author">
+                    <div class="username capsule">{{ post.username }}</div>
+                    <div class="datetime capsule">{{ post.created_at | strftime }}</div>
+                </div>
+                <p class="content">{{ post.content }}</p>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

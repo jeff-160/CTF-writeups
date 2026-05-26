@@ -1,0 +1,16 @@
+{% extends 'layouts/form.html' %}
+{% block title %}Register{% endblock %}
+{% block content %}
+    <img class="form-logo" onclick="location.href='/'" src="{{ url_for("static", filename="img/logo.svg") }}">
+    <form class="card form" method="post">
+        <h1>회원가입</h1>
+        {{ form.csrf_token }}
+
+        {{ form.username(class_ = 'form-control first-input', placeholder = form.username.label.text, required = true, autofocus = true) }}
+        {{ form.password(class_ = 'form-control', placeholder = form.password.label.text, required = true) }}
+        {{ form.password_confirm(class_ = 'form-control last-input', placeholder = form.password_confirm.label.text, required = true) }}
+        {{ form.school(class_ = 'form-control last-input', placeholder = form.school.label.text, required = true) }}
+        {{ form_error() }}
+        <input type="submit" value="회원가입">
+    </form>
+{% endblock %}

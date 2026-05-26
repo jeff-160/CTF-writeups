@@ -1,0 +1,355 @@
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+
+* {
+    font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+    transition: width 0.5s, height 0.5s;
+}
+
+textarea:focus, input:focus {
+    outline: none;
+}
+
+body {
+    margin: 0;
+    background: #f0f0f5;
+}
+
+.divider {
+    background-color: rgba(97, 96, 99, 0.2);
+    height: 1px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: white;
+    width: 35vmax;
+    padding: 2rem;
+    margin: 0 auto 1rem;
+    border: none;
+    border-radius: 2rem;
+    box-shadow: 10px 10px 20px 1px rgba(0, 0, 0, 0.05);
+}
+
+.subcard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: white;
+    width: 100%;
+    padding: 2rem;
+    margin: 0 auto 1rem;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 10px 10px 20px 1px rgba(107, 122, 247, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(107, 122, 247, 1.0);
+    border-radius: 2rem;
+}
+
+.banner {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #ffdf87;
+    padding: 15px;
+    border-radius: 0.5rem;
+    margin-bottom: 20px;
+}
+
+.button {
+    text-decoration: none;
+    color: white;
+    padding: .75rem 1.5rem;
+    margin-bottom: .5rem;
+    background: #6b7af7;
+    border-radius: 2rem;
+    box-shadow: -10px 10px 30px 0 rgba(0, 0, 0, 0.1);
+}
+
+.landing {
+    width: 100vw;
+    height: 100vh;
+}
+
+.landing > .logo {
+    width: 500px;
+    margin-bottom: 25px;
+}
+
+.landing > .description {
+    font-size: 1.5em;
+    margin-bottom: 45px;
+}
+
+.landing > .bar > .button {
+    text-decoration: none;
+    color: white;
+    padding: .75rem 1.5rem;
+    margin-bottom: .5rem;
+    background: #6b7af7;
+    border-radius: 2rem;
+    box-shadow: -10px 10px 30px 0 rgba(0, 0, 0, 0.1);
+}
+
+.form {
+
+}
+
+.form > input, .form > textarea {
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid #dedee6;
+    border-radius: 0;
+    display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #616063;
+    background-color: #fff;
+    background-clip: padding-box;
+    margin-bottom: 20px;
+}
+
+.form > textarea {
+    height: 200px;
+    resize: none;
+}
+
+.form > input[type=submit] {
+    text-decoration: none;
+    color: white;
+    padding: .75rem 1.5rem;
+    margin-bottom: .5rem;
+    background: #6b7af7;
+    border-radius: 2rem;
+    box-shadow: -10px 10px 30px 0 rgba(0, 0, 0, 0.1);
+    border: none;
+    height: 50px;
+}
+
+.form > .error {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: rgb(255, 214, 207);
+    border-radius: 0.5rem;
+    margin-bottom: 20px;
+    border: 1px solid rgb(255, 173, 161);
+}
+
+.main > .title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.main > .title > .logo {
+    width: 150px;
+    cursor: pointer;
+}
+
+.main > .title > .name {
+    margin-top: 15px;
+    font-size: 2.5em;
+    cursor: pointer;
+}
+
+.main > .boards {
+    display: flex;
+    flex-direction: row;
+}
+
+.board {
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin: 20px;
+    height: 50vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.board::-webkit-scrollbar {
+    display: none;
+}
+
+.board > .title, .top > .title {
+    color: #6b7af7;
+    text-decoration: none;
+    font-weight: lighter;
+    font-size: 2em;
+    margin-bottom: 20px;
+    position: sticky;
+    top: 0;
+}
+
+.top {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+}
+
+.top > .title {
+    margin-bottom: 0;
+}
+
+.sticky-button {
+    display: flex;
+    text-decoration: none;
+    color: white;
+    padding: .75rem 1.5rem;
+    margin-bottom: .5rem;
+    background: #6b7af7;
+    border-radius: 2rem;
+    box-shadow: -10px 10px 30px 0 rgba(0, 0, 0, 0.1);
+}
+
+.board > .content {
+    background-color: rgba(255, 255, 255, 0.1);
+    z-index: 10;
+    width: 100%;
+    backdrop-filter: blur(20px);
+    position: relative;
+    left: -32px;
+    padding: 20px 32px;
+    border-radius: 2rem;
+}
+.post-list-elem {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: black;
+    text-decoration: none;
+    margin-bottom: 15px;
+}
+
+.post-list-elem > .row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 5px;
+}
+.post-list-elem > * > .title {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.post-list-elem > * > .author {
+    font-weight: lighter;
+    font-size: 0.85em;
+}
+
+.post-list-elem > * > .datetime {
+    font-weight: lighter;
+    font-size: 0.85em;
+    margin-left: 7px;
+}
+
+.post-list-elem > * > .content {
+    font-weight: normal;
+    font-size: 0.9em;
+    margin-left: 7px;
+    color: #5f5f5f;
+}
+
+.post {
+    width: 100%;
+}
+
+.post > .top {
+    align-items: center;
+}
+
+.post > * > .post-title {
+    margin: 0;
+}
+
+.post > .author {
+    display: flex;
+    font-weight: lighter;
+    flex-direction: row;
+    font-size: 0.85em;
+    margin-bottom: 30px;
+}
+
+.post > .content {
+    font-weight: 300;
+    line-height: 1.6em;
+}
+
+.capsule {
+    padding: 4px 8px;
+    border-radius: 20px;
+    background-color: rgba(97, 96, 99, 0.2);
+}
+
+.capsule + .capsule {
+    margin-left: 5px;
+}
+
+.form-logo {
+    width: 200px;
+    margin-bottom: 25px;
+}
+
+@media (max-width: 850px) {
+    .landing > .logo {
+        width: 400px;
+    }
+
+    .wrapper {
+        height: auto;
+    }
+
+    .landing {
+        height: 100vh;
+    }
+
+    .landing > .logo {
+        width: 250px;
+        margin-bottom: 10px;
+    }
+
+    .landing > .description {
+        font-size: 1.2em;
+    }
+
+    .wrapper > .form-logo {
+        margin-top: 60px
+    }
+
+    .main > .title {
+        margin-top: 60px;
+    }
+    .main > .boards {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 60px;
+    }
+
+    .card {
+        width: 75vw;
+    }
+}

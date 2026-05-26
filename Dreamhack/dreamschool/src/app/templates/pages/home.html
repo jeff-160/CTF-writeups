@@ -1,0 +1,12 @@
+{% extends 'layouts/main.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+    <div class="wrapper landing">
+        <img class="logo" src={{ url_for("static", filename="img/logo.svg") }} />
+        <div class="description">전세계 모든 학교를 위한 <strong>학교 커뮤니티</strong></div>
+        <div class="bar">
+            <a class="button" href="{{ url_for("login") }}">로그인</a>
+            <a class="button" href="{{ url_for("register") }}">회원가입</a>
+        </div>
+    </div>
+{% endblock %}

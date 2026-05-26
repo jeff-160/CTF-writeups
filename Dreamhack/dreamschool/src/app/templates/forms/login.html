@@ -1,0 +1,14 @@
+{% extends 'layouts/form.html' %}
+{% block title %}로그인{% endblock %}
+{% block content %}
+    <img class="form-logo" onclick="location.href='/'" src="{{ url_for("static", filename="img/logo.svg") }}">
+    <form class="card form" method="post">
+        <h1>로그인</h1>
+        {{ form.csrf_token }}
+
+        {{ form.username(class_ = 'form-control first-input', placeholder = form.username.label.text, required = true, autofocus = true) }}
+        {{ form.password(class_ = 'form-control last-input', placeholder = form.password.label.text, required = true) }}
+        {{ form_error() }}
+        <input type="submit" value="로그인">
+    </form>
+{% endblock %}
