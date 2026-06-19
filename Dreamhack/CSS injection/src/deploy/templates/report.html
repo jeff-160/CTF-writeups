@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block head %}
+  {{ super() }}
+{% endblock %}
+
+{% block content %}
+<style>
+    .col-sm-4{
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+    .col-sm-6{
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+</style>
+<div class="box">
+    <h4 class="title is-4">Report</h4>
+    <small>Report Error Page !</small>
+    <form method="POST">
+        <div class="form-row align-items-center">
+          <div class="col-sm-4">
+            <label class="sr-only" for="inlineFormInputName">Name</label>
+            <input type="text" class="form-control" id="inlineFormInputName" value="http://127.0.0.1:8000/" disabled>
+          </div>
+          <div class="col-sm-6">
+            <label class="sr-only" for="inlineFormInputName">Name</label>
+            <input type="text" class="form-control" id="inlineFormInputName" name="path" placeholder="Path">
+          </div>
+          <br/><br/>
+          <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Report</button>
+          </div>
+        </div>
+      </form>
+</div>
+{% endblock %}

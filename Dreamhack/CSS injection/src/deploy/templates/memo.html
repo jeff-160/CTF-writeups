@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block head %}
+  {{ super() }}
+{% endblock %}
+
+{% block content %}
+<form method="POST">
+  <div class="form-group">
+    <label for="memo">Memo</label>
+    <textarea class="form-control" id="memo" name="memo" rows="3"></textarea>
+  </div>
+  <button type="submit" class="btn btn-default">Add</button>
+</form><br/>
+{% if memos %}
+    {% for memo in memos %}
+        <div class="alert alert-success" role="alert">
+            {{ memo[2] }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% endblock %}

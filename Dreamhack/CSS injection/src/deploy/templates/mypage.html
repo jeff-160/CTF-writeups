@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block head %}
+  {{ super() }}
+{% endblock %}
+
+{% block content %}
+<div class="form-group">
+  <label for="InputUid">UID</label>
+  <input type="text" class="form-control" id="InputUid" readonly value="{{ user[0] }}">
+</div>
+
+<div class="form-group">
+  <label for="InputUsername">Username</label>
+  <input type="text" class="form-control" id="InputUsername" readonly value="{{ user[1] }}">
+</div>
+
+<div class="form-group">
+  <label for="InputApitoken">API Token</label>
+  <input type="text" class="form-control" id="InputApitoken" readonly value="{{ user[3] }}">
+  <button class="btn btn-primary" onclick="TokenCopy()">Copy</button>
+</div>
+<script>
+function TokenCopy() {
+  var copyText = document.getElementById("InputApitoken");
+  copyText.focus();
+  copyText.select();
+  try {
+    var successful = document.execCommand('copy');
+    alert('Copied !');
+  } catch (err) {
+    alert('Oops, unable to copy');
+  }
+}
+</script>
+{% endblock %}
