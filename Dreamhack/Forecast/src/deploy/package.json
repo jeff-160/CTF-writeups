@@ -1,0 +1,17 @@
+{
+  "name": "forecast",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "drizzle-orm": "0.45.2",
+    "express": "^4.21.0",
+    "multer": "1.4.5-lts.1",
+    "mysql2": "^3.11.0",
+    "tar": "^6.2.1"
+  }
+}

@@ -1,0 +1,14 @@
+services:
+  app:
+    build: ./deploy
+    container_name: app
+    restart: unless-stopped
+    environment:
+      MYSQL_HOST: 127.0.0.1
+      MYSQL_PORT: "3306"
+      MYSQL_USER: forecast
+      MYSQL_PASSWORD: forecastpw
+      MYSQL_DATABASE: forecast
+      PORT: "3000"
+    ports:
+      - "3000:3000"
