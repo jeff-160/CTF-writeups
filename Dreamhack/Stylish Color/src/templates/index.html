@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Stylish Color</title>
+</head>
+<body>
+    <h1>Stylish Oracle</h1>
+    <p>Submit CSS and the service will evaluate it against a hidden DOM.</p>
+    <p>Your goal is to infer the secret by watching the oracle color.</p>
+    <p>The oracle returns the last matching background value for <code>#oracle</code>.</p>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <form action="{{ url_for('submit') }}" method="POST">
+        <textarea
+            name="css"
+            rows="16"
+            cols="100"
+            placeholder="Enter your CSS here"
+        ></textarea>
+        <br>
+        <button type="submit">Run Oracle</button>
+    </form>
+
+    <hr>
+
+    <h2>Previous Results</h2>
+    {% if reports %}
+        <ul>
+            {% for report in reports %}
+                <li>
+                    <a href="{{ url_for('view_report', idx=loop.index0) }}">
+                        View #{{ loop.index0 }}: {{ report.status }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No reports yet.</p>
+    {% endif %}
+</body>
+</html>

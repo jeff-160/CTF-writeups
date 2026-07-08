@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Oracle Result</title>
+</head>
+<body>
+    <h1>Oracle Result</h1>
+    <p>Submission #{{ idx }}</p>
+    <p>Current oracle color: <strong>{{ report.status }}</strong></p>
+
+    {% if report.error %}
+        <p><strong>Oracle error:</strong> {{ report.error }}</p>
+    {% endif %}
+
+    <h2>Submitted CSS</h2>
+    <pre>{{ report.css }}</pre>
+
+    <a href="{{ url_for('index') }}">Back</a>
+</body>
+</html>
