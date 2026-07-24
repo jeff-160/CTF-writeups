@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  heliodor:
+    build:
+      context: app
+    ports:
+      - 58283:58283
+    networks:
+      - internal
+
+  local:
+    build:
+      context: local
+    ports:
+      - 2222:2222
+    networks:
+      - internal
+
+networks:
+  internal:
