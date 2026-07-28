@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  weird_file_upload:
+    container_name: weird_file_upload
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "12312:80"
