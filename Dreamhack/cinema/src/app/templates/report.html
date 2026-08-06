@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinema Complaint Report</title>
+    <style>
+        :root {
+            --primary-color: #1a1a1a;
+            --secondary-color: #f0f0f0;
+            --accent-color: #e50914;
+            --text-color: #ffffff;
+        }
+        body {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url('https://via.placeholder.com/1920x1080/1a1a1a/1a1a1a?text=');
+            background-size: cover;
+            background-position: center;
+        }
+        .container {
+            background-color: rgba(26, 26, 26, 0.8);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 500px;
+        }
+        h1 {
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+        .input-group {
+            display: flex;
+            margin-bottom: 1rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .input-group span {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem;
+            color: var(--secondary-color);
+        }
+        input[type="text"] {
+            flex-grow: 1;
+            padding: 0.5rem;
+            border: none;
+            background-color: transparent;
+            color: var(--text-color);
+        }
+        button {
+            background-color: var(--accent-color);
+            color: var(--text-color);
+            padding: 0.7rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #f40612;
+        }
+        .message {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cinema Complaint Report</h1>
+        <form action='/report' method="POST">
+            <label for="path">Report URL:</label>
+            <div class="input-group">
+                <span>http://localhost/</span>
+                <input type="text" id="path" name="path" placeholder="Enter page path">
+            </div>
+            <button type="submit">Submit Report</button>
+        </form>
+        {% if msg %}
+            <div class="message">
+                <p>{{ msg }}</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

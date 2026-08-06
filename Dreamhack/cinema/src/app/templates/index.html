@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Cinema Experience</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #1a1a1a;
+            --secondary-color: #f0f0f0;
+            --text-color: #ffffff;
+            --accent-color: #e50914;
+        }
+
+        body {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            transition: background-color 0.3s ease;
+        }
+
+        #screen {
+            width: 90%;
+            max-width: 1200px;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        #title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        #title:hover {
+            transform: scale(1.05);
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+        }
+
+        #videoContainer {
+            position: relative;
+            width: 100%;
+        }
+
+        video {
+            width: 100%;
+            display: block;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        #playPauseBtn {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: var(--accent-color);
+            color: var(--text-color);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease, opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        #playPauseBtn:hover {
+            background-color: #f40612;
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            #screen {
+                width: 95%;
+                padding: 20px;
+            }
+
+            #title {
+                font-size: 2em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #title {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="screen">
+        <h3 id="title">Welcome to Our Cinema</h3>
+        <div id="videoContainer">
+            <video id="cinemaVideo" autoplay loop muted playsinline>
+                <source src="{{ url_for('static', filename='video.mp4') }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <button id="playPauseBtn">Pause</button>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='code.js') }}"></script>
+</body>
+</html>
