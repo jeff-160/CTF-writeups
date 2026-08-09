@@ -1,0 +1,8 @@
+<%- include("partials/head", { title: title, user: user }) %>
+<h1 class="page-title"><%= post.title %></h1>
+<p class="page-subtitle">by <%= post.author %></p>
+<%- include("partials/note", { note: note }) %>
+<div class="post-body">
+  <%- post.content %>
+</div>
+<%- include("partials/foot") %>

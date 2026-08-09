@@ -1,0 +1,14 @@
+services:
+  webwargame01:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${HOST_PORT:-3000}:3000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      SECRET: "redacted"
+      TIMEOUT: "60000"
+      ORIGINS: "http://localhost:${HOST_PORT:-3000},http://127.0.0.1:${HOST_PORT:-3000}"
+    restart: unless-stopped

@@ -1,0 +1,17 @@
+<header class="topbar">
+  <nav class="topnav">
+    <div class="nav-left">
+      <a class="nav-button" href="/">home</a>
+      <a class="nav-button" href="/write">write</a>
+    </div>
+    <div class="nav-right">
+      <% if (user) { %>
+        <a class="nav-button" href="/report">report</a>
+        <a class="nav-button" href="/logout">logout</a>
+      <% } else { %>
+        <a class="nav-button" href="/register">register</a>
+        <a class="nav-button" href="/login">login</a>
+      <% } %>
+    </div>
+  </nav>
+</header>

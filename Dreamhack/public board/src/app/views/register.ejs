@@ -1,0 +1,11 @@
+<%- include("partials/head", { title: title, user: user }) %>
+<h1 class="page-title">Register</h1>
+<%- include("partials/note", { note: note }) %>
+<form class="form" method="post">
+  <label for="username">Username</label>
+  <input id="username" type="text" name="username" />
+  <label for="password">Password</label>
+  <input id="password" type="password" name="password" />
+  <input type="submit" value="Register" />
+</form>
+<%- include("partials/foot") %>

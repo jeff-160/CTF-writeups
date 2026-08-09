@@ -1,0 +1,169 @@
+:root {
+  --bg: #f3f4f6;
+  --surface: #ffffff;
+  --nav: #f8fafc;
+  --line: #d6dae0;
+  --text: #1f1f1f;
+  --muted: #667085;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  background: var(--bg);
+  font-family: "Segoe UI", sans-serif;
+}
+
+a {
+  color: var(--text);
+}
+
+.topbar {
+  border-bottom: 1px solid var(--line);
+  background: var(--nav);
+}
+
+.topnav {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav-left,
+.nav-right {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.nav-button {
+  display: inline-block;
+  padding: 8px 14px;
+  border: 0;
+  border-radius: 4px;
+  background: var(--nav);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 16px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.nav-button:hover {
+  background: #eef2f7;
+}
+
+.wrap {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 20px 40px;
+}
+
+.page-title {
+  margin: 0 0 8px;
+  font-size: 32px;
+  line-height: 1.1;
+}
+
+.page-subtitle {
+  margin: 0 0 20px;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.note {
+  margin: 0 0 18px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.post-list li {
+  margin-bottom: 12px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.post-list a {
+  display: block;
+  padding: 16px 18px;
+  text-decoration: none;
+}
+
+.post-list a:hover {
+  background: #f8fafc;
+}
+
+.post-title {
+  margin: 0 0 6px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.post-meta {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.form {
+  max-width: 640px;
+}
+
+.form label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.form input[type="text"],
+.form input[type="password"],
+.form textarea {
+  width: 100%;
+  margin-bottom: 14px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+}
+
+.form textarea {
+  resize: vertical;
+}
+
+.form input[type="submit"] {
+  width: auto;
+  min-width: 110px;
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 4px;
+  background: var(--nav);
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.form input[type="submit"]:hover {
+  background: #eef2f7;
+}
+
+.post-body {
+  padding: 18px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}

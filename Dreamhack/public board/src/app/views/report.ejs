@@ -1,0 +1,9 @@
+<%- include("partials/head", { title: title, user: user }) %>
+<h1 class="page-title">Report</h1>
+<%- include("partials/note", { note: note }) %>
+<form class="form" method="post">
+  <label for="url">Report URL</label>
+  <input id="url" type="text" name="url" value="<%= url %>" />
+  <input type="submit" value="Report" />
+</form>
+<%- include("partials/foot") %>
