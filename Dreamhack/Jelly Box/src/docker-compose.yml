@@ -1,0 +1,7 @@
+services:
+    jelly-box:
+        build: ./deploy
+        image: jelly-box:latest
+        container_name: jelly-box
+        ports:
+            - "9797:9797"
