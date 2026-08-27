@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catstagram - Cat Feed</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/modals.js') }}" defer></script>
+</head>
+<body>
+    <!-- Flash Messages -->
+    {% include 'flash_messages.html' %}
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="{{ url_for('dashboard') }}" class="logo">Catstagram</a>
+            <div class="nav-links">
+                <a href="{{ url_for('dashboard') }}">🏠 Home</a>
+                <a href="#" onclick="scrollToUpload()">📷 Upload</a>
+                <a href="{{ url_for('index') }}">👋 Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <div class="feed-container">
+            <!-- Main Feed -->
+            <div class="feed-main">
+                <!-- Upload Section -->
+                <section class="upload-section" id="upload-section">
+                    <div class="upload-header">
+                        <img src="{{ url_for('static', filename='avatar/default.png') }}" alt="Your avatar" class="upload-avatar">
+                        <span style="font-weight: 600; color: #262626;">Share a new cat moment</span>
+                    </div>
+                    <form action="?action=upload" method="post" enctype="multipart/form-data" class="upload-form">
+                        <div style="width: 100%; display: flex; flex-direction: column; gap: 12px;">
+                            <div class="form-group">
+                                <input type="text" name="cat_name" class="form-control" placeholder="Cat's name (optional)" style="margin-bottom: 8px;">
+                            </div>
+                            <div class="form-group">
+                                <textarea name="description" class="form-control" placeholder="What's happening with this cute cat?" rows="2" style="resize: vertical; font-family: inherit;"></textarea>
+                            </div>
+                            <div style="display: flex; gap: 12px; align-items: center;">
+                                <div class="file-input-wrapper" style="flex: 1;">
+                                    <input type="file" name="cat_image" id="cat_image" accept="image/*" required>
+                                    <label for="cat_image" class="file-input-label">
+                                        <span class="icon icon-camera"></span>
+                                        Choose a cat photo
+                                    </label>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Share</button>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- Posts Feed -->
+                {% if cats %}
+                    {% for cat in cats[::-1] %}
+                    <article class="post">
+                        <!-- Post Header -->
+                        <div class="post-header">
+                            <div class="post-user">
+                                <img src="{{ url_for('static', filename='avatar/default.png') }}" alt="{{ cat[2] }}" class="post-avatar">
+                                <span class="post-username">{{ cat[2] }}</span>
+                            </div>
+                            <button class="post-action" style="background: none; border: none; font-size: 16px;">⋯</button>
+                        </div>
+
+                        <!-- Post Image -->
+                        <img src="{{ url_for('static', filename='uploads/' + cat[4]) }}" alt="{{ cat[1] }}" class="post-image">
+
+                        <!-- Post Actions -->
+                        <div class="post-actions">
+                            <form action="?action=like" method="post" style="display: inline;">
+                                <input type="hidden" name="cat_id" value="{{ cat[0] }}">
+                                <button type="submit" class="post-action like-btn">
+                                    <span class="icon icon-heart"></span>
+                                    <span>{{ cat[5] }}</span>
+                                </button>
+                            </form>
+                            <button class="post-action">
+                                <span class="icon icon-comment"></span>
+                            </button>
+                            <button class="post-action">
+                                <span class="icon icon-share"></span>
+                            </button>
+                        </div>
+
+                        <!-- Post Likes -->
+                        <div class="post-likes">
+                            {% if cat[5] == 1 %}
+                                1 like
+                            {% else %}
+                                {{ cat[5] }} likes
+                            {% endif %}
+                        </div>
+
+                        <!-- Post Content -->
+                        <div class="post-content">
+                            <div class="post-caption">
+                                <span class="post-name">{{ cat[1] }}</span>
+                                {{ cat[3] }}
+                            </div>
+                            <div class="post-description">
+                                Shared by {{ cat[2] }}
+                            </div>
+                        </div>
+                    </article>
+                    {% endfor %}
+                {% else %}
+                    <div class="empty-state">
+                        <h3>No cats yet!</h3>
+                        <p>Be the first to share a cute cat photo with the community.</p>
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <!-- User Profile Card -->
+                <div class="sidebar-section">
+                    <div class="post-user">
+                        <img src="{{ url_for('static', filename='avatar/default.png') }}" alt="You" class="post-avatar">
+                        <div>
+                            <div class="post-username">{{ session.user or 'Cat Lover' }}</div>
+                            <div style="font-size: 12px; color: #8e8e8e;">Welcome to Catstagram!</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Suggestions -->
+                <div class="sidebar-section">
+                    <div class="sidebar-title">Suggested for you</div>
+                    <div class="suggested-user">
+                        <img src="{{ url_for('static', filename='avatar/default.png') }}" alt="Cat Community" class="suggested-avatar">
+                        <div class="suggested-info">
+                            <div class="suggested-username">Cat Community</div>
+                            <div class="suggested-name">Join the discussion</div>
+                        </div>
+                    </div>
+                    <div class="suggested-user">
+                        <img src="{{ url_for('static', filename='avatar/default.png') }}" alt="Cute Cats" class="suggested-avatar">
+                        <div class="suggested-info">
+                            <div class="suggested-username">Daily Cats</div>
+                            <div class="suggested-name">Follow for daily content</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Info -->
+                <div style="padding: 16px; font-size: 11px; color: #c7c7c7; line-height: 1.4;">
+                    <p>About • Help • Privacy • Terms</p>
+                    <p style="margin-top: 8px;">© 2024 Catstagram</p>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scroll to upload section
+        function scrollToUpload() {
+            document.getElementById('upload-section').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+
+        // Add animation to like button
+        document.querySelectorAll('.like-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.classList.add('animate');
+                setTimeout(() => this.classList.remove('animate'), 300);
+            });
+        });
+
+        // Preview selected image
+        document.getElementById('cat_image').addEventListener('change', function(e) {
+            if (e.target.files && e.target.files[0]) {
+                const label = document.querySelector('.file-input-label');
+                label.innerHTML = `
+                    <span class="icon icon-camera"></span>
+                    ${e.target.files[0].name}
+                `;
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,260 @@
+/* Mobile-specific enhancements for Catstagram */
+
+@media (max-width: 768px) {
+    /* Navigation adjustments */
+    .nav-container {
+        padding: 0 12px;
+    }
+    
+    .nav-links {
+        gap: 16px;
+    }
+    
+    .nav-links a {
+        font-size: 13px;
+    }
+    
+    /* Welcome page mobile */
+    .welcome-content {
+        padding: 0 20px;
+    }
+    
+    .welcome-logo {
+        font-size: 36px;
+    }
+    
+    .welcome-text {
+        font-size: 15px;
+    }
+    
+    /* Auth forms mobile */
+    .auth-card {
+        margin: 0 20px;
+        padding: 32px 24px;
+    }
+    
+    .auth-logo h1 {
+        font-size: 28px;
+    }
+    
+    /* Feed mobile adjustments */
+    .main-container {
+        padding: 0;
+        margin-top: 54px;
+    }
+    
+    .upload-section {
+        margin: 0 0 16px 0;
+        padding: 16px;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
+    
+    .upload-form {
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
+    }
+    
+    .upload-form .form-group {
+        width: 100%;
+    }
+    
+    .file-input-wrapper {
+        width: 100%;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+    
+    /* Posts mobile */
+    .post {
+        margin-bottom: 16px;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
+    
+    .post-header {
+        padding: 12px 16px;
+    }
+    
+    .post-actions {
+        padding: 6px 16px;
+    }
+    
+    .post-action {
+        padding: 6px;
+        font-size: 13px;
+    }
+    
+    .post-likes {
+        padding: 0 16px;
+        font-size: 13px;
+    }
+    
+    .post-content {
+        padding: 0 16px 12px;
+    }
+    
+    .post-caption {
+        font-size: 13px;
+    }
+    
+    /* Hide sidebar on mobile */
+    .sidebar {
+        display: none;
+    }
+    
+    .feed-container {
+        justify-content: center;
+    }
+    
+    .feed-main {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Extra small screens */
+    .welcome-logo {
+        font-size: 32px;
+    }
+    
+    .welcome-text {
+        font-size: 14px;
+        margin-bottom: 24px;
+    }
+    
+    .auth-card {
+        margin: 0 16px;
+        padding: 24px 20px;
+    }
+    
+    .upload-section {
+        padding: 12px;
+    }
+    
+    .post-header,
+    .post-actions,
+    .post-likes,
+    .post-content {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+    .post-action,
+    .btn,
+    .file-input-label {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .nav-links a {
+        padding: 8px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+}
+
+/* Dark mode support (optional enhancement) */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #000;
+        --card-bg: #1a1a1a;
+        --text-color: #fff;
+        --border-color: #333;
+        --secondary-text: #8e8e8e;
+    }
+    
+    /* Uncomment to enable dark mode */
+    /*
+    body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+    }
+    
+    .navbar,
+    .auth-card,
+    .upload-section,
+    .post,
+    .sidebar-section {
+        background-color: var(--card-bg);
+        border-color: var(--border-color);
+    }
+    
+    .form-control {
+        background-color: var(--card-bg);
+        border-color: var(--border-color);
+        color: var(--text-color);
+    }
+    
+    .form-control:focus {
+        border-color: var(--secondary-text);
+        background-color: var(--card-bg);
+    }
+    */
+}
+
+/* Print styles */
+@media print {
+    .navbar,
+    .upload-section,
+    .sidebar,
+    .post-actions {
+        display: none;
+    }
+    
+    .post {
+        break-inside: avoid;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+    }
+    
+    .post-image {
+        max-height: 300px;
+        object-fit: contain;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .btn-primary {
+        background-color: #000;
+        border: 2px solid #000;
+    }
+    
+    .btn-secondary {
+        border: 2px solid #000;
+        color: #000;
+    }
+    
+    .post,
+    .auth-card,
+    .upload-section {
+        border: 2px solid #000;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .post {
+        animation: none;
+    }
+}

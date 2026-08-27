@@ -1,0 +1,62 @@
+[
+    {
+        "name": "Luna",
+        "owner": "winky",
+        "description": "playful tabby cat from the city",
+        "url": "cat0.jpeg"
+    },
+    {
+        "name": "Milo",
+        "owner": "winky",
+        "description": "curious white kitten from Canada",
+        "url": "cat1.jpeg"
+    },
+    {
+        "name": "Cleo",
+        "owner": "winky",
+        "description": "graceful black cat with shiny fur",
+        "url": "cat2.jpeg"
+    },
+    {
+        "name": "Simba",
+        "owner": "winky",
+        "description": "orange domestic short-hair from the suburbs",
+        "url": "cat3.jpeg"
+    },
+    {
+        "name": "Nala",
+        "owner": "winky",
+        "description": "friendly calico cat from Europe",
+        "url": "cat4.jpeg"
+    },
+    {
+        "name": "Oliver",
+        "owner": "winky",
+        "description": "sleepy grey cat with green eyes",
+        "url": "cat5.jpeg"
+    },
+    {
+        "name": "Bella",
+        "owner": "winky",
+        "description": "energetic kitten that loves to climb",
+        "url": "cat6.jpeg"
+    },
+    {
+        "name": "Tiger",
+        "owner": "winky",
+        "description": "striped cat from a small village",
+        "url": "cat7.jpeg"
+    },
+    {
+        "name": "Chloe",
+        "owner": "winky",
+        "description": "elegant Siamese cat from Thailand",
+        "url": "cat8.jpeg"
+    },
+    {
+        "name": "Leo",
+        "owner": "winky",
+        "description": "big fluffy cat from the mountains",
+        "url": "cat9.jpeg"
+    }
+]
