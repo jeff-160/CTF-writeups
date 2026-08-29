@@ -1,0 +1,88 @@
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/css/main.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <body>
+        <div class="page-content container note-has-grid">
+            <ul class="nav nav-pills p-3 bg-white mb-3 rounded-pill align-items-center">
+                <li class="nav-item">
+                    <a href="javascript:void(0)" class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2 active" id="all-category">
+                        <i class="icon-layers mr-1"></i><span class="d-none d-md-block">All Notes</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="javascript:void(0)" class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2" id="note-important"> <i class="icon-tag mr-1"></i><span class="d-none d-md-block">Important</span></a>
+                </li>
+                <li class="nav-item ml-auto">
+                    <a href="javascript:void(0)" class="nav-link btn-primary rounded-pill d-flex align-items-center px-3" id="add-notes"> <i class="icon-note m-1"></i><span class="d-none d-md-block font-14">Add Notes</span></a>
+                </li>
+            </ul>
+            <div class="tab-content bg-transparent">
+                <div id="note-full-container" class="note-has-grid row">
+                    <% for(let i=0; i<data.length; i++){ %>
+                        <div 
+                            class="col-md-4 single-note-item all-category <%=data[i]["important"] ? "note-favourite note-important" : "" %>" 
+                            style=""
+                        >
+                            <div class="card card-body">
+                                <span class="side-stick"></span>
+                                <h5 class="note-title text-truncate w-75 mb-0" data-noteheading="<%=data[i]["title"] %>"><%=data[i]["title"] %> <i class="point fa fa-circle ml-1 font-10"></i></h5>
+                                <div class="note-content">
+                                    <p class="note-inner-content text-muted" data-notecontent="<%=data[i]["content"] %>"><%-data[i]["content"] %></p>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <span class="mr-1"><i class="fa fa-star favourite-note" data-idx="<%=data[i]["idx"] %>"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+
+            <!-- Modal Add notes -->
+            <div class="modal fade" id="addnotesmodal" tabindex="-1" role="dialog" aria-labelledby="addnotesmodalTitle" style="display: none;" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content border-0">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title text-white">Add Notes</h5>
+                        </div>
+                        <form action="/write" method="POST">
+                            <div class="modal-body">
+                                <div class="notes-box">
+                                    <div class="notes-content">
+                                            <div class="row">
+                                                <div class="col-md-12 mb-3">
+                                                    <div class="note-title">
+                                                        <label>Note Title</label>
+                                                        <input type="text" name="title" id="note-has-title" class="form-control" minlength="1" placeholder="Title" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div class="note-description">
+                                                        <label>Note Description</label>
+                                                        <textarea id="note-has-description" name="content" class="form-control" minlength="1" placeholder="Description" rows="3"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-header">
+                                <input type="submit" id="btn-n-add" class="btn btn-primary" disabled="disabled" value="Add"></input>
+                                <button type="button" class="btn btn-info preview" onclick="">Preview</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="/js/main.js"></script>
+        </body>
+    </body>
+</html>
