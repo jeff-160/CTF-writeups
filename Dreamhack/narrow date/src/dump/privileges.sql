@@ -1,0 +1,2 @@
+CREATE USER 'narrow'@'%' IDENTIFIED BY 'b74cd69cef8838a5c3588b5bd7fe762a';
+GRANT SELECT ON `users`.* TO 'narrow'@'%' IDENTIFIED BY 'b74cd69cef8838a5c3588b5bd7fe762a';
