@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Share a Thought | SentenceNet{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Share a Thought</h1>
+<p class="text-muted">Your sentence will be visible to everyone – one thought at a time.</p>
+
+<form method="post" action="{{ url_for('post') }}" class="row g-3">
+  <div class="col-md-9">
+    <label for="info_value" class="form-label visually-hidden">Thought</label>
+    <input type="text"
+           class="form-control"
+           id="info_value"
+           name="info_value"
+           maxlength="280"
+           placeholder="What's on your mind (one sentence only)..."
+           value="{{ value }}"
+           required>
+  </div>
+  <div class="col-md-3 d-flex align-items-end">
+    <button class="btn btn-primary w-100" type="submit">Post</button>
+  </div>
+</form>
+{% endblock %}

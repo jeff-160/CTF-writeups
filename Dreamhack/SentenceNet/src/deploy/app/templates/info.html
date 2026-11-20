@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Latest Thought | SentenceNet{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Latest Thought</h1>
+
+{% if info_value %}
+  <blockquote class="blockquote">
+    <p class="fs-4">“{{ info_value|e }}”</p>
+  </blockquote>
+  <footer class="blockquote-footer">Posted just now</footer>
+  <p class="mt-3">
+    Want to post a new one? <a href="{{ url_for('post') }}">Share another thought</a>.
+  </p>
+{% else %}
+  <p class="text-muted">No thoughts have been shared yet. Be the first on <strong>SentenceNet</strong>!</p>
+  <a href="{{ url_for('post') }}" class="btn btn-outline-primary">Get started</a>
+{% endif %}
+{% endblock %}

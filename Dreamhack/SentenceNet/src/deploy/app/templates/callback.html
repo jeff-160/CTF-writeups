@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Callback Test | SentenceNet{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Dev Page: Callback</h1>
+
+<p>This page demonstrates how a <code>callback</code> parameter can be used to invoke JavaScript functions with server data.</p>
+
+<pre class="bg-light p-3 rounded">&lt;script&gt;
+  {{ callback_fn }}({ info: {{ info_value | tojson }} });
+&lt;/script&gt;
+</pre>
+
+<h2 class="mt-4">Working Example:</h2>
+<div id="output" class="alert alert-info">Waiting for callback...</div>
+
+<script>
+  function updateDisplay(data) {
+    const el = document.getElementById('output');
+    el.textContent = "Callback received: " + JSON.stringify(data);
+  }
+
+  {{ callback_fn }}({ info: {{ info_value | tojson }} });
+</script>
+
+<p class="mt-3 text-muted">
+  Try visiting:
+  <a href="{{ url_for('callback') }}?callback=updateDisplay" class="text-decoration-underline">?callback=updateDisplay</a>
+  or
+  <a href="{{ url_for('callback') }}?callback=console.log" class="text-decoration-underline">?callback=console.log</a>
+</p>
+{% endblock %}

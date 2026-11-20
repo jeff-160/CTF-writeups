@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Report Content | SentenceNet{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Report Suspicious Activity</h1>
+<p>If you've seen a link or behavior that violates our guidelines, report it below.</p>
+
+{% if submitted %}
+  <div class="alert alert-success">Thank you — your report was submitted for review.</div>
+  <a href="{{ url_for('report') }}" class="btn btn-outline-primary">Submit another report</a>
+{% else %}
+  <form method="post" action="{{ url_for('report') }}" class="row g-3">
+    <div class="col-md-9">
+      <label for="report_url" class="form-label">Problematic URL</label>
+      <input type="url"
+             class="form-control"
+             id="report_url"
+             name="report_url"
+             placeholder="http://..."
+             required>
+    </div>
+    <div class="col-md-3 d-flex align-items-end">
+      <button class="btn btn-danger w-100" type="submit">Submit Report</button>
+    </div>
+  </form>
+{% endif %}
+{% endblock %}

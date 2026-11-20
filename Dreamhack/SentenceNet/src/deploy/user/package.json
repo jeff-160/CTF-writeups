@@ -1,0 +1,16 @@
+{
+  "name": "pb-bot",
+  "version": "1.0.0",
+  "description": "bot for private-blog",
+  "main": "index.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mysterious challenger",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.0",
+    "fs": "^0.0.1-security",
+    "puppeteer": "^23.3.0"
+  }
+}
